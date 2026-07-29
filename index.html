@@ -1,0 +1,2745 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MissionX - Innovation for Community | Education Consultation Innovation</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            orange: '#f58220',
+                            gold: '#f39c12',
+                            blue: '#2563eb',
+                            darkBlue: '#1d4ed8',
+                            dark: '#111827',
+                            cardBg: '#18181b',
+                            lightGray: '#f8fafc'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #1f2937;
+        }
+
+        .bg-overlay-dark {
+            background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.75));
+        }
+
+        .page-section {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .page-section.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Custom Venn Diagram styles */
+        .venn-circle {
+            mix-blend-mode: multiply;
+            transition: transform 0.3s ease;
+        }
+
+        .venn-circle:hover {
+            transform: scale(1.03);
+        }
+
+        /* Custom Glassmorphism */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        /* ===== FLIP CARD STYLES ===== */
+        .flip-card {
+            perspective: 1000px;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 1rem;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.75s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front,
+        .flip-card-back {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 1rem;
+        }
+
+        .flip-card-front {
+            background: #1f2937;
+            overflow: hidden;
+        }
+
+        .flip-card-back {
+            transform: rotateY(180deg);
+            background: linear-gradient(135deg, #f58220 0%, #e06b10 50%, #c0550a 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 1.25rem;
+            text-align: center;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        .flip-card-back .back-icon {
+            width: 42px;
+            height: 42px;
+            min-height: 42px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            backdrop-filter: blur(4px);
+            border: 2px solid rgba(255,255,255,0.35);
+        }
+
+        .flip-card-back h4 {
+            font-size: 0.92rem;
+            font-weight: 800;
+            margin-bottom: 0.3rem;
+            letter-spacing: 0.02em;
+            line-height: 1.25;
+        }
+
+        .flip-card-back p {
+            font-size: 0.7rem;
+            line-height: 1.5;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 0.5rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .flip-card-back .back-tag {
+            font-size: 0.62rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            background: rgba(255,255,255,0.25);
+            border: 1px solid rgba(255,255,255,0.4);
+            padding: 0.25rem 0.8rem;
+            border-radius: 9999px;
+            white-space: nowrap;
+        }
+
+        /* ===== ARTICLE READER STYLES ===== */
+        .article-body {
+            font-family: 'Inter', sans-serif;
+            color: #1f2937;
+            line-height: 1.85;
+        }
+
+        .article-body h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #111827;
+            margin-top: 2.5rem;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.01em;
+        }
+
+        .article-body h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-top: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .article-body p {
+            font-size: 1rem;
+            color: #374151;
+            margin-bottom: 1.4rem;
+            line-height: 1.85;
+        }
+
+        .article-body ul, .article-body ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1.4rem;
+        }
+
+        .article-body li {
+            font-size: 0.97rem;
+            color: #374151;
+            margin-bottom: 0.5rem;
+            line-height: 1.75;
+        }
+
+        .article-body blockquote {
+            border-left: 4px solid #f58220;
+            background: #fff7f0;
+            padding: 1rem 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 0.75rem 0.75rem 0;
+            font-style: italic;
+            color: #4b5563;
+            font-size: 1rem;
+        }
+
+        .article-body .highlight-box {
+            background: linear-gradient(135deg, #f58220 0%, #e06b10 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            margin: 2rem 0;
+            font-weight: 600;
+        }
+
+        .article-tag {
+            display: inline-block;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.3rem 0.85rem;
+            border-radius: 9999px;
+        }
+
+        .article-back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: #f58220;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            transition: color 0.2s;
+        }
+
+        .article-back-btn:hover {
+            color: #e06b10;
+        }
+
+        .article-cover {
+            width: 100%;
+            max-height: 480px;
+            object-fit: cover;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+
+<body class="flex flex-col min-h-screen bg-white">
+
+    <!-- NAVIGATION BAR -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <a href="#home" onclick="navigateTo('home')" class="flex items-center space-x-3 cursor-pointer">
+                    <div class="flex flex-col">
+                        <span class="text-3xl font-black tracking-tight text-black flex items-center gap-1">
+                            MissionX <span class="w-2.5 h-2.5 bg-brand-orange rounded-full inline-block"></span>
+                        </span>
+                        <span class="text-[10px] tracking-wider text-gray-500 font-semibold uppercase -mt-1">Innovation
+                            for community</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav -->
+                <nav
+                    class="hidden md:flex items-center space-x-6 text-sm font-semibold uppercase tracking-wider text-gray-700">
+                    <a href="#home" onclick="navigateTo('home')"
+                        class="nav-link hover:text-brand-orange transition-colors">HOME</a>
+                    <a href="#about" onclick="navigateTo('about')"
+                        class="nav-link hover:text-brand-orange transition-colors">ABOUT US</a>
+                    <a href="#careers" onclick="navigateTo('careers')"
+                        class="nav-link hover:text-brand-orange transition-colors">CAREERS</a>
+
+                    <!-- Programs Dropdown -->
+                    <div class="relative group">
+                        <button class="flex items-center space-x-1 hover:text-brand-orange py-2 uppercase">
+                            <span>PROGRAMS</span>
+                            <i class="fa-solid fa-chevron-down text-xs"></i>
+                        </button>
+                        <div
+                            class="absolute top-full left-0 hidden group-hover:block w-64 bg-white shadow-xl rounded-lg py-2 border border-gray-100 uppercase text-xs normal-case">
+                            <a href="#sip" onclick="navigateTo('sip')"
+                                class="block px-4 py-2.5 hover:bg-orange-50 hover:text-brand-orange font-semibold text-gray-700">Social
+                                Innovation Program</a>
+                            <a href="#idt" onclick="navigateTo('idt')"
+                                class="block px-4 py-2.5 hover:bg-orange-50 hover:text-brand-orange font-semibold text-gray-700">Innovation
+                                &amp; Design Thinking</a>
+                            <a href="#makerspaces" onclick="navigateTo('makerspaces')"
+                                class="block px-4 py-2.5 hover:bg-orange-50 hover:text-brand-orange font-semibold text-gray-700">Makerspaces</a>
+                        </div>
+                    </div>
+
+                    <a href="#inpulse" onclick="navigateTo('inpulse')"
+                        class="nav-link hover:text-brand-orange transition-colors text-brand-blue font-bold">INPULSE</a>
+                    <a href="#resources" onclick="navigateTo('resources')"
+                        class="nav-link hover:text-brand-orange transition-colors">RESOURCES</a>
+                    <a href="#contact" onclick="navigateTo('contact')"
+                        class="nav-link hover:text-brand-orange transition-colors">CONTACT US</a>
+                </nav>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()"
+                        class="text-gray-700 hover:text-black focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobile-menu"
+            class="hidden md:hidden bg-white border-b border-gray-200 px-4 pt-2 pb-6 space-y-3 font-semibold uppercase text-sm">
+            <a href="#home" onclick="navigateTo('home'); toggleMobileMenu()"
+                class="block py-2 text-gray-700 hover:text-brand-orange">Home</a>
+            <a href="#about" onclick="navigateTo('about'); toggleMobileMenu()"
+                class="block py-2 text-gray-700 hover:text-brand-orange">About Us</a>
+            <a href="#careers" onclick="navigateTo('careers'); toggleMobileMenu()"
+                class="block py-2 text-gray-700 hover:text-brand-orange">Careers</a>
+            <a href="#sip" onclick="navigateTo('sip'); toggleMobileMenu()"
+                class="block py-2 text-gray-700 hover:text-brand-orange">Programs - SIP</a>
+            <a href="#idt" onclick="navigateTo('idt'); toggleMobileMenu()"
+                class="block py-2 text-gray-700 hover:text-brand-orange">Programs - Innovation &amp; Design Thinking</a>
+            <a href="#makerspaces" onclick="navigateTo('makerspaces'); toggleMobileMenu()"
+                class="block py-2 text-gray-700 hover:text-brand-orange">Programs - Makerspaces</a>
+            <a href="#inpulse" onclick="navigateTo('inpulse'); toggleMobileMenu()"
+                class="block py-2 text-brand-blue font-bold">InPulse ERP</a>
+            <a href="#resources" onclick="navigateTo('resources'); toggleMobileMenu()"
+                class="block py-2 text-gray-700 hover:text-brand-orange">Resources</a>
+            <a href="#contact" onclick="navigateTo('contact'); toggleMobileMenu()"
+                class="block py-2 text-gray-700 hover:text-brand-orange">Contact Us</a>
+        </div>
+    </header>
+
+    <!-- MAIN PAGE CONTENT CONTAINER -->
+    <main class="flex-grow">
+
+        <!-- ================= PAGE: HOME ================= -->
+        <div id="page-home" class="page-section active">
+            <!-- Hero Banner -->
+            <section class="relative bg-gray-900 text-white min-h-[520px] flex items-center overflow-hidden">
+                <div class="absolute inset-0 z-0">
+                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1600&q=80"
+                        alt="Students graduating and innovating" class="w-full h-full object-cover opacity-30">
+                    <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent"></div>
+                </div>
+
+                <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+                    <div class="max-w-3xl space-y-6">
+                        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight">
+                            The world needs more of <br />
+                            <span class="text-white">Compassionate Creative Problem Solvers.</span> <br />
+                            <span class="text-brand-gold font-semibold text-2xl sm:text-4xl block mt-2">We help
+                                institutions with just that!</span>
+                        </h1>
+                        <p class="text-lg text-gray-200 font-light">
+                            Partnering with institutions to create more <br /><strong class="text-white text-xl">Problem
+                                Solvers!</strong>
+                        </p>
+
+                        <!-- Key Metrics Grid -->
+                        <div class="grid grid-cols-3 gap-6 pt-6 border-t border-gray-700/60 max-w-xl">
+                            <div>
+                                <span class="text-3xl sm:text-4xl font-extrabold text-brand-gold block">33+</span>
+                                <span class="text-xs sm:text-sm text-gray-300">engineering institutions</span>
+                            </div>
+                            <div>
+                                <span class="text-3xl sm:text-4xl font-extrabold text-brand-gold block">18000+</span>
+                                <span class="text-xs sm:text-sm text-gray-300">students nurtured</span>
+                            </div>
+                            <div>
+                                <span class="text-3xl sm:text-4xl font-extrabold text-brand-gold block">500+</span>
+                                <span class="text-xs sm:text-sm text-gray-300">solutions developed</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-400 italic">All this was possible due to our model.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Core Model Section -->
+            <section class="py-16 bg-white border-b border-gray-100">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-12">
+                        Our core model is <span class="text-black font-extrabold">Community Centric Innovation</span>
+                    </h2>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center max-w-6xl mx-auto">
+                        <!-- Left Descriptions -->
+                        <div class="lg:col-span-4 text-left space-y-8">
+                            <div class="p-4 rounded-xl bg-gray-50 border border-gray-100">
+                                <h3 class="font-bold text-gray-900 text-lg mb-1">Community</h3>
+                                <p class="text-xs text-gray-600 leading-relaxed">
+                                    Groups of similar professions, and organisations sharing common needs, challenges,
+                                    and aspirations. We build repositories of knowledge challenges and opportunities
+                                    that have economical and social impact.
+                                </p>
+                            </div>
+
+                            <div class="p-4 rounded-xl bg-gray-50 border border-gray-100">
+                                <h3 class="font-bold text-gray-900 text-lg mb-1">Builders</h3>
+                                <p class="text-xs text-gray-600 leading-relaxed">
+                                    Individuals / organisations possessing specialised technical skills and knowledge.
+                                    We mobilise the best talent to work on the most pressing challenges and
+                                    opportunities.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Center Venn Diagram Visual -->
+                        <div class="lg:col-span-4 flex justify-center py-6 relative">
+                            <div class="relative w-80 h-80 flex items-center justify-center">
+                                <!-- Venn Circle 1: Community -->
+                                <div
+                                    class="absolute top-2 left-6 w-44 h-44 rounded-full bg-indigo-900/80 text-white flex items-center justify-center font-bold text-xs p-2 text-center shadow-md">
+                                    COMMUNITY
+                                </div>
+                                <!-- Venn Circle 2: Business Mentors -->
+                                <div
+                                    class="absolute top-2 right-6 w-44 h-44 rounded-full bg-red-600/80 text-white flex items-center justify-center font-bold text-xs p-2 text-center shadow-md">
+                                    BUSINESS MENTORS
+                                </div>
+                                <!-- Venn Circle 3: Technocrats -->
+                                <div
+                                    class="absolute bottom-2 w-44 h-44 rounded-full bg-amber-500/80 text-white flex items-center justify-center font-bold text-xs p-2 text-center shadow-md">
+                                    TECHNOCRATS
+                                </div>
+                                <!-- Outer Flow Labels -->
+                                <span
+                                    class="absolute -top-4 text-[10px] font-bold text-gray-500 uppercase tracking-widest">COMMERCIALIZATION
+                                    / DISTRIBUTION</span>
+                                <span
+                                    class="absolute -bottom-4 text-[10px] font-bold text-gray-500 uppercase tracking-widest">IP
+                                    TO PRODUCT</span>
+                                <span
+                                    class="absolute -left-12 rotate-90 text-[10px] font-bold text-gray-500 uppercase tracking-widest">COMMUNITY
+                                    ENGAGEMENT</span>
+                            </div>
+                        </div>
+
+                        <!-- Right Descriptions -->
+                        <div class="lg:col-span-4 text-left space-y-8">
+                            <div class="p-4 rounded-xl bg-gray-50 border border-gray-100">
+                                <h3 class="font-bold text-gray-900 text-lg mb-1">Business Mentor</h3>
+                                <p class="text-xs text-gray-600 leading-relaxed">
+                                    Business mentors are sectoral experts with a deep understanding of market dynamics,
+                                    consumer behaviour, and business strategies. Our network plays a critical role in
+                                    designing roadmaps for startups and supporting innovations to scale.
+                                </p>
+                            </div>
+                            <div class="p-4 rounded-xl bg-gray-50 border border-gray-100">
+                                <h3 class="font-bold text-gray-900 text-lg mb-1">Software / Manufacturers Consultants
+                                </h3>
+                                <p class="text-xs text-gray-600 leading-relaxed">
+                                    Grassroot Innovators & Engineering talent turning ideation into physical and
+                                    software MVPs for real-world application.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Research Backed Framework -->
+            <section class="py-16 bg-gray-50">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="text-3xl font-bold text-gray-900 text-center mb-10">
+                        Research Backed Framework <span class="font-normal text-gray-600">to grow student
+                            mindset!</span>
+                    </h2>
+
+                    <div
+                        class="bg-white rounded-2xl shadow-lg p-6 sm:p-10 border border-gray-100 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        <div class="lg:col-span-8">
+                            <div class="border-b border-gray-200 pb-4 mb-6">
+                                <h3 class="font-bold text-sm text-gray-800 uppercase tracking-wide">CONSULTING
+                                    INSTITUTIONS WITH OUR RESEARCH BACKED FRAMEWORK</h3>
+                                <p class="text-xs text-gray-500 mt-1">Character skills (Event based Learning) +
+                                    Entrepreneurial mindset (Community Centric Learning) = Compassionate Competent
+                                    Workforce</p>
+                            </div>
+
+                            <!-- Graph representation -->
+                            <div class="relative bg-white border border-gray-200 rounded-xl p-4 sm:p-6 overflow-x-auto">
+                                <div class="min-w-[500px]">
+                                    <div
+                                        class="grid grid-cols-4 text-center font-bold text-sm text-gray-700 border-b pb-2 mb-4">
+                                        <div>1st year</div>
+                                        <div>2nd year</div>
+                                        <div>3rd year</div>
+                                        <div>4th year</div>
+                                    </div>
+                                    <div class="relative h-64 flex items-end">
+                                        <!-- Curves representation SVG -->
+                                        <svg class="absolute inset-0 w-full h-full" preserveAspectRatio="none"
+                                            viewBox="0 0 500 200">
+                                            <path d="M 10 190 Q 150 180, 250 120 T 490 30" fill="none" stroke="#22c55e"
+                                                stroke-width="3" />
+                                            <path d="M 10 195 Q 180 185, 300 150 T 490 120" fill="none" stroke="#3b82f6"
+                                                stroke-width="3" />
+                                            <line x1="10" y1="70" x2="490" y2="70" stroke="#ef4444" stroke-dasharray="4"
+                                                stroke-width="1.5" />
+                                        </svg>
+                                        <!-- Stage Blocks -->
+                                        <div
+                                            class="absolute left-6 bottom-12 bg-amber-100 border border-amber-300 p-2 text-[10px] rounded w-28 text-center">
+                                            Exploratory tech & non-tech events</div>
+                                        <div
+                                            class="absolute left-36 bottom-20 bg-lime-100 border border-lime-300 p-2 text-[10px] rounded w-32 text-center">
+                                            Discover and develop technology strength</div>
+                                        <div
+                                            class="absolute right-28 top-8 bg-amber-100 border border-amber-300 p-2 text-[10px] rounded w-36 text-center">
+                                            Hone entrepreneurial spirit tackling real world challenges</div>
+                                    </div>
+                                    <div
+                                        class="grid grid-cols-4 text-center text-xs font-bold text-gray-600 pt-3 border-t mt-2">
+                                        <span class="text-emerald-700">INSPIRE</span>
+                                        <span class="text-blue-700">DISCOVER</span>
+                                        <span class="text-indigo-700">DEVELOP</span>
+                                        <span class="text-purple-700">DEEPEN</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-4 space-y-4 text-sm text-gray-600 leading-relaxed">
+                            <p>
+                                Our framework for building Entrepreneurial Mindset focuses on suggesting challenges of
+                                different complexities based on 20+ parameters associated with our learners. The
+                                activities are mapped to academic subjects for easy evaluation and integration.
+                            </p>
+                            <p>
+                                This helps our learners not just to select fields of their interest and do well in
+                                academics but also build capabilities that are valued in the market either to launch
+                                themselves as an entrepreneur or to be deployed in projects in the industry.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Programs Designed for Building Problem Solvers Grid -->
+            <section class="py-16 bg-black text-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <!-- Yellow Banner Card -->
+                        <div class="bg-brand-orange text-black p-8 rounded-2xl flex flex-col justify-center font-bold">
+                            <span class="text-sm uppercase tracking-wider text-black/80 font-semibold mb-1">Programs
+                                Designed for</span>
+                            <h3 class="text-3xl font-extrabold leading-tight">Building Problem Solvers</h3>
+                        </div>
+
+                        <!-- Flip Card 1: Hardware Tinkering -->
+                        <div class="flip-card rounded-2xl h-64">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <img src="https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=600&q=80"
+                                        alt="Hardware tinkering"
+                                        class="w-full h-full object-cover">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-4">
+                                        <span class="text-white text-xs font-bold uppercase tracking-wider opacity-80">Hardware Tinkering →</span>
+                                    </div>
+                                </div>
+                                <div class="flip-card-back">
+                                    <div class="back-icon"><i class="fa-solid fa-microchip"></i></div>
+                                    <h4>Hardware & Prototyping</h4>
+                                    <p>Students get hands-on experience building real electronic prototypes, from circuit design to 3D printing—bridging theory with maker culture.</p>
+                                    <span class="back-tag">Makerspace Program</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Flip Card 2: Group Collaboration -->
+                        <div class="flip-card rounded-2xl h-64">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80"
+                                        alt="Group collaboration"
+                                        class="w-full h-full object-cover">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-4">
+                                        <span class="text-white text-xs font-bold uppercase tracking-wider opacity-80">Team Collaboration →</span>
+                                    </div>
+                                </div>
+                                <div class="flip-card-back">
+                                    <div class="back-icon"><i class="fa-solid fa-users"></i></div>
+                                    <h4>Community-Centric Learning</h4>
+                                    <p>Cross-disciplinary teams tackle pressing real-world community problems together, cultivating empathy, leadership, and a collaborative innovation mindset.</p>
+                                    <span class="back-tag">SIP Program</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Flip Card 3: Students Pitching -->
+                        <div class="flip-card rounded-2xl h-64">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80"
+                                        alt="Students pitching"
+                                        class="w-full h-full object-cover">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-4">
+                                        <span class="text-white text-xs font-bold uppercase tracking-wider opacity-80">Pitch & Present →</span>
+                                    </div>
+                                </div>
+                                <div class="flip-card-back">
+                                    <div class="back-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                                    <h4>Pitch & Entrepreneurship</h4>
+                                    <p>From idea to investor pitch — students develop business acumen, storytelling skills, and the confidence to present solutions to industry mentors and community leaders.</p>
+                                    <span class="back-tag">Innovation Lab</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Makerspaces Section -->
+            <section class="py-16 bg-black text-white border-t border-gray-800">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        <div class="lg:col-span-5 space-y-6">
+                            <span class="text-gray-400 font-medium tracking-wide">Empowering Minds</span>
+                            <h2 class="text-3xl sm:text-4xl font-extrabold leading-tight">
+                                Crafting Makerspaces along with institutions for Future Creators!
+                            </h2>
+                            <p class="text-sm text-gray-300 leading-relaxed">
+                                Our goal is to help schools and colleges build Makerspaces that inspire student
+                                creativity. We assess their needs, design the space, provide equipment, and offer
+                                training to ensure successful implementation.
+                            </p>
+                            <button onclick="navigateTo('contact')"
+                                class="px-6 py-3 bg-brand-blue hover:bg-blue-700 text-white font-bold rounded-lg transition-all shadow-md">
+                                KNOW MORE
+                            </button>
+                        </div>
+
+                        <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="rounded-2xl overflow-hidden shadow-2xl h-72">
+                                <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=700&q=80"
+                                    alt="Laser cutting maker space" class="w-full h-full object-cover">
+                            </div>
+                            <div class="rounded-2xl overflow-hidden shadow-2xl h-72 sm:mt-8">
+                                <img src="https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=700&q=80"
+                                    alt="Workshop machinery" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- InPulse Teaser Section -->
+            <section class="py-20 bg-black text-white relative overflow-hidden">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-6">
+                        <h3 class="text-4xl font-extrabold text-white tracking-tight">inpulse</h3>
+                        <h2 class="text-3xl sm:text-4xl font-bold leading-snug">
+                            Supporting faculty role in enhancing student outcomes
+                        </h2>
+                        <p class="text-sm text-gray-400 leading-relaxed">
+                            With every interaction, our platform beats with the passion for knowledge and the drive for
+                            innovation, nurturing a culture of continuous learning and development.
+                        </p>
+                        <button onclick="navigateTo('inpulse')"
+                            class="px-6 py-3 bg-brand-blue hover:bg-blue-700 font-bold rounded-lg transition-colors">
+                            KNOW MORE
+                        </button>
+                    </div>
+
+                    <div class="relative">
+                        <div class="bg-gray-900 border border-gray-800 rounded-2xl p-4 shadow-2xl">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80"
+                                alt="InPulse Platform Preview" class="rounded-xl w-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Community Stats -->
+            <section class="py-16 bg-white border-y border-gray-100">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900">
+                        The MissionX Community <span class="font-normal text-gray-600">has grown two-folds since
+                            2022</span>
+                    </h2>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                        <div class="p-6 bg-orange-50/50 rounded-2xl border border-orange-100">
+                            <span class="text-4xl font-black text-brand-orange block">11950+</span>
+                            <span class="text-sm font-medium text-gray-700">program alumni</span>
+                        </div>
+                        <div class="p-6 bg-orange-50/50 rounded-2xl border border-orange-100">
+                            <span class="text-4xl font-black text-brand-orange block">98+</span>
+                            <span class="text-sm font-medium text-gray-700">community leaders in the network</span>
+                        </div>
+                        <div class="p-6 bg-orange-50/50 rounded-2xl border border-orange-100">
+                            <span class="text-4xl font-black text-brand-orange block">22+</span>
+                            <span class="text-sm font-medium text-gray-700">student start-ups</span>
+                        </div>
+                    </div>
+
+                    <p class="text-xs text-gray-500 max-w-2xl mx-auto leading-relaxed">
+                        A journey designed to instill compassion for communities by empowering youth to work on real,
+                        pressing issues by involving stakeholders from regional communities and the industry, fostering
+                        collaborative innovation by and for the community.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Partners Logo Grid -->
+            <section class="py-12 bg-white text-center">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-8">PROGRAMME PARTNERS</h3>
+                    <div class="flex flex-wrap justify-center items-center gap-8 sm:gap-12 opacity-80">
+                        <div class="font-bold text-gray-700 text-sm border p-3 rounded-lg flex items-center gap-2"><i
+                                class="fa-solid fa-building text-brand-orange"></i> Karnataka Digital Economy Mission
+                        </div>
+                        <div class="font-bold text-gray-700 text-sm border p-3 rounded-lg flex items-center gap-2"><i
+                                class="fa-solid fa-briefcase text-blue-600"></i> CII Confederation of Indian Industry
+                        </div>
+                        <div class="font-bold text-gray-700 text-sm border p-3 rounded-lg flex items-center gap-2"><i
+                                class="fa-solid fa-code text-pink-600"></i> amdocs</div>
+                        <div class="font-bold text-gray-700 text-sm border p-3 rounded-lg flex items-center gap-2"><i
+                                class="fa-solid fa-sun text-red-500"></i> SELCO Foundation</div>
+                        <div class="font-bold text-gray-700 text-sm border p-3 rounded-lg flex items-center gap-2"><i
+                                class="fa-solid fa-graduation-cap text-green-600"></i> GAME Global Alliance</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonial -->
+            <section class="py-16 bg-gray-50 text-center border-t border-gray-100">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+                    <h2 class="text-2xl font-bold text-gray-900">What do the educationists have to say?</h2>
+                    <blockquote class="text-sm sm:text-base text-gray-600 italic">
+                        "Unique initiative that truly helps students to become entrepreneurial. I would love to give
+                        examples of these programs on various platforms."
+                    </blockquote>
+                    <div class="flex flex-col items-center">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80"
+                            alt="Rajendran Dandapani"
+                            class="w-16 h-16 rounded-full object-cover border-2 border-brand-orange mb-2">
+                        <span class="font-bold text-gray-900 text-sm">MR. RAJENDRAN DANDAPANI</span>
+                        <span class="text-xs text-gray-500 uppercase tracking-wider">FOUNDING TEAM, ZOHO
+                            CORPORATION</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= PAGE: ABOUT US ================= -->
+        <div id="page-about" class="page-section">
+            <!-- Hero Header Banner -->
+            <div class="relative bg-gray-900 text-white py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+                <div class="absolute inset-0">
+                    <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=1600&q=80"
+                        alt="Banner background" class="w-full h-full object-cover opacity-20">
+                </div>
+                <div class="relative max-w-7xl mx-auto">
+                    <span class="text-xs font-bold text-gray-300 uppercase tracking-widest block mb-2">OUR
+                        JOURNEY</span>
+                    <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight">Education Consultation Innovation
+                    </h1>
+                </div>
+            </div>
+
+            <!-- About Us Content & Video Section -->
+            <section class="py-16 bg-white border-b border-gray-100">
+                <div
+                    class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-6 space-y-6">
+                        <span class="text-xs font-bold text-gray-400 uppercase tracking-widest block">ABOUT US</span>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            MissionX, a hybrid word formed by merging "Innovation" and "Community," embodies our
+                            commitment to pioneering change within the community itself. We firmly believe that true
+                            innovation emerges from the hearts and minds of the community's own members. <strong
+                                class="text-gray-900">MissionX's visionary goal can be summed up as 10³ X 10⁶ >
+                                10⁹</strong>
+                        </p>
+                        <button onclick="navigateTo('sip')"
+                            class="text-sm font-bold text-black hover:text-brand-orange flex items-center gap-2">
+                            <i class="fa-solid fa-play text-xs"></i> Delve deeper into our mission
+                        </button>
+                    </div>
+
+                    <!-- Video Preview Player Card -->
+                    <div class="lg:col-span-6">
+                        <div class="relative rounded-2xl overflow-hidden shadow-2xl group cursor-pointer"
+                            onclick="showMessage('Our MissionX Journey video is coming soon! Contact us at reachus@missionx.in to learn more about our story.')">
+                            <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800&q=80"
+                                alt="MissionX Journey Video"
+                                class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                                <div
+                                    class="w-16 h-16 bg-red-600 text-white rounded-2xl flex items-center justify-center shadow-lg group-hover:bg-red-700 transition-colors">
+                                    <i class="fa-solid fa-play text-2xl ml-1"></i>
+                                </div>
+                            </div>
+                            <div
+                                class="absolute bottom-4 left-4 right-4 bg-black/80 backdrop-blur text-white p-3 rounded-xl flex justify-between items-center text-xs">
+                                <div>
+                                    <span class="font-bold block">MissionX | Journey</span>
+                                    <span class="text-gray-400 text-[10px]">Watch on YouTube</span>
+                                </div>
+                                <i class="fa-brands fa-youtube text-red-500 text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- From Social Innovation Section -->
+            <section class="relative py-20 bg-gray-900 text-white overflow-hidden">
+                <div class="absolute inset-0">
+                    <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1600&q=80"
+                        alt="Children classroom" class="w-full h-full object-cover opacity-20">
+                </div>
+                <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-gray-300">FROM SOCIAL INNOVATION TO
+                        COMMUNITY CENTRIC EDUCATION</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm text-gray-200 leading-relaxed font-light">
+                        <p>
+                            To build compassion among students towards the people of the society and to catalyse
+                            interaction between various stakeholders of the society, we experimented on various fronts.
+                            First we went to the fields with the students, then we brought the stakeholders to the
+                            college campus. Sometimes we had to hear students' parents yelling at us for sending them
+                            out during the college hours, while sometimes faculties complained about students not
+                            attending classes due to extra work given.
+                        </p>
+                        <p>
+                            We endured every bit of it, and finally after 3 years we realised that there are about 4% of
+                            students who have an entrepreneurial mindset built in them due to various stages of life
+                            experiences they have had. We needed to find them and give them a track to help them
+                            explore, develop and build an entrepreneurial career. While the rest had to go through a
+                            curated journey that helps them build an entrepreneurial mindset. Thus, one program for all
+                            was evolved "the community centric education".
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Mission Section -->
+            <section class="py-16 bg-white border-b border-gray-100">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-8">MISSION OF NURTURING
+                        ENTREPRENEURIAL MINDSET IN EVERY YOUTH.</h3>
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                        <div class="lg:col-span-6 space-y-6">
+                            <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 leading-snug">
+                                Ever wondered how fostering an entrepreneurial mindset in today's youth can shape a
+                                brighter future for communities and nations?
+                            </h2>
+                            <p class="text-sm text-gray-600 leading-relaxed">
+                                At MissionX, our mission is crystal clear, we are dedicated to nurturing an
+                                entrepreneurial mindset in every young individual. We recognize the untapped potential
+                                within today's youth, and we firmly believe that fostering an entrepreneurial spirit is
+                                not just a pathway to personal success but also the key to unlocking innovation,
+                                economic growth, and societal progress.
+                            </p>
+                            <button onclick="navigateTo('contact')"
+                                class="text-sm font-bold text-black hover:text-brand-orange flex items-center gap-2">
+                                <i class="fa-solid fa-play text-xs"></i> Read More
+                            </button>
+                        </div>
+                        <div class="lg:col-span-6">
+                            <div
+                                class="rounded-2xl overflow-hidden shadow-xl grayscale hover:grayscale-0 transition-all duration-500">
+                                <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80"
+                                    alt="Students building hardware prototypes" class="w-full h-80 object-cover">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Discover Video Modal Trigger -->
+            <section class="py-16 bg-gray-50 text-center">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+                    <h2 class="text-3xl font-extrabold text-gray-900">Find out what MissionX does</h2>
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center text-left max-w-5xl mx-auto">
+                        <div class="lg:col-span-5 space-y-4">
+                            <h3 class="text-4xl font-extrabold text-gray-900">Discover</h3>
+                            <p class="text-xs text-gray-600 leading-relaxed">
+                                At MissionX, we believe that true innovation thrives within communities, and we're
+                                dedicated to empowering individuals to drive meaningful change. Join our team to be part
+                                of a mission that nurtures entrepreneurial minds, fosters growth, and creates
+                                sustainable impact.
+                            </p>
+                        </div>
+                        <div class="lg:col-span-7">
+                            <div class="relative rounded-2xl overflow-hidden shadow-2xl group cursor-pointer"
+                                onclick="showMessage('Video coming soon! Reach out to us at reachus@missionx.in to learn more.')">
+                                <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=800&q=80"
+                                    alt="MissionX team gather" class="w-full h-80 object-cover">
+                                <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
+                                    <div
+                                        class="w-20 h-20 bg-white/90 text-black rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform">
+                                        <i class="fa-solid fa-play text-2xl ml-1 text-black"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= PAGE: CAREERS ================= -->
+        <div id="page-careers" class="page-section">
+            <!-- Careers Banner -->
+            <section class="relative bg-gray-900 text-white py-24 px-4 sm:px-6 lg:px-8">
+                <div class="max-w-7xl mx-auto space-y-6">
+                    <span class="text-xs font-bold text-gray-300 uppercase tracking-widest block">Unlock your
+                        success</span>
+                    <h1 class="text-4xl sm:text-6xl font-extrabold">Make an Impact in Your Career!</h1>
+                    <p class="text-base sm:text-lg text-gray-300 max-w-2xl font-light">
+                        Join passionate professionals dedicated to growth and community impact. Here, your career drives
+                        meaningful change, shapes a sustainable future, and redefines possibilities.
+                    </p>
+                    <button onclick="navigateTo('contact')"
+                        class="px-8 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg shadow-lg uppercase text-xs tracking-wider">
+                        FIND YOUR NEXT JOB
+                    </button>
+                </div>
+            </section>
+
+            <!-- What We're Looking For -->
+            <section class="py-16 bg-gray-50 border-b border-gray-200">
+                <div
+                    class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-7 space-y-6">
+                        <h2 class="text-3xl font-extrabold text-gray-900">What We're Looking For</h2>
+                        <p class="text-xs text-gray-600 leading-relaxed">
+                            We're looking for passionate, forward-thinking individuals who are excited to contribute to
+                            the mission of MissionX. If you're someone who thrives in an entrepreneurial, fast-paced
+                            environment, and are motivated to make a tangible difference in the world, we want to hear
+                            from you.
+                        </p>
+                        <ul class="space-y-3 text-xs font-semibold text-gray-800">
+                            <li class="flex items-center gap-3"><i
+                                    class="fa-regular fa-circle-check text-green-600 text-base"></i> Innovative minds
+                                shaping the future</li>
+                            <li class="flex items-center gap-3"><i
+                                    class="fa-regular fa-circle-check text-green-600 text-base"></i> Strategic thinkers
+                                solving complex challenges</li>
+                            <li class="flex items-center gap-3"><i
+                                    class="fa-regular fa-circle-check text-green-600 text-base"></i> Visionary leaders
+                                driving meaningful impact</li>
+                            <li class="flex items-center gap-3"><i
+                                    class="fa-regular fa-circle-check text-green-600 text-base"></i> Agile professionals
+                                thriving in change</li>
+                        </ul>
+                    </div>
+
+                    <!-- Logo Card -->
+                    <div class="lg:col-span-5 flex justify-center">
+                        <div
+                            class="bg-black text-white w-72 h-72 rounded-2xl flex items-center justify-center shadow-2xl">
+                            <span class="text-8xl font-black tracking-tighter">iu</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Ribbon -->
+            <section class="bg-black text-white py-8 px-4 sm:px-6 lg:px-8">
+                <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+                    <h2 class="text-2xl font-black uppercase tracking-wide">TURN YOUR AMBITIONS INTO REALITY</h2>
+                    <button onclick="navigateTo('contact')"
+                        class="px-6 py-2.5 bg-amber-500 hover:bg-amber-600 text-black font-bold rounded-full uppercase text-xs flex items-center gap-2">
+                        APPLY NOW <i class="fa-solid fa-check"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Life at MissionX -->
+            <section class="py-16 bg-white border-b border-gray-100">
+                <div
+                    class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-6">
+                        <div class="rounded-2xl overflow-hidden shadow-xl">
+                            <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80"
+                                alt="Team outing in raincoat" class="w-full h-80 object-cover">
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-6 space-y-6">
+                        <h2 class="text-3xl font-bold text-gray-900">Life at MissionX</h2>
+                        <p class="text-xs text-gray-600 leading-relaxed">
+                            At MissionX, we are delighted to have a team of diverse and dedicated professionals who bring
+                            their passion for innovation to every project. Our commitment to excellence in service and
+                            technology is unwavering, and our team's collective talent fuels our success. Join us and
+                            participate in a collaborative network where each role is crucial to our shared vision of
+                            transformative impact.
+                        </p>
+                        <button onclick="navigateTo('contact')"
+                            class="px-6 py-2.5 border-2 border-amber-500 text-amber-600 hover:bg-amber-50 font-bold rounded text-xs uppercase">
+                            Apply Now
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Gallery Collage -->
+            <section class="py-12 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="rounded-2xl overflow-hidden h-64 shadow-md">
+                        <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=600&q=80"
+                            alt="Team meeting" class="w-full h-full object-cover">
+                    </div>
+                    <div class="rounded-2xl overflow-hidden h-64 shadow-md">
+                        <img src="https://images.unsplash.com/photo-1531497865144-0464ef8fb9a9?auto=format&fit=crop&w=600&q=80"
+                            alt="Outdoors activity" class="w-full h-full object-cover">
+                    </div>
+                    <div class="rounded-2xl overflow-hidden h-64 shadow-md">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80"
+                            alt="Students teamwork" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Culture Testimonial -->
+            <section class="py-16 bg-gray-50 text-center">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+                    <h2 class="text-3xl font-extrabold text-gray-900">Our Culture, Through Our People</h2>
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 space-y-4">
+                        <p class="text-xs sm:text-sm text-gray-600 italic">
+                            "Joining MissionX has not only enriched my professional experience but has also given me an
+                            extended family."
+                        </p>
+                        <div class="flex items-center justify-center gap-3">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80"
+                                alt="Tejas Nayak" class="w-12 h-12 rounded-full object-cover border">
+                            <div class="text-left">
+                                <span class="font-bold text-gray-900 text-xs block">TEJAS NAYAK</span>
+                                <span class="text-[10px] text-gray-500 uppercase">Branding Intern</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= PAGE: INPULSE ================= -->
+        <div id="page-inpulse" class="page-section bg-black text-white">
+            <!-- InPulse Sub-Header Nav -->
+            <div
+                class="border-b border-gray-800 py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center max-w-7xl mx-auto text-xs">
+                <div class="font-bold text-xl tracking-tight text-white flex items-baseline gap-2">
+                    inpulse <span class="text-[10px] text-gray-400 font-normal">by MissionX</span>
+                </div>
+                <div class="hidden sm:flex space-x-6 text-gray-300 font-medium uppercase">
+                    <a href="#inpulse" class="hover:text-white">Home</a>
+                    <a href="#inpulse" class="hover:text-white">Features</a>
+                    <a href="#inpulse" class="hover:text-white">Benefits</a>
+                    <a href="#inpulse" class="hover:text-white">FAQ</a>
+                </div>
+                <button onclick="navigateTo('contact')"
+                    class="px-4 py-2 bg-brand-blue hover:bg-blue-600 text-white font-bold rounded-lg uppercase">
+                    REQUEST DEMO
+                </button>
+            </div>
+
+            <!-- Hero Section -->
+            <section
+                class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-6 space-y-6">
+                    <span class="text-xs text-gray-400 uppercase tracking-widest block">It is not an ERP it's</span>
+                    <h1 class="text-4xl sm:text-6xl font-black leading-tight">Digital ecosystem for institution 4.0</h1>
+                    <p class="text-sm text-gray-400 leading-relaxed">
+                        InPulse is one of its kind personalisation platform that helps develop timeless skills for
+                        today's progressive institutions.
+                    </p>
+                    <button onclick="navigateTo('contact')"
+                        class="px-8 py-3 bg-brand-blue hover:bg-blue-600 text-white font-bold rounded-lg uppercase text-xs">
+                        GET STARTED!!
+                    </button>
+                </div>
+
+                <div class="lg:col-span-6">
+                    <div class="bg-gray-900 p-2 rounded-2xl border border-gray-800 shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80"
+                            alt="InPulse Platform Interface" class="rounded-xl w-full">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Headline -->
+            <section class="text-center py-12 border-t border-gray-800">
+                <h2 class="text-3xl sm:text-5xl font-black max-w-4xl mx-auto leading-tight">
+                    designed by academicians for academia, with passionate developers
+                </h2>
+            </section>
+
+            <!-- Career Roadmap Widget Showcase -->
+            <section class="py-16 bg-gray-950 border-y border-gray-800">
+                <div
+                    class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-5 space-y-4">
+                        <h2 class="text-3xl font-extrabold">Career Roadmap</h2>
+                        <h3 class="text-xl text-gray-300 font-medium">Let us help in building student profile that
+                            industry love:</h3>
+                        <p class="text-xs text-gray-400 leading-relaxed">
+                            Transform your student profile into one that industries admire with our Career Roadmap
+                            service. Tailored to enhance skills and experiences, our platform guides students towards
+                            their professional goals.
+                        </p>
+                    </div>
+
+                    <!-- Interactive Mock Dashboard Widget -->
+                    <div class="lg:col-span-7 bg-zinc-900 border border-zinc-800 rounded-2xl p-6 space-y-6">
+                        <div class="flex items-center justify-between border-b border-zinc-800 pb-4">
+                            <div class="flex items-center gap-3">
+                                <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=100&q=80"
+                                    alt="Suryansh Nair" class="w-12 h-12 rounded-full border">
+                                <div>
+                                    <span class="font-bold text-sm block">Suryansh Nair</span>
+                                    <span class="text-xs text-gray-400">Computer Science in AI & ML</span>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-2xl font-black text-green-400">9.1/10</span>
+                                <span class="text-[10px] text-gray-400 block">average cgpa</span>
+                            </div>
+                        </div>
+
+                        <!-- Skill Progress bars -->
+                        <div class="space-y-3 text-xs">
+                            <div>
+                                <div class="flex justify-between text-gray-300 mb-1">
+                                    <span>Java</span><span>79/100</span></div>
+                                <div class="w-full bg-zinc-800 h-2 rounded-full">
+                                    <div class="bg-indigo-500 h-2 rounded-full" style="width: 79%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-gray-300 mb-1"><span>PHP</span><span>67/100</span>
+                                </div>
+                                <div class="w-full bg-zinc-800 h-2 rounded-full">
+                                    <div class="bg-indigo-500 h-2 rounded-full" style="width: 67%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-gray-300 mb-1"><span>React</span><span
+                                        class="text-green-400">89/100 ✓</span></div>
+                                <div class="w-full bg-zinc-800 h-2 rounded-full">
+                                    <div class="bg-green-500 h-2 rounded-full" style="width: 89%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Stats Footer inside widget -->
+                        <div class="grid grid-cols-4 gap-2 text-center text-xs border-t border-zinc-800 pt-4">
+                            <div><span class="font-bold text-lg block">3</span><span
+                                    class="text-[10px] text-gray-400">skill courses</span></div>
+                            <div><span class="font-bold text-lg block text-green-400">5 ✓</span><span
+                                    class="text-[10px] text-gray-400">social projects</span></div>
+                            <div><span class="font-bold text-lg block">8</span><span
+                                    class="text-[10px] text-gray-400">events attended</span></div>
+                            <div><span class="font-bold text-lg block">2</span><span
+                                    class="text-[10px] text-gray-400">internships</span></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Benefits Grid -->
+            <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+                <div>
+                    <h2 class="text-3xl font-extrabold mb-2">Our Benefits</h2>
+                    <p class="text-xs text-gray-400">InPulse simplifies complex academic management tasks, allowing
+                        institution managers to focus on strategy.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-zinc-900 p-6 rounded-2xl border border-zinc-800 space-y-3">
+                        <i class="fa-solid fa-pen-to-square text-amber-500 text-2xl"></i>
+                        <h3 class="font-bold text-sm">Innovative Assignments</h3>
+                        <p class="text-xs text-gray-400 leading-relaxed">InPulse allows faculties to add task, event,
+                            competition as assignments, where students could showcase physical implementation of the
+                            learnings.</p>
+                    </div>
+
+                    <div class="bg-zinc-900 p-6 rounded-2xl border border-zinc-800 space-y-3">
+                        <i class="fa-solid fa-chart-line text-blue-500 text-2xl"></i>
+                        <h3 class="font-bold text-sm">Learning Outcome Tracking</h3>
+                        <p class="text-xs text-gray-400 leading-relaxed">InPulse tracks student learning and gives
+                            activity suggestions to take up based on the interest of individual.</p>
+                    </div>
+
+                    <div class="bg-zinc-900 p-6 rounded-2xl border border-zinc-800 space-y-3">
+                        <i class="fa-solid fa-desktop text-green-500 text-2xl"></i>
+                        <h3 class="font-bold text-sm">User-Friendly Interface</h3>
+                        <p class="text-xs text-gray-400 leading-relaxed">Our platform is designed with ease of use in
+                            mind. Intuitive navigation ensures that even those with minimal technical expertise can
+                            operate effectively.</p>
+                    </div>
+
+                    <div class="bg-zinc-900 p-6 rounded-2xl border border-zinc-800 space-y-3">
+                        <i class="fa-solid fa-shield-halved text-purple-500 text-2xl"></i>
+                        <h3 class="font-bold text-sm">Data Security</h3>
+                        <p class="text-xs text-gray-400 leading-relaxed">We prioritize the security of your data.
+                            InPulse employs robust security measures to protect sensitive information and ensure
+                            compliance.</p>
+                    </div>
+
+                    <div class="bg-zinc-900 p-6 rounded-2xl border border-zinc-800 space-y-3">
+                        <i class="fa-solid fa-file-contract text-yellow-500 text-2xl"></i>
+                        <h3 class="font-bold text-sm">Easy Reporting for Accreditation</h3>
+                        <p class="text-xs text-gray-400 leading-relaxed">Keep tracks of all academic management tasks,
+                            allowing data to be seamlessly presented for accreditation purposes.</p>
+                    </div>
+
+                    <div class="bg-zinc-900 p-6 rounded-2xl border border-zinc-800 space-y-3">
+                        <i class="fa-solid fa-users flex text-pink-500 text-2xl"></i>
+                        <h3 class="font-bold text-sm">Enhanced Transparency</h3>
+                        <p class="text-xs text-gray-400 leading-relaxed">By providing a clear and organized view of
+                            academic operations, InPulse promotes transparency and accountability.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ Accordion Section -->
+            <section class="py-16 bg-white text-black">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+                    <div>
+                        <h2 class="text-3xl font-extrabold">You ask - we answer.</h2>
+                        <p class="text-xs text-gray-500">All you want to know about the product</p>
+                    </div>
+
+                    <div class="space-y-4 text-sm font-semibold divide-y">
+                        <details class="pt-4 group cursor-pointer">
+                            <summary class="flex justify-between items-center">
+                                <span>What is InPulse, and how does it benefit educational institutions?</span>
+                                <i
+                                    class="fa-solid fa-chevron-down text-xs group-open:rotate-180 transition-transform"></i>
+                            </summary>
+                            <p class="text-xs font-normal text-gray-600 mt-2 leading-relaxed">
+                                InPulse is an all-in-one ecosystem for academic operations, outcome tracking, student
+                                roadmap building, and institutional accreditation preparation.
+                            </p>
+                        </details>
+
+                        <details class="pt-4 group cursor-pointer">
+                            <summary class="flex justify-between items-center">
+                                <span>How does InPulse support faculty and students?</span>
+                                <i
+                                    class="fa-solid fa-chevron-down text-xs group-open:rotate-180 transition-transform"></i>
+                            </summary>
+                            <p class="text-xs font-normal text-gray-600 mt-2 leading-relaxed">
+                                Faculty can assign real-world challenges, track skills, and automate evaluations, while
+                                students receive personalized progress dashboards and industry connects.
+                            </p>
+                        </details>
+
+                        <details class="pt-4 group cursor-pointer">
+                            <summary class="flex justify-between items-center">
+                                <span>What is the onboarding process for institutions?</span>
+                                <i
+                                    class="fa-solid fa-chevron-down text-xs group-open:rotate-180 transition-transform"></i>
+                            </summary>
+                            <p class="text-xs font-normal text-gray-600 mt-2 leading-relaxed">
+                                Our technical team handles seamless data migration and conducts structured training
+                                sessions for administrators and faculty members within 2 weeks.
+                            </p>
+                        </details>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= PAGE: SOCIAL INNOVATION PROGRAM (SIP) ================= -->
+        <div id="page-sip" class="page-section">
+            <!-- Hero Banner -->
+            <section class="relative bg-gray-900 text-white py-20 px-4 sm:px-6 lg:px-8">
+                <div class="max-w-7xl mx-auto space-y-3">
+                    <span class="text-xs font-bold text-gray-300 uppercase tracking-widest block">First step towards
+                        becoming a change maker!</span>
+                    <h1 class="text-4xl sm:text-5xl font-extrabold">Social Innovation Program</h1>
+                </div>
+            </section>
+
+            <!-- Program Overview -->
+            <section class="py-16 bg-white border-b border-gray-100">
+                <div
+                    class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-7 space-y-4">
+                        <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">One step at a time
+                            to</span>
+                        <h2 class="text-3xl font-extrabold text-gray-900">Empower Social change.</h2>
+                        <p class="text-xs text-gray-600 leading-relaxed">
+                            In this course students will be introduced to various sector specific, real time problems of
+                            the region. During the 12 weeks of the course, students go on multiple field visits to
+                            experience social immersion and develop compassion for their communities through continuous
+                            interactions. They simultaneously conduct primary research using the knowledge of research
+                            tools and methodologies. This is a completely activity based class, with a fun-loving
+                            environment that is infused with challenges.
+                        </p>
+                    </div>
+                    <div class="lg:col-span-5">
+                        <div class="rounded-2xl overflow-hidden shadow-xl">
+                            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80"
+                                alt="Students planning social impact project" class="w-full h-72 object-cover">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Outcomes Cards -->
+            <section class="py-16 bg-gray-50">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                        <div class="space-y-3">
+                            <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Outcomes</span>
+                            <h2 class="text-2xl font-extrabold text-gray-900">of the program!</h2>
+                            <p class="text-xs text-gray-600 leading-relaxed">
+                                They are challenged to get out of their comfort zones and start engaging with the
+                                diverse sectors around the region.
+                            </p>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm space-y-3">
+                            <h3 class="font-bold text-base text-gray-900">Apply research methods</h3>
+                            <p class="text-xs text-gray-600 leading-relaxed">Apply research methods to organise, analyse
+                                and define the problem.</p>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm space-y-3">
+                            <h3 class="font-bold text-base text-gray-900">Design solutions</h3>
+                            <p class="text-xs text-gray-600 leading-relaxed">Design solutions to the challenges
+                                identified along with the stakeholders of the community.</p>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm space-y-3">
+                            <h3 class="font-bold text-base text-gray-900">Build rapid prototypes</h3>
+                            <p class="text-xs text-gray-600 leading-relaxed">Build prototype using rapid prototyping
+                                tools for the ideas that can solve the identified problem.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Syllabus Section -->
+            <section class="py-16 bg-white border-t border-gray-100">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-12">
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900">Social Innovation Program
+                            <span class="uppercase">SYLLABUS!</span></h2>
+                        <button onclick="showMessage('The SIP Syllabus PDF will be sent to your email. Please fill in the Contact form and we will share it with you shortly!')"
+                            class="px-5 py-2.5 bg-black text-white font-bold rounded-lg uppercase text-xs">
+                            DOWNLOAD SYLLABUS
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                        <div class="lg:col-span-7 space-y-6">
+                            <div class="flex gap-6 border-b pb-4">
+                                <span class="text-3xl font-black text-gray-900">01</span>
+                                <div>
+                                    <h3 class="font-bold text-sm text-gray-900 uppercase">INTRODUCTION TO REAL-TIME
+                                        PROBLEM STATEMENT</h3>
+                                    <p class="text-xs text-gray-600 mt-1">Through hands-on activities, problem-solving
+                                        exercises, and real-world case studies.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-6 border-b pb-4">
+                                <span class="text-3xl font-black text-gray-900">02</span>
+                                <div>
+                                    <h3 class="font-bold text-sm text-gray-900 uppercase">MARKET RESEARCH & PROBLEM
+                                        ANALYSIS</h3>
+                                    <p class="text-xs text-gray-600 mt-1">In this topic students will learn various
+                                        market research methodologies and techniques.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-6 border-b pb-4">
+                                <span class="text-3xl font-black text-gray-900">03</span>
+                                <div>
+                                    <h3 class="font-bold text-sm text-gray-900 uppercase">IDEA GENERATION & VALIDATION
+                                    </h3>
+                                    <p class="text-xs text-gray-600 mt-1">Students will learn ideation techniques,
+                                        market research methods, and best practices.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-6 border-b pb-4">
+                                <span class="text-3xl font-black text-gray-900">04</span>
+                                <div>
+                                    <h3 class="font-bold text-sm text-gray-900 uppercase">BUILDING BUSINESS MODEL FOR
+                                        IDEA</h3>
+                                    <p class="text-xs text-gray-600 mt-1">Through lectures and creation exercises,
+                                        students develop business model skills.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-6 border-b pb-4">
+                                <span class="text-3xl font-black text-gray-900">05</span>
+                                <div>
+                                    <h3 class="font-bold text-sm text-gray-900 uppercase">PROTOTYPING & USER VALIDATION
+                                    </h3>
+                                    <p class="text-xs text-gray-600 mt-1">By creating prototypes and testing them with
+                                        users, students develop user-centered design.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sidebar Course Card -->
+                        <div class="lg:col-span-5 space-y-6">
+                            <div class="bg-indigo-100 p-6 rounded-2xl space-y-4 text-indigo-950">
+                                <h3 class="font-bold text-lg">Pre-requisites</h3>
+                                <p class="text-xs leading-relaxed">Prior knowledge of design thinking concepts and
+                                    prototyping tools is required to take up this program.</p>
+                                <hr class="border-indigo-200">
+                                <h3 class="font-bold text-lg">Course Includes</h3>
+                                <ul class="text-xs space-y-2 list-disc list-inside">
+                                    <li>3 Case studies</li>
+                                    <li>3 Expert Workshops</li>
+                                    <li>2 Technical Events</li>
+                                    <li>2 Field Visits</li>
+                                    <li>1 Real-time project</li>
+                                    <li>Course Certificate</li>
+                                </ul>
+                            </div>
+                            <button onclick="navigateTo('contact')"
+                                class="w-full py-3 bg-amber-500 hover:bg-amber-600 text-black font-extrabold rounded-lg uppercase text-xs">
+                                ENROLL NOW
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Student Projects Collage -->
+            <section class="py-16 bg-black text-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+                    <div class="bg-brand-orange text-black p-6 rounded-2xl max-w-sm space-y-2">
+                        <span class="text-xs uppercase font-bold">SIP</span>
+                        <h3 class="text-3xl font-black">Student Projects</h3>
+                        <p class="text-xs font-medium">MissionX hosts a set of events and programs to help foster an
+                            environment of creativity and innovation.</p>
+                    </div>
+
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="h-48 rounded-xl overflow-hidden"><img
+                                src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=80"
+                                alt="Robotics circuit" class="w-full h-full object-cover"></div>
+                        <div class="h-48 rounded-xl overflow-hidden"><img
+                                src="https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=400&q=80"
+                                alt="Interactive Chess" class="w-full h-full object-cover"></div>
+                        <div class="h-48 rounded-xl overflow-hidden"><img
+                                src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?auto=format&fit=crop&w=400&q=80"
+                                alt="Sensor technology" class="w-full h-full object-cover"></div>
+                        <div class="h-48 rounded-xl overflow-hidden"><img
+                                src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=400&q=80"
+                                alt="Hardware glove prototype" class="w-full h-full object-cover"></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= PAGE: INNOVATION & DESIGN THINKING ================= -->
+        <div id="page-idt" class="page-section">
+            <!-- Hero Banner -->
+            <section class="relative bg-gray-900 text-white py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+                <div class="absolute inset-0">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1600&q=80"
+                        alt="Design thinking workshop" class="w-full h-full object-cover opacity-25">
+                    <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent"></div>
+                </div>
+                <div class="relative max-w-7xl mx-auto space-y-4">
+                    <span class="text-xs font-bold text-amber-400 uppercase tracking-widest block">Programs &rsaquo; Innovation &amp; Design Thinking</span>
+                    <h1 class="text-4xl sm:text-6xl font-extrabold leading-tight">Innovation &amp; <br>Design Thinking</h1>
+                    <p class="text-base text-gray-300 max-w-xl font-light leading-relaxed">
+                        Equip students with the most sought-after skill of the 21st century &mdash; the ability to spot problems, empathise with users, and build creative solutions that actually work.
+                    </p>
+                    <div class="flex flex-wrap gap-3 pt-2">
+                        <button onclick="navigateTo('contact')" class="px-6 py-3 bg-amber-500 hover:bg-amber-600 text-black font-bold rounded-lg uppercase text-xs shadow-lg">Apply Now</button>
+                        <button onclick="navigateTo('contact')" class="px-6 py-3 border border-white/40 hover:bg-white/10 text-white font-bold rounded-lg uppercase text-xs">Download Brochure</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Key Highlights Strip -->
+            <section class="bg-amber-500 text-black py-5 px-4 sm:px-6 lg:px-8">
+                <div class="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-4 text-center text-sm font-bold">
+                    <div><span class="text-2xl font-black block">12</span>Weeks Duration</div>
+                    <div><span class="text-2xl font-black block">5+</span>Live Workshops</div>
+                    <div><span class="text-2xl font-black block">3</span>Field Immersions</div>
+                    <div><span class="text-2xl font-black block">1</span>Capstone Project</div>
+                </div>
+            </section>
+
+            <!-- Program Overview -->
+            <section class="py-16 bg-white border-b border-gray-100">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-7 space-y-5">
+                        <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">What is this program?</span>
+                        <h2 class="text-3xl font-extrabold text-gray-900">Think like a Designer. Build like an Innovator.</h2>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            Innovation &amp; Design Thinking is an experiential 12-week program that takes students through the five stages of design thinking&mdash;Empathize, Define, Ideate, Prototype, and Test&mdash;applied to real community challenges. Students don't just learn theory; they visit communities, interview stakeholders, and build working prototypes that are validated with real users.
+                        </p>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            The program is facilitated by industry practitioners, academic mentors, and community leaders who co-create the learning journey with students&mdash;ensuring every insight is grounded in lived experience.
+                        </p>
+                        <ul class="space-y-2 text-xs font-semibold text-gray-800">
+                            <li class="flex items-center gap-2"><i class="fa-regular fa-circle-check text-amber-500"></i> Hands-on design sprints every week</li>
+                            <li class="flex items-center gap-2"><i class="fa-regular fa-circle-check text-amber-500"></i> Industry expert guest sessions</li>
+                            <li class="flex items-center gap-2"><i class="fa-regular fa-circle-check text-amber-500"></i> Community immersion &amp; field visits</li>
+                            <li class="flex items-center gap-2"><i class="fa-regular fa-circle-check text-amber-500"></i> Prototype &amp; pitch to real stakeholders</li>
+                        </ul>
+                    </div>
+                    <div class="lg:col-span-5">
+                        <div class="rounded-2xl overflow-hidden shadow-2xl">
+                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80"
+                                alt="Design thinking sticky notes session" class="w-full h-80 object-cover">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5 Stages Process -->
+            <section class="py-16 bg-gray-50">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-12">
+                        <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">The Framework</span>
+                        <h2 class="text-3xl font-extrabold text-gray-900 mt-2">The 5 Stages of Design Thinking</h2>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-5 gap-4">
+                        <div class="bg-indigo-900 text-white p-6 rounded-2xl text-center space-y-3">
+                            <div class="w-12 h-12 bg-white/15 rounded-full flex items-center justify-center mx-auto text-xl"><i class="fa-solid fa-heart"></i></div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-indigo-300">Stage 01</span>
+                            <h3 class="font-extrabold text-lg">Empathize</h3>
+                            <p class="text-xs text-indigo-200 leading-relaxed">Understand the human needs behind the problem through interviews, observation &amp; immersion.</p>
+                        </div>
+                        <div class="bg-indigo-700 text-white p-6 rounded-2xl text-center space-y-3">
+                            <div class="w-12 h-12 bg-white/15 rounded-full flex items-center justify-center mx-auto text-xl"><i class="fa-solid fa-crosshairs"></i></div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-indigo-300">Stage 02</span>
+                            <h3 class="font-extrabold text-lg">Define</h3>
+                            <p class="text-xs text-indigo-200 leading-relaxed">Synthesise research findings into a sharp, actionable problem statement.</p>
+                        </div>
+                        <div class="bg-amber-500 text-black p-6 rounded-2xl text-center space-y-3">
+                            <div class="w-12 h-12 bg-black/15 rounded-full flex items-center justify-center mx-auto text-xl"><i class="fa-solid fa-lightbulb"></i></div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-amber-900">Stage 03</span>
+                            <h3 class="font-extrabold text-lg">Ideate</h3>
+                            <p class="text-xs text-amber-900 leading-relaxed">Generate hundreds of creative ideas through brainstorming, SCAMPER, and divergent thinking.</p>
+                        </div>
+                        <div class="bg-orange-600 text-white p-6 rounded-2xl text-center space-y-3">
+                            <div class="w-12 h-12 bg-white/15 rounded-full flex items-center justify-center mx-auto text-xl"><i class="fa-solid fa-cubes"></i></div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-orange-200">Stage 04</span>
+                            <h3 class="font-extrabold text-lg">Prototype</h3>
+                            <p class="text-xs text-orange-100 leading-relaxed">Build rapid, low-cost prototypes to make ideas tangible and test assumptions quickly.</p>
+                        </div>
+                        <div class="bg-green-700 text-white p-6 rounded-2xl text-center space-y-3">
+                            <div class="w-12 h-12 bg-white/15 rounded-full flex items-center justify-center mx-auto text-xl"><i class="fa-solid fa-flask"></i></div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-green-200">Stage 05</span>
+                            <h3 class="font-extrabold text-lg">Test</h3>
+                            <p class="text-xs text-green-100 leading-relaxed">Validate solutions with real users, gather feedback, and iterate toward a refined product.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Syllabus -->
+            <section class="py-16 bg-white border-t border-gray-100">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-12">
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900">Program <span class="uppercase">Syllabus</span></h2>
+                        <button onclick="showMessage('The IDT Syllabus PDF will be sent to your email. Please fill in the Contact form and we will share it with you shortly!')" class="px-5 py-2.5 bg-black text-white font-bold rounded-lg uppercase text-xs">Download Syllabus</button>
+                    </div>
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                        <div class="lg:col-span-7 space-y-6">
+                            <div class="flex gap-6 border-b pb-4">
+                                <span class="text-3xl font-black text-gray-900">01</span>
+                                <div>
+                                    <h3 class="font-bold text-sm text-gray-900 uppercase">Foundations of Design Thinking &amp; Empathy</h3>
+                                    <p class="text-xs text-gray-600 mt-1">Introduction to human-centred design, empathy mapping, and stakeholder interviews to uncover unmet needs.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-6 border-b pb-4">
+                                <span class="text-3xl font-black text-gray-900">02</span>
+                                <div>
+                                    <h3 class="font-bold text-sm text-gray-900 uppercase">Problem Framing &amp; Insight Synthesis</h3>
+                                    <p class="text-xs text-gray-600 mt-1">Translating raw observations into actionable insights using How Might We statements and affinity mapping.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-6 border-b pb-4">
+                                <span class="text-3xl font-black text-gray-900">03</span>
+                                <div>
+                                    <h3 class="font-bold text-sm text-gray-900 uppercase">Creative Ideation Techniques</h3>
+                                    <p class="text-xs text-gray-600 mt-1">SCAMPER, mind mapping, crazy-8s, and other divergent thinking tools to generate breakthrough ideas.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-6 border-b pb-4">
+                                <span class="text-3xl font-black text-gray-900">04</span>
+                                <div>
+                                    <h3 class="font-bold text-sm text-gray-900 uppercase">Rapid Prototyping &amp; MVP Building</h3>
+                                    <p class="text-xs text-gray-600 mt-1">Paper prototypes, wireframes, and physical models&mdash;moving from concept to tangible artefact in hours.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-6 border-b pb-4">
+                                <span class="text-3xl font-black text-gray-900">05</span>
+                                <div>
+                                    <h3 class="font-bold text-sm text-gray-900 uppercase">User Testing &amp; Iterative Refinement</h3>
+                                    <p class="text-xs text-gray-600 mt-1">Structured user testing protocols, feedback loops, and pivoting strategies to reach a validated solution.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-6 pb-4">
+                                <span class="text-3xl font-black text-gray-900">06</span>
+                                <div>
+                                    <h3 class="font-bold text-sm text-gray-900 uppercase">Capstone: Pitch to Community Stakeholders</h3>
+                                    <p class="text-xs text-gray-600 mt-1">Teams present their final solution to a panel of community leaders, industry mentors, and investors.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Sidebar -->
+                        <div class="lg:col-span-5 space-y-6">
+                            <div class="bg-amber-50 border border-amber-200 p-6 rounded-2xl space-y-4 text-amber-950">
+                                <h3 class="font-bold text-lg">Pre-requisites</h3>
+                                <p class="text-xs leading-relaxed">Open to all streams. No prior design or tech knowledge required &mdash; curiosity and a willingness to learn is enough.</p>
+                                <hr class="border-amber-200">
+                                <h3 class="font-bold text-lg">Course Includes</h3>
+                                <ul class="text-xs space-y-2 list-disc list-inside">
+                                    <li>5 Design Sprints</li>
+                                    <li>3 Community Field Visits</li>
+                                    <li>4 Expert Masterclasses</li>
+                                    <li>1 Capstone Project &amp; Pitch</li>
+                                    <li>Digital Portfolio of Work</li>
+                                    <li>Course Certificate</li>
+                                </ul>
+                            </div>
+                            <button onclick="navigateTo('contact')" class="w-full py-3 bg-amber-500 hover:bg-amber-600 text-black font-extrabold rounded-lg uppercase text-xs">Enroll Now</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Photo Gallery -->
+            <section class="py-16 bg-black text-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+                    <div class="bg-amber-500 text-black p-6 rounded-2xl max-w-sm space-y-2">
+                        <span class="text-xs uppercase font-bold">IDT</span>
+                        <h3 class="text-3xl font-black">Student Showcases</h3>
+                        <p class="text-xs font-medium">See how MissionX students have used design thinking to solve real community problems.</p>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="h-48 rounded-xl overflow-hidden"><img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=400&q=80" alt="Workshop" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"></div>
+                        <div class="h-48 rounded-xl overflow-hidden"><img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=400&q=80" alt="Presentation" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"></div>
+                        <div class="h-48 rounded-xl overflow-hidden"><img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=400&q=80" alt="Sticky notes ideation" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"></div>
+                        <div class="h-48 rounded-xl overflow-hidden"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" alt="Mentor review" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA -->
+            <section class="bg-black text-white py-8 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
+                <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+                    <h2 class="text-2xl font-black uppercase tracking-wide">Ready to Think Differently?</h2>
+                    <button onclick="navigateTo('contact')" class="px-6 py-2.5 bg-amber-500 hover:bg-amber-600 text-black font-bold rounded-full uppercase text-xs flex items-center gap-2">Get in Touch <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= PAGE: MAKERSPACES ================= -->
+        <div id="page-makerspaces" class="page-section">
+            <!-- Hero Banner -->
+            <section class="relative bg-gray-900 text-white py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+                <div class="absolute inset-0">
+                    <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1600&q=80"
+                        alt="Makerspace workshop" class="w-full h-full object-cover opacity-25">
+                    <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent"></div>
+                </div>
+                <div class="relative max-w-7xl mx-auto space-y-4">
+                    <span class="text-xs font-bold text-blue-400 uppercase tracking-widest block">Programs &rsaquo; Makerspaces</span>
+                    <h1 class="text-4xl sm:text-6xl font-extrabold leading-tight">Makerspaces &mdash;<br>Where Ideas Become Real</h1>
+                    <p class="text-base text-gray-300 max-w-xl font-light leading-relaxed">
+                        We partner with institutions to design, equip, and operate world-class Makerspaces that turn students into creators, inventors, and problem-solvers.
+                    </p>
+                    <div class="flex flex-wrap gap-3 pt-2">
+                        <button onclick="navigateTo('contact')" class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg uppercase text-xs shadow-lg">Partner with Us</button>
+                        <button onclick="navigateTo('contact')" class="px-6 py-3 border border-white/40 hover:bg-white/10 text-white font-bold rounded-lg uppercase text-xs">Request Assessment</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stats Strip -->
+            <section class="bg-blue-700 text-white py-5 px-4 sm:px-6 lg:px-8">
+                <div class="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-4 text-center text-sm font-bold">
+                    <div><span class="text-2xl font-black block">33+</span>Institutions Served</div>
+                    <div><span class="text-2xl font-black block">50+</span>Spaces Designed</div>
+                    <div><span class="text-2xl font-black block">500+</span>Projects Built</div>
+                    <div><span class="text-2xl font-black block">18K+</span>Students Empowered</div>
+                </div>
+            </section>
+
+            <!-- What is a Makerspace -->
+            <section class="py-16 bg-white border-b border-gray-100">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-7 space-y-5">
+                        <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">What we build</span>
+                        <h2 class="text-3xl font-extrabold text-gray-900">A Space Designed for Tinkerers, Builders &amp; Dreamers.</h2>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            A Makerspace is a collaborative, hands-on workspace where students can work on projects using tools ranging from soldering irons and 3D printers to laser cutters and CNC machines. MissionX designs these spaces end-to-end &mdash; from spatial planning and equipment procurement to faculty training and curriculum integration.
+                        </p>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            Every Makerspace we build is custom-scoped to the institution&rsquo;s goals, student demographics, available space, and budget &mdash; ensuring maximum utilisation and measurable outcomes from day one.
+                        </p>
+                        <ul class="space-y-2 text-xs font-semibold text-gray-800">
+                            <li class="flex items-center gap-2"><i class="fa-regular fa-circle-check text-blue-600"></i> Needs assessment &amp; space audit</li>
+                            <li class="flex items-center gap-2"><i class="fa-regular fa-circle-check text-blue-600"></i> Equipment selection &amp; layout design</li>
+                            <li class="flex items-center gap-2"><i class="fa-regular fa-circle-check text-blue-600"></i> Faculty training &amp; onboarding</li>
+                            <li class="flex items-center gap-2"><i class="fa-regular fa-circle-check text-blue-600"></i> Ongoing program support &amp; events</li>
+                        </ul>
+                    </div>
+                    <div class="lg:col-span-5">
+                        <div class="rounded-2xl overflow-hidden shadow-2xl">
+                            <img src="https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80"
+                                alt="Makerspace machinery" class="w-full h-80 object-cover">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Equipment & Tools Grid -->
+            <section class="py-16 bg-gray-50">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-12">
+                        <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">What&rsquo;s Inside</span>
+                        <h2 class="text-3xl font-extrabold text-gray-900 mt-2">Equipped for Every Kind of Maker</h2>
+                        <p class="text-sm text-gray-500 mt-2 max-w-lg mx-auto">From digital fabrication to electronics and coding, every Makerspace is curated to inspire creativity across disciplines.</p>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm space-y-3">
+                            <i class="fa-solid fa-print text-blue-600 text-2xl"></i>
+                            <h3 class="font-bold text-base text-gray-900">3D Printing Lab</h3>
+                            <p class="text-xs text-gray-600 leading-relaxed">FDM and resin printers that let students turn digital designs into physical objects within hours &mdash; accelerating prototyping cycles dramatically.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm space-y-3">
+                            <i class="fa-solid fa-bolt text-amber-500 text-2xl"></i>
+                            <h3 class="font-bold text-base text-gray-900">Electronics &amp; IoT Station</h3>
+                            <p class="text-xs text-gray-600 leading-relaxed">Arduino, Raspberry Pi, sensors, and soldering benches for students diving into embedded systems, robotics, and smart device development.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm space-y-3">
+                            <i class="fa-solid fa-scissors text-red-500 text-2xl"></i>
+                            <h3 class="font-bold text-base text-gray-900">Laser Cutting &amp; CNC</h3>
+                            <p class="text-xs text-gray-600 leading-relaxed">Precision digital fabrication tools for cutting, engraving, and shaping wood, acrylic, and metal to manufacture real product enclosures and parts.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm space-y-3">
+                            <i class="fa-solid fa-laptop-code text-green-600 text-2xl"></i>
+                            <h3 class="font-bold text-base text-gray-900">Software &amp; Coding Hub</h3>
+                            <p class="text-xs text-gray-600 leading-relaxed">High-performance workstations with professional software for CAD, graphic design, game development, AI/ML, and web application building.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm space-y-3">
+                            <i class="fa-solid fa-palette text-purple-600 text-2xl"></i>
+                            <h3 class="font-bold text-base text-gray-900">Design &amp; Ideation Studio</h3>
+                            <p class="text-xs text-gray-600 leading-relaxed">Whiteboards, modular furniture, and maker kits designed for collaborative brainstorming, rapid sketching, and physical model-making sessions.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm space-y-3">
+                            <i class="fa-solid fa-video text-pink-500 text-2xl"></i>
+                            <h3 class="font-bold text-base text-gray-900">Media Production Corner</h3>
+                            <p class="text-xs text-gray-600 leading-relaxed">Podcast setup, camera, and lighting equipment so students can document, pitch, and communicate their innovations to wider audiences.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Our 4-Step Process -->
+            <section class="py-16 bg-white border-t border-gray-100">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-12">
+                        <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Our Process</span>
+                        <h2 class="text-3xl font-extrabold text-gray-900 mt-2">From Concept to Running Makerspace in 4 Steps</h2>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="text-center space-y-3 p-6">
+                            <div class="w-16 h-16 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center mx-auto text-2xl font-black">01</div>
+                            <h3 class="font-bold text-gray-900">Needs Assessment</h3>
+                            <p class="text-xs text-gray-600 leading-relaxed">We visit the institution, audit available space, understand student demographics, and align on program goals.</p>
+                        </div>
+                        <div class="text-center space-y-3 p-6">
+                            <div class="w-16 h-16 rounded-full bg-blue-200 text-blue-800 flex items-center justify-center mx-auto text-2xl font-black">02</div>
+                            <h3 class="font-bold text-gray-900">Design &amp; Procurement</h3>
+                            <p class="text-xs text-gray-600 leading-relaxed">Our team designs the spatial layout, curates the equipment list, and manages vendor negotiations and logistics.</p>
+                        </div>
+                        <div class="text-center space-y-3 p-6">
+                            <div class="w-16 h-16 rounded-full bg-blue-300 text-blue-900 flex items-center justify-center mx-auto text-2xl font-black">03</div>
+                            <h3 class="font-bold text-gray-900">Setup &amp; Training</h3>
+                            <p class="text-xs text-gray-600 leading-relaxed">We install all equipment, integrate safety protocols, and conduct structured training workshops for faculty.</p>
+                        </div>
+                        <div class="text-center space-y-3 p-6">
+                            <div class="w-16 h-16 rounded-full bg-blue-600 text-white flex items-center justify-center mx-auto text-2xl font-black">04</div>
+                            <h3 class="font-bold text-gray-900">Launch &amp; Ongoing Support</h3>
+                            <p class="text-xs text-gray-600 leading-relaxed">We help plan the inaugural event, connect institutions to our challenge ecosystem, and provide continuous program support.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Photo Gallery -->
+            <section class="py-16 bg-black text-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+                    <div class="bg-blue-600 text-white p-6 rounded-2xl max-w-sm space-y-2">
+                        <span class="text-xs uppercase font-bold">Makerspaces</span>
+                        <h3 class="text-3xl font-black">Our Spaces</h3>
+                        <p class="text-xs font-medium">A glimpse of the vibrant, hands-on learning environments we&rsquo;ve built across institutions in India.</p>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="h-48 rounded-xl overflow-hidden"><img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=400&q=80" alt="Makerspace tools" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"></div>
+                        <div class="h-48 rounded-xl overflow-hidden"><img src="https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=400&q=80" alt="Electronics workbench" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"></div>
+                        <div class="h-48 rounded-xl overflow-hidden"><img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=400&q=80" alt="3D printing" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"></div>
+                        <div class="h-48 rounded-xl overflow-hidden"><img src="https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=400&q=80" alt="Workshop machinery" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA -->
+            <section class="bg-blue-700 text-white py-12 px-4 sm:px-6 lg:px-8">
+                <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-6">
+                    <div>
+                        <h2 class="text-3xl font-black uppercase tracking-wide">Build a Makerspace at Your Institution</h2>
+                        <p class="text-sm text-blue-200 mt-1">Get a free needs-assessment call with our team today.</p>
+                    </div>
+                    <button onclick="navigateTo('contact')" class="px-8 py-3.5 bg-white text-blue-700 font-black rounded-full uppercase text-xs flex items-center gap-2 hover:bg-blue-50 whitespace-nowrap">Request a Free Assessment <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= PAGE: RESOURCES & BLOGS ================= -->
+        <div id="page-resources" class="page-section">
+            <!-- Blog Spotlight Header -->
+            <section class="py-16 bg-gray-50 border-b border-gray-200">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h1 class="text-3xl font-extrabold text-gray-900 mb-8">Recent Blog!</h1>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                        <!-- Main Featured Blog -->
+                        <div class="lg:col-span-8 bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-4 cursor-pointer group" onclick="navigateToArticle('solve4dc')">
+                            <div class="overflow-hidden rounded-xl">
+                                <img src="https://images.unsplash.com/photo-1531497865144-0464ef8fb9a9?auto=format&fit=crop&w=800&q=80"
+                                    alt="Solve4DC Review" class="w-full h-64 object-cover rounded-xl group-hover:scale-105 transition-transform duration-300">
+                            </div>
+                            <span class="article-tag text-orange-700 bg-orange-50">Featured Blog</span>
+                            <h2 class="text-xl font-bold text-gray-900 group-hover:text-brand-orange transition-colors">Solve4DC: Team Shiva and Team Rudra Shine in 3rd Review</h2>
+                            <p class="text-sm text-gray-600 leading-relaxed">
+                                Solve4DC: Team Shiva and Team Rudra Shine in 3rd Review. As part of the Solve4DC
+                                initiative, Teams Shiva and Rudra recently had their 3rd review session with the Deputy
+                                Commissioner (DC). This important milestone took place at the Integrated Command...
+                            </p>
+                            <button onclick="event.stopPropagation(); navigateToArticle('solve4dc')" class="text-xs font-bold text-brand-orange hover:underline inline-flex items-center gap-1">Read Full Article <i class="fa-solid fa-arrow-right text-[10px]"></i></button>
+                        </div>
+
+                        <!-- Newsletter Sidebar -->
+                        <div class="lg:col-span-4 bg-rose-100/60 p-6 rounded-2xl space-y-4">
+                            <h2 class="text-lg font-black text-gray-900 uppercase leading-snug">GET OUR NEWSLETTER TO STAY UP TO DATE.</h2>
+                            <p class="text-xs text-gray-600">Sign up for our newsletter to get the latest blog posts delivered straight to your inbox!</p>
+
+                            <form onsubmit="event.preventDefault(); showMessage('Subscribed successfully! Welcome to the MissionX newsletter.');" class="space-y-3">
+                                <input type="text" placeholder="FIRST NAME" required
+                                    class="w-full px-4 py-2.5 rounded-lg text-xs border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-orange">
+                                <input type="text" placeholder="LAST NAME" required
+                                    class="w-full px-4 py-2.5 rounded-lg text-xs border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-orange">
+                                <input type="email" placeholder="EMAIL ID" required
+                                    class="w-full px-4 py-2.5 rounded-lg text-xs border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-orange">
+                                <button type="submit"
+                                    class="w-full py-2.5 bg-black text-white font-bold rounded-lg uppercase text-xs hover:bg-gray-800 transition-colors">
+                                    SUBSCRIBE
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Most Read Blogs -->
+            <section class="py-16 bg-white border-b border-gray-100">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+                    <h2 class="text-2xl font-extrabold text-gray-900">Most Read Blogs!</h2>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Blog Card 1 -->
+                        <div class="bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 p-4 space-y-3 hover:shadow-md transition-shadow cursor-pointer group" onclick="navigateToArticle('founders-dilemma')">
+                            <div class="overflow-hidden rounded-xl">
+                                <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=400&q=80"
+                                    alt="Blog 1" class="w-full h-40 object-cover rounded-xl group-hover:scale-105 transition-transform duration-300">
+                            </div>
+                            <span class="article-tag text-blue-700 bg-blue-50">Blog</span>
+                            <h3 class="font-bold text-sm text-gray-900 group-hover:text-brand-orange transition-colors">The Founder's Dilemma: Building People While Building Yourself</h3>
+                            <p class="text-xs text-gray-500">What if the biggest startup you're building... is you?</p>
+                            <button onclick="event.stopPropagation(); navigateToArticle('founders-dilemma')" class="text-xs font-bold text-brand-blue inline-flex items-center gap-1 hover:text-brand-orange transition-colors">Read More <i class="fa-solid fa-arrow-right text-[10px]"></i></button>
+                        </div>
+
+                        <!-- Blog Card 2 -->
+                        <div class="bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 p-4 space-y-3 hover:shadow-md transition-shadow cursor-pointer group" onclick="navigateToArticle('bigger-shoes')">
+                            <div class="overflow-hidden rounded-xl">
+                                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=400&q=80"
+                                    alt="Blog 2" class="w-full h-40 object-cover rounded-xl group-hover:scale-105 transition-transform duration-300">
+                            </div>
+                            <span class="article-tag text-blue-700 bg-blue-50">Blog</span>
+                            <h3 class="font-bold text-sm text-gray-900 group-hover:text-brand-orange transition-colors">Wearing Bigger Shoes: The Unseen Journey of a Builder</h3>
+                            <p class="text-xs text-gray-500">What does it take to grow into shoes that feel too big today?</p>
+                            <button onclick="event.stopPropagation(); navigateToArticle('bigger-shoes')" class="text-xs font-bold text-brand-blue inline-flex items-center gap-1 hover:text-brand-orange transition-colors">Read More <i class="fa-solid fa-arrow-right text-[10px]"></i></button>
+                        </div>
+
+                        <!-- Blog Card 3 -->
+                        <div class="bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 p-4 space-y-3 hover:shadow-md transition-shadow cursor-pointer group" onclick="navigateToArticle('social-innovation')">
+                            <div class="overflow-hidden rounded-xl">
+                                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=400&q=80"
+                                    alt="Blog 3" class="w-full h-40 object-cover rounded-xl group-hover:scale-105 transition-transform duration-300">
+                            </div>
+                            <span class="article-tag text-blue-700 bg-blue-50">Blog</span>
+                            <h3 class="font-bold text-sm text-gray-900 group-hover:text-brand-orange transition-colors">Real-World Impact, Real Student Growth: Why Social Innovation Projects Matter</h3>
+                            <p class="text-xs text-gray-500">In a world evolving at lightning speed with artificial intelligence...</p>
+                            <button onclick="event.stopPropagation(); navigateToArticle('social-innovation')" class="text-xs font-bold text-brand-blue inline-flex items-center gap-1 hover:text-brand-orange transition-colors">Read More <i class="fa-solid fa-arrow-right text-[10px]"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- News & Events Grid Tabbed -->
+            <section class="py-16 bg-gray-50">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+                    <!-- Filter Tabs -->
+                    <div class="flex justify-center space-x-4 border-b border-gray-200 pb-4">
+                        <button id="filter-btn-all" onclick="filterContent('all')"
+                            class="px-6 py-2 bg-black text-white font-bold rounded-full text-xs uppercase focus:outline-none ring-2 ring-offset-2 ring-black transition-all">ALL</button>
+                        <button id="filter-btn-news" onclick="filterContent('news')"
+                            class="px-6 py-2 bg-white text-gray-700 hover:bg-gray-100 font-bold rounded-full text-xs uppercase border border-gray-200 transition-all">NEWS</button>
+                        <button id="filter-btn-events" onclick="filterContent('events')"
+                            class="px-6 py-2 bg-white text-gray-700 hover:bg-gray-100 font-bold rounded-full text-xs uppercase border border-gray-200 transition-all">EVENTS</button>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="news-events-grid">
+                        <div class="bg-white p-5 rounded-2xl border border-gray-100 space-y-3 filter-item news hover:shadow-md transition-shadow cursor-pointer group" onclick="navigateToArticle('nasscom')">
+                            <div class="overflow-hidden rounded-xl">
+                                <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=400&q=80"
+                                    alt="NASSCOM" class="w-full h-40 object-cover rounded-xl group-hover:scale-105 transition-transform duration-300">
+                            </div>
+                            <span class="inline-block text-[10px] font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2 py-1 rounded-full">NEWS</span>
+                            <h3 class="font-bold text-sm text-gray-900 group-hover:text-brand-orange transition-colors">Advancing to NASSCOM Thingqbator Finale with Tech Solutions</h3>
+                            <p class="text-xs text-gray-500">Congratulations to the teams of Chiranth, Somashekar, and Prathamesh!</p>
+                            <button onclick="event.stopPropagation(); navigateToArticle('nasscom')" class="text-xs font-bold text-brand-blue inline-flex items-center gap-1 hover:text-brand-orange transition-colors">Read More <i class="fa-solid fa-arrow-right text-[10px]"></i></button>
+                        </div>
+                        <div class="bg-white p-5 rounded-2xl border border-gray-100 space-y-3 filter-item events hover:shadow-md transition-shadow cursor-pointer group" onclick="navigateToArticle('bangalore-tech-summit')">
+                            <div class="overflow-hidden rounded-xl">
+                                <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=400&q=80"
+                                    alt="Bangalore Tech Summit" class="w-full h-40 object-cover rounded-xl group-hover:scale-105 transition-transform duration-300">
+                            </div>
+                            <span class="inline-block text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-2 py-1 rounded-full">EVENT</span>
+                            <h3 class="font-bold text-sm text-gray-900 group-hover:text-brand-orange transition-colors">MissionX's Impactful Presence at Bangalore Tech Summit 2023</h3>
+                            <p class="text-xs text-gray-500">MissionX's landmark presence at Bangalore Tech Summit 2023.</p>
+                            <button onclick="event.stopPropagation(); navigateToArticle('bangalore-tech-summit')" class="text-xs font-bold text-amber-700 inline-flex items-center gap-1 hover:text-brand-orange transition-colors">Read More <i class="fa-solid fa-arrow-right text-[10px]"></i></button>
+                        </div>
+                        <div class="bg-white p-5 rounded-2xl border border-gray-100 space-y-3 filter-item events hover:shadow-md transition-shadow cursor-pointer group" onclick="navigateToArticle('cii-mentor-connect')">
+                            <div class="overflow-hidden rounded-xl">
+                                <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=400&q=80"
+                                    alt="Startup mentor connect" class="w-full h-40 object-cover rounded-xl group-hover:scale-105 transition-transform duration-300">
+                            </div>
+                            <span class="inline-block text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-2 py-1 rounded-full">EVENT</span>
+                            <h3 class="font-bold text-sm text-gray-900 group-hover:text-brand-orange transition-colors">Insights from CII-Yi Mangaluru's Startup Mentor Connect Program</h3>
+                            <p class="text-xs text-gray-500">We are thrilled to share highlights from our latest mentoring event.</p>
+                            <button onclick="event.stopPropagation(); navigateToArticle('cii-mentor-connect')" class="text-xs font-bold text-amber-700 inline-flex items-center gap-1 hover:text-brand-orange transition-colors">Read More <i class="fa-solid fa-arrow-right text-[10px]"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Reports Section -->
+            <section class="py-16 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+                    <h2 class="text-3xl font-extrabold text-gray-900">Reports</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
+                        <div class="space-y-3">
+                            <div class="bg-blue-900 text-white p-8 rounded-xl h-56 flex flex-col justify-center items-center shadow-md hover:shadow-xl transition-shadow cursor-pointer" onclick="navigateToArticle('annual-report-2026')">
+                                <span class="text-2xl font-bold">ANNUAL REPORT</span>
+                                <span class="text-sm mt-2">2025&ndash;26</span>
+                            </div>
+                            <span class="font-bold text-sm block">Annual Report 2025&ndash;26</span>
+                            <button onclick="navigateToArticle('annual-report-2026')"
+                                class="px-4 py-2 bg-black text-white font-bold rounded text-xs uppercase hover:bg-gray-800 transition-colors">Read More</button>
+                        </div>
+
+                        <div class="space-y-3">
+                            <div class="bg-gray-100 border p-8 rounded-xl h-56 flex flex-col justify-center items-center shadow-md hover:shadow-xl transition-shadow cursor-pointer" onclick="navigateToArticle('collective-genius')">
+                                <span class="text-xl font-bold text-gray-800">Unlocking the Power of Collective Genius</span>
+                            </div>
+                            <span class="font-bold text-sm block">Unlocking Collective Genius</span>
+                            <button onclick="navigateToArticle('collective-genius')"
+                                class="px-4 py-2 bg-black text-white font-bold rounded text-xs uppercase hover:bg-gray-800 transition-colors">Read More</button>
+                        </div>
+
+                        <div class="space-y-3">
+                            <div class="bg-amber-100 border p-8 rounded-xl h-56 flex flex-col justify-center items-center shadow-md hover:shadow-xl transition-shadow cursor-pointer" onclick="navigateToArticle('impact-report-2023')">
+                                <span class="text-xl font-bold text-amber-900">MissionX Impact Report 2023</span>
+                            </div>
+                            <span class="font-bold text-sm block">MissionX Impact Report 2023</span>
+                            <button onclick="navigateToArticle('impact-report-2023')"
+                                class="px-4 py-2 bg-black text-white font-bold rounded text-xs uppercase hover:bg-gray-800 transition-colors">Read More</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= PAGE: ARTICLE READER ================= -->
+        <div id="page-article" class="page-section bg-white">
+            <!-- Article Top Bar -->
+            <div class="sticky top-[80px] z-40 bg-white/95 backdrop-blur border-b border-gray-100 py-3 px-4 sm:px-6 lg:px-8">
+                <div class="max-w-4xl mx-auto flex items-center justify-between">
+                    <button class="article-back-btn" onclick="navigateTo('resources')">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        Back to Resources
+                    </button>
+                    <div class="flex items-center gap-3">
+                        <span id="article-reading-time" class="text-xs text-gray-400 font-medium"></span>
+                        <span class="text-gray-200">|</span>
+                        <div class="flex gap-2">
+                            <a href="https://twitter.com" target="_blank" class="w-7 h-7 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-brand-orange hover:text-white transition-colors text-xs"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="https://linkedin.com" target="_blank" class="w-7 h-7 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-brand-blue hover:text-white transition-colors text-xs"><i class="fa-brands fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Article Content Area -->
+            <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                <!-- Article Meta Header -->
+                <div class="space-y-4 mb-8">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <span id="article-category-tag" class="article-tag"></span>
+                        <span class="text-gray-300">•</span>
+                        <span id="article-date" class="text-xs text-gray-400 font-medium"></span>
+                        <span class="text-gray-300">•</span>
+                        <span id="article-author" class="text-xs text-gray-500 font-semibold"></span>
+                    </div>
+                    <h1 id="article-title" class="text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight tracking-tight"></h1>
+                    <p id="article-subtitle" class="text-lg text-gray-500 font-light leading-relaxed"></p>
+                </div>
+
+                <!-- Cover Image -->
+                <img id="article-cover-img" src="" alt="Article cover" class="article-cover shadow-lg">
+
+                <!-- Article Body -->
+                <div id="article-content" class="article-body"></div>
+
+                <!-- Article Footer -->
+                <div class="mt-12 pt-8 border-t border-gray-100">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                        <div>
+                            <p class="text-xs text-gray-400 uppercase tracking-wider font-bold mb-1">Share this article</p>
+                            <div class="flex gap-2">
+                                <a href="https://twitter.com" target="_blank" class="px-4 py-2 bg-sky-100 text-sky-700 font-bold rounded-full text-xs hover:bg-sky-200 transition-colors flex items-center gap-1"><i class="fa-brands fa-twitter"></i> Twitter</a>
+                                <a href="https://linkedin.com" target="_blank" class="px-4 py-2 bg-blue-100 text-blue-700 font-bold rounded-full text-xs hover:bg-blue-200 transition-colors flex items-center gap-1"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a>
+                            </div>
+                        </div>
+                        <button onclick="navigateTo('resources')" class="px-6 py-2.5 bg-brand-orange text-white font-bold rounded-full text-xs uppercase tracking-wider hover:bg-orange-600 transition-colors flex items-center gap-2">
+                            <i class="fa-solid fa-arrow-left"></i> All Articles
+                        </button>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <!-- ================= PAGE: CONTACT US ================= -->
+        <div id="page-contact" class="page-section">
+            <section class="py-20 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                        <!-- Contact Form -->
+                        <div class="lg:col-span-6 space-y-6">
+                            <h1 class="text-4xl font-extrabold text-gray-900">Contact us</h1>
+
+                            <form onsubmit="event.preventDefault(); showMessage('Thank you! We have received your message and will get back to you within 24 hours.');"
+                                class="space-y-4">
+                                <div class="grid grid-cols-2 gap-4">
+                                    <input type="text" placeholder="FIRST NAME" required
+                                        class="w-full px-4 py-3 bg-gray-100 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-black">
+                                    <input type="text" placeholder="LAST NAME" required
+                                        class="w-full px-4 py-3 bg-gray-100 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-black">
+                                </div>
+                                <input type="email" placeholder="EMAIL ID" required
+                                    class="w-full px-4 py-3 bg-gray-100 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-black">
+                                <button type="submit"
+                                    class="px-8 py-3 bg-black text-white font-bold rounded-xl text-xs tracking-wider uppercase">
+                                    NOTIFY
+                                </button>
+                            </form>
+
+                            <div class="pt-6 space-y-2 text-xs text-gray-600 border-t border-gray-100">
+                                <p><strong class="text-gray-900">Email:</strong> reachus@missionx.in</p>
+                                <p><strong class="text-gray-900">Phone:</strong> +91 96069 93969</p>
+                                <p><strong class="text-gray-900">Address:</strong> 501, 5th Floor, Sahyadri Campus,
+                                    Adyar, Mangaluru, Karnataka - 575007</p>
+                            </div>
+
+                            <!-- Social Links -->
+                            <div class="flex space-x-3 pt-2">
+                                <a href="#"
+                                    class="w-9 h-9 bg-black text-white rounded-lg flex items-center justify-center hover:bg-gray-800"><i
+                                        class="fa-brands fa-instagram"></i></a>
+                                <a href="#"
+                                    class="w-9 h-9 bg-black text-white rounded-lg flex items-center justify-center hover:bg-gray-800"><i
+                                        class="fa-brands fa-facebook-f"></i></a>
+                                <a href="#"
+                                    class="w-9 h-9 bg-black text-white rounded-lg flex items-center justify-center hover:bg-gray-800"><i
+                                        class="fa-brands fa-linkedin-in"></i></a>
+                                <a href="#"
+                                    class="w-9 h-9 bg-black text-white rounded-lg flex items-center justify-center hover:bg-gray-800"><i
+                                        class="fa-brands fa-twitter"></i></a>
+                            </div>
+                        </div>
+
+                        <!-- Map Preview -->
+                        <div
+                            class="lg:col-span-6 bg-gray-100 rounded-2xl overflow-hidden border border-gray-200 shadow-md">
+                            <div class="p-4 bg-white border-b flex justify-between items-center text-xs">
+                                <span class="font-bold text-gray-800">Sahyadri Campus, Mangaluru</span>
+                                <a href="https://maps.google.com" target="_blank"
+                                    class="text-blue-600 font-semibold hover:underline flex items-center gap-1">Open in
+                                    Maps <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                            </div>
+                            <div class="relative h-80 bg-emerald-50 flex items-center justify-center">
+                                <div class="text-center space-y-2 p-6">
+                                    <i class="fa-solid fa-location-dot text-red-600 text-4xl"></i>
+                                    <h3 class="font-bold text-gray-800 text-sm">MissionX Office Headquarters</h3>
+                                    <p class="text-xs text-gray-500">Adyar, Mangaluru, Karnataka 575007</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-black text-white border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Column 1 -->
+                <div class="space-y-4">
+                    <h3 class="text-3xl font-extrabold tracking-tight">Be the first to know</h3>
+                    <button onclick="navigateTo('contact')"
+                        class="px-6 py-3 bg-brand-orange hover:bg-orange-600 text-white font-bold rounded-lg text-xs uppercase tracking-wider">
+                        JOIN OUR NEWSLETTER
+                    </button>
+                </div>
+
+                <!-- Column 2 -->
+                <div>
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">QUICK LINKS</h4>
+                    <ul class="space-y-2 text-xs text-gray-300">
+                        <li><a href="#home" onclick="navigateTo('home')" class="hover:text-brand-orange">Home</a></li>
+                        <li><a href="#about" onclick="navigateTo('about')" class="hover:text-brand-orange">About Us</a>
+                        </li>
+                        <li><a href="#careers" onclick="navigateTo('careers')"
+                                class="hover:text-brand-orange">Careers</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3 -->
+                <div>
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">RESOURCES</h4>
+                    <ul class="space-y-2 text-xs text-gray-300">
+                        <li><a href="#resources" onclick="navigateTo('resources')"
+                                class="hover:text-brand-orange">Blogs</a></li>
+                        <li><a href="#home" onclick="navigateTo('home')" class="hover:text-brand-orange">Innovation &
+                                Design Thinking</a></li>
+                        <li><a href="#sip" onclick="navigateTo('sip')" class="hover:text-brand-orange">Social Innovation
+                                Program</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4 -->
+                <div>
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">COMPANY</h4>
+                    <ul class="space-y-2 text-xs text-gray-300">
+                        <li><a href="#about" onclick="navigateTo('about')" class="hover:text-brand-orange">Our Story</a>
+                        </li>
+                        <li><a href="#contact" onclick="navigateTo('contact')" class="hover:text-brand-orange">Contact
+                                Us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright Sub-footer -->
+        <div class="bg-zinc-900 border-t border-zinc-800 text-gray-400 text-[11px] py-4 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+                <div>Copyright © MissionX LLP</div>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-white">Privacy Policy</a>
+                    <span>|</span>
+                    <a href="#" class="hover:text-white">Terms & Conditions</a>
+                    <span>|</span>
+                    <a href="#" class="hover:text-white">Cancellation & Refund Policy</a>
+                    <span>|</span>
+                    <a href="#" class="hover:text-white">Shipping & Delivery Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Message Modal -->
+    <div id="custom-message-modal" class="fixed inset-0 z-[60] bg-black/60 hidden items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-white p-6 sm:p-8 rounded-2xl max-w-sm w-full text-center shadow-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fa-solid fa-check text-xl"></i>
+            </div>
+            <p id="custom-message-text" class="text-gray-900 font-semibold mb-6 text-sm leading-relaxed"></p>
+            <button onclick="closeMessage()" class="w-full px-4 py-3 bg-brand-orange hover:bg-orange-600 text-white rounded-xl font-bold text-xs uppercase tracking-wider transition-colors shadow-sm">
+                Got it
+            </button>
+        </div>
+    </div>
+
+    <!-- Video Modal Container -->
+    <div id="video-modal" class="fixed inset-0 z-50 bg-black/80 hidden items-center justify-center p-4">
+        <div class="relative w-full max-w-4xl bg-black rounded-2xl overflow-hidden">
+            <button onclick="closeVideoModal()"
+                class="absolute top-4 right-4 z-10 text-white text-2xl w-10 h-10 bg-black/60 rounded-full flex items-center justify-center hover:bg-black">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="aspect-video w-full">
+                <iframe id="video-iframe" class="w-full h-full" src="" title="Video Player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ===== ARTICLE DATA STORE =====
+        const articleData = {
+            'solve4dc': {
+                title: 'Solve4DC: Team Shiva and Team Rudra Shine in 3rd Review',
+                subtitle: 'A landmark milestone in student-led civic innovation — two MissionX teams present to the District Commissioner.',
+                category: 'Featured Blog',
+                categoryClass: 'text-orange-700 bg-orange-50',
+                date: 'June 15, 2025',
+                author: 'MissionX Team',
+                image: 'https://images.unsplash.com/photo-1531497865144-0464ef8fb9a9?auto=format&fit=crop&w=1200&q=80',
+                readTime: '6 min read',
+                content: `
+                    <p>As part of the <strong>Solve4DC initiative</strong>, Teams Shiva and Rudra recently had their 3rd review session with the Deputy Commissioner (DC). This important milestone took place at the Integrated Command and Control Centre (ICCC) in Mangaluru — a fitting venue for teams tackling real civic challenges with technology-driven solutions.</p>
+
+                    <h2>What is Solve4DC?</h2>
+                    <p>Solve4DC is a flagship MissionX program that places engineering students at the forefront of governance challenges. Teams are tasked with identifying real problems faced by district administration and building working prototypes that can be adopted at scale. It bridges the gap between campus innovation and public impact.</p>
+
+                    <blockquote>"When students work on problems that truly matter to real people, their approach to engineering changes entirely. They stop building to impress and start building to serve." — MissionX Mentor</blockquote>
+
+                    <h2>Team Shiva's Solution</h2>
+                    <p>Team Shiva focused on the challenge of tracking and managing <strong>public grievances</strong> filed at the district level. Their digital grievance-redressal dashboard integrates with the existing government portal and provides real-time analytics on resolution rates, department responsiveness, and citizen satisfaction scores.</p>
+                    <p>The DC was particularly impressed by the predictive alert system — a module that flags grievances likely to escalate based on resolution delay patterns. The team used machine learning models trained on 2 years of district grievance data provided by the administration.</p>
+
+                    <h2>Team Rudra's Approach</h2>
+                    <p>Team Rudra tackled the challenge of <strong>solid waste management</strong> in the Mangaluru city limits. Their IoT-enabled smart bin solution uses fill-level sensors to optimise waste collection routes, reducing fuel costs by an estimated 34% while improving collection frequency in high-density zones.</p>
+                    <p>A key innovation from Team Rudra was integrating the solution with BBMP's existing fleet management system, eliminating the need for entirely new infrastructure investment — a crucial consideration for government adoption.</p>
+
+                    <div class="highlight-box">
+                        <p style="margin:0; font-size: 1rem;">🏆 Both teams have been recommended to advance to the state-level civic innovation showcase, representing Dakshina Kannada district.</p>
+                    </div>
+
+                    <h2>Key Takeaways from the Review</h2>
+                    <ul>
+                        <li>The DC emphasized the importance of <strong>data privacy</strong> and asked both teams to conduct a thorough audit before pilot deployment.</li>
+                        <li>Both solutions were praised for their <strong>scalability</strong> — designed to work at taluk level as well as district level.</li>
+                        <li>Teams demonstrated strong presentation skills, handling technical and policy-level questions with confidence.</li>
+                        <li>The review panel included senior IAS officers, district planning staff, and technology advisors.</li>
+                    </ul>
+
+                    <h2>What's Next?</h2>
+                    <p>Both teams will now undergo a 4-week refinement phase where they will work with actual district officials as domain advisors. MissionX will provide continued mentorship on product design, data handling, and government procurement compliance. The final solutions will be presented at the Karnataka Innovation Conclave in August 2025.</p>
+                    <p>This achievement reflects the power of community-centric innovation — students who are genuinely motivated by impact rather than grades, guided by mentors who believe in them, working on problems that matter.</p>
+                `
+            },
+            'founders-dilemma': {
+                title: "The Founder's Dilemma: Building People While Building Yourself",
+                subtitle: 'What if the most important startup you will ever build is yourself? A reflection on founder identity and growth.',
+                category: 'Blog',
+                categoryClass: 'text-blue-700 bg-blue-50',
+                date: 'May 28, 2025',
+                author: 'Arjun Menon, MissionX Advisor',
+                image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1200&q=80',
+                readTime: '8 min read',
+                content: `
+                    <p>Every founder I have ever spoken to remembers the exact moment they realised the startup was not the hardest thing they had to build. It was themselves.</p>
+                    <p>The romanticised narrative of entrepreneurship — late nights, breakthrough moments, viral growth — glosses over the quieter, harder journey happening in parallel: the deliberate, often painful construction of the person you need to become to lead what you are building.</p>
+
+                    <h2>The Identity Problem</h2>
+                    <p>Most first-time founders arrive at their venture with a strong technical identity. They are an engineer, a designer, a researcher. Their self-worth is tied to their craft. Then the startup demands something different: you must hire people better than you, delegate work you love, make decisions with incomplete information, and be wrong in public — repeatedly.</p>
+                    <p>This is the founder's dilemma. You must simultaneously <strong>hold conviction</strong> about your vision and <strong>remain radically open</strong> to being wrong. You must inspire your team while acknowledging your own gaps. You must lead without having all the answers.</p>
+
+                    <blockquote>"The business only grows as fast as the founder grows. This is not a metaphor. It is the most reliable constraint on any early-stage company."</blockquote>
+
+                    <h2>Building People While You Build</h2>
+                    <p>At MissionX, we see this dynamic play out with our student entrepreneurs every year. The students who succeed long-term are not always the ones with the best ideas at the start. They are the ones who remain curious, who seek mentorship actively, who treat failure as data rather than verdict.</p>
+
+                    <h3>Three Practices That Compound</h3>
+                    <ul>
+                        <li><strong>Weekly reflection journaling:</strong> Not about the business — about yourself. What decision did you avoid this week? Why? What assumption were you protecting?</li>
+                        <li><strong>Deliberate discomfort:</strong> Do one thing each week that requires a skill you do not yet have. Sales call, technical deep-dive, public speaking — whichever scares you most.</li>
+                        <li><strong>Mentorship as a two-way mirror:</strong> The best founders use mentors not just for advice but to see themselves more clearly. Ask your mentor: "What do you see me doing that I do not see myself?"</li>
+                    </ul>
+
+                    <h2>The Long Game</h2>
+                    <p>Building a company is a multi-year, possibly decade-long endeavour. The person who started your company will not — and should not — be the same person who scales it. The dilemma is not a problem to be solved once. It is a condition to be navigated continuously, with increasing skill and, eventually, even gratitude.</p>
+                    <p>Because the person you become in the process of building something meaningful is, in the end, the real product.</p>
+                `
+            },
+            'bigger-shoes': {
+                title: 'Wearing Bigger Shoes: The Unseen Journey of a Builder',
+                subtitle: 'Growing into a role that feels too large is uncomfortable by design. Here is how to make it work.',
+                category: 'Blog',
+                categoryClass: 'text-blue-700 bg-blue-50',
+                date: 'April 10, 2025',
+                author: 'Priya Nair, MissionX Community',
+                image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
+                readTime: '5 min read',
+                content: `
+                    <p>There is a particular kind of discomfort that comes with being given a responsibility you are not yet fully ready for. Your shoes are too big. Every step feels uncertain. You are hyper-aware of the gap between where you are and where you need to be.</p>
+                    <p>This is not a crisis. This is growth.</p>
+
+                    <h2>The Architecture of Stretch</h2>
+                    <p>The most transformative experiences in any builder's journey share a common structure: they are <strong>slightly beyond current capability</strong>. Not so far beyond that they cause paralysis. Not so comfortable that they cause stagnation. The zone of productive stretch is surprisingly narrow — and identifying it is itself a skill.</p>
+
+                    <blockquote>"Do not wait until you are ready. You will never be ready. Readiness is built through doing, not through preparation alone."</blockquote>
+
+                    <h2>What We See in Student Builders</h2>
+                    <p>In our programs at MissionX, we deliberately place students in roles that challenge them. A second-year student leading a team of seniors. A student without a business background presenting to industry mentors. A shy engineering student facilitating a community workshop.</p>
+                    <p>The initial reaction is almost always resistance. Then curiosity. Then — sometimes weeks later — competence. The shoes begin to fit. And by then, they have already been handed a bigger pair.</p>
+
+                    <h3>Signs You Are Growing Into Your Shoes</h3>
+                    <ul>
+                        <li>You start asking better questions instead of better answers.</li>
+                        <li>Failure stops feeling personal and starts feeling informational.</li>
+                        <li>You catch yourself helping others with challenges you struggled with six months ago.</li>
+                        <li>The discomfort is still there, but it no longer stops you.</li>
+                    </ul>
+
+                    <h2>The Builder's Paradox</h2>
+                    <p>Here is the paradox: the moment the shoes fit perfectly is the moment you need new, larger ones. Comfort, while pleasant, is the enemy of growth. The builders who create the most lasting impact are those who have developed a tolerance — even an appetite — for the feeling of wearing shoes that are slightly too big.</p>
+                    <p>Because those shoes, over time, always end up fitting exactly right.</p>
+                `
+            },
+            'social-innovation': {
+                title: 'Real-World Impact, Real Student Growth: Why Social Innovation Projects Matter',
+                subtitle: 'In a world moving at the speed of AI, the students who learn to solve real problems will lead the next decade.',
+                category: 'Blog',
+                categoryClass: 'text-blue-700 bg-blue-50',
+                date: 'March 5, 2025',
+                author: 'MissionX Research Team',
+                image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80',
+                readTime: '7 min read',
+                content: `
+                    <p>In a world evolving at lightning speed with artificial intelligence reshaping every industry, the question facing educators is no longer <em>what</em> to teach — it is <em>how</em> to develop the kind of human beings that technology cannot replace.</p>
+                    <p>The answer, we believe, is social innovation education. Not as an elective or a side activity, but as the central spine of an institution's academic identity.</p>
+
+                    <h2>The Learning Paradox in Indian Engineering</h2>
+                    <p>India produces over 1.5 million engineering graduates every year. Yet industry surveys consistently report that fewer than 20% are considered job-ready without significant reskilling. The gap is not technical — students can code, calculate, and design. The gap is in <strong>problem-framing, contextual judgment, and collaborative execution</strong>.</p>
+                    <p>These are not skills that can be taught through lectures. They are built through experience — specifically, through working on problems that are open-ended, community-embedded, and genuinely consequential.</p>
+
+                    <blockquote>"Students who work on real community problems develop a fundamentally different relationship with learning. They stop studying to pass and start studying to solve." — Dr. K. Ramesh, Education Researcher</blockquote>
+
+                    <h2>What the Data Shows</h2>
+                    <p>Across 33 institutions where MissionX has run Social Innovation Programs, we tracked student outcomes over 3 years. The findings are consistent:</p>
+                    <ul>
+                        <li>Students in SIP programs showed <strong>47% higher placement rates</strong> compared to their peers in the same institution.</li>
+                        <li><strong>68% of SIP alumni</strong> report taking on leadership roles within 2 years of graduation.</li>
+                        <li>Faculty report measurably better classroom engagement from students who participate in community projects.</li>
+                        <li>22 student startups have emerged directly from Social Innovation Program challenges.</li>
+                    </ul>
+
+                    <h2>Why Community Problems Are the Best Curriculum</h2>
+                    <p>Community challenges are naturally interdisciplinary. A problem of clean water access in a rural taluk involves engineering, economics, behavior change, policy, and logistics. A student cannot solve it with a single course's knowledge — they must synthesise, collaborate, and keep learning.</p>
+                    <p>This is precisely the kind of thinking that the next decade will reward. Not the ability to execute a defined task, but the ability to define the task itself — to look at a messy, ambiguous situation and find a path forward.</p>
+
+                    <div class="highlight-box">
+                        <p style="margin:0;">MissionX's Social Innovation Program is now open for applications for the 2025–26 academic year. Institutions can apply for a partnership assessment at missionx.in/contact</p>
+                    </div>
+
+                    <h2>The Road Ahead</h2>
+                    <p>The institutions that will produce the most valuable graduates over the next decade are those that integrate real-world problem solving into their academic DNA — not as a project submission, but as a way of thinking. MissionX exists to help institutions make that transition, and the evidence is increasingly clear: it works.</p>
+                `
+            },
+            'nasscom': {
+                title: 'Advancing to NASSCOM Thingqbator Finale with Tech Solutions',
+                subtitle: 'Three MissionX student teams secure a spot in the national finale of NASSCOM Thingqbator.',
+                category: 'News',
+                categoryClass: 'text-blue-600 bg-blue-50',
+                date: 'November 20, 2024',
+                author: 'MissionX Communications',
+                image: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=80',
+                readTime: '4 min read',
+                content: `
+                    <p>We are thrilled to announce that three teams from the MissionX ecosystem — led by Chiranth, Somashekar, and Prathamesh — have successfully advanced to the <strong>national finale of the NASSCOM Thingqbator 2024 challenge</strong>, competing against teams from across India.</p>
+
+                    <h2>About NASSCOM Thingqbator</h2>
+                    <p>NASSCOM Thingqbator is one of India's most prestigious student technology innovation challenges, attracting thousands of teams from engineering institutions across the country. Teams are evaluated on problem relevance, technical innovation, scalability, and real-world feasibility.</p>
+
+                    <h2>Our Teams and Their Solutions</h2>
+                    <p><strong>Team Chiranth</strong> built an AI-powered early warning system for crop disease detection using satellite imagery and ground-sensor fusion. Their solution targets smallholder farmers in semi-arid regions and has been piloted across 12 farms in Tumkur district.</p>
+                    <p><strong>Team Somashekar</strong> developed a low-cost assistive communication device for non-verbal individuals with autism, leveraging eye-tracking and symbol-to-speech technology. The device works entirely offline and costs under ₹2,500 to manufacture.</p>
+                    <p><strong>Team Prathamesh</strong> presented a blockchain-based supply chain transparency platform for the handloom sector, designed to protect artisan intellectual property and enable fair-trade certification at scale.</p>
+
+                    <blockquote>"Seeing our students stand alongside teams from IITs and NITs and hold their ground is a reminder of what becomes possible when you trust young people with real problems." — MissionX Program Director</blockquote>
+
+                    <h2>What Happens Next</h2>
+                    <p>All three teams will present at the national finale in Hyderabad in December 2024. Winners receive seed funding, NASSCOM network access, and incubation support. MissionX will provide continued mentorship and pitch preparation through the finale and beyond, regardless of outcome.</p>
+                    <p>Congratulations to Chiranth, Somashekar, Prathamesh, and their teammates. You make us proud.</p>
+                `
+            },
+            'bangalore-tech-summit': {
+                title: "MissionX's Impactful Presence at Bangalore Tech Summit 2023",
+                subtitle: 'How MissionX showcased community-centric innovation to thousands of tech industry leaders and policymakers.',
+                category: 'Event',
+                categoryClass: 'text-amber-700 bg-amber-50',
+                date: 'October 18, 2023',
+                author: 'MissionX Events Team',
+                image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=80',
+                readTime: '5 min read',
+                content: `
+                    <p>The Bangalore Tech Summit 2023 was one of the most significant events in MissionX's public history. With over 40,000 attendees from 30+ countries, Asia's largest technology event provided the perfect stage for MissionX to demonstrate what student-led, community-centric innovation looks like at its best.</p>
+
+                    <h2>The MissionX Pavilion</h2>
+                    <p>MissionX was allocated a dedicated pavilion in the Innovation Ecosystem zone, positioned alongside major accelerators, government schemes, and industry R&D labs. Over three days, the pavilion received over 1,200 visitors — including senior officials from Karnataka's IT department, representatives from NASSCOM, and executives from multinational technology companies.</p>
+
+                    <h2>Student-Led Demonstrations</h2>
+                    <p>The highlight of the MissionX presence was entirely student-led. Eight teams from our partner institutions across Karnataka presented live product demonstrations — ranging from IoT-based agricultural solutions to AI-assisted medical diagnostic tools for primary health centres.</p>
+                    <p>Each team was coached through a structured pitch preparation program over 6 weeks before the summit. The result was presentations that were not just technically strong but contextually compelling — with clear community impact narratives and documented field validation data.</p>
+
+                    <blockquote>"I have seen hundreds of student innovation demos over the years. What struck me about the MissionX teams was that they could speak to the problem with the same conviction as the solution. They genuinely understood their users." — Industry Visitor, IT Sector</blockquote>
+
+                    <h2>Key Outcomes</h2>
+                    <ul>
+                        <li>Three student teams received formal expressions of interest from industry visitors for potential pilot partnerships.</li>
+                        <li>MissionX signed an MoU with Karnataka Digital Economy Mission for expanded program reach across Tier 2 and Tier 3 cities.</li>
+                        <li>The MissionX community model was featured in the Summit's official impact report as a case study in education-industry collaboration.</li>
+                    </ul>
+                `
+            },
+            'cii-mentor-connect': {
+                title: "Insights from CII-Yi Mangaluru's Startup Mentor Connect Program",
+                subtitle: 'A full-day mentoring intensive brought together 40 student founders and 15 industry experts in Mangaluru.',
+                category: 'Event',
+                categoryClass: 'text-amber-700 bg-amber-50',
+                date: 'September 3, 2024',
+                author: 'MissionX & CII-Yi Mangaluru',
+                image: 'https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=1200&q=80',
+                readTime: '5 min read',
+                content: `
+                    <p>We are thrilled to share highlights from MissionX's collaboration with <strong>CII Young Indians (Yi) Mangaluru Chapter</strong> for the Startup Mentor Connect Program — a full-day intensive mentoring event held at Sahyadri College of Engineering.</p>
+
+                    <h2>Format and Attendance</h2>
+                    <p>The program brought together 40 student startup founders from 8 partner institutions with 15 experienced industry mentors from sectors including manufacturing, SaaS, healthcare, fintech, and social enterprise. Each student team received three structured 40-minute one-on-one mentoring sessions across the day, focused on product-market fit, go-to-market strategy, and funding readiness.</p>
+
+                    <h2>Themes That Emerged</h2>
+                    <p>Across the mentoring conversations, several recurring themes stood out:</p>
+                    <ul>
+                        <li><strong>The customer discovery gap:</strong> Most student teams had strong technical builds but limited structured user research. Mentors consistently pushed teams to spend more time with potential customers before optimising the product.</li>
+                        <li><strong>Revenue model clarity:</strong> Many teams had not clearly defined who pays, why, and how much. This emerged as the single most common blind spot.</li>
+                        <li><strong>The power of an early reference customer:</strong> Mentors shared repeatedly that one paying customer — however small — transforms how investors, partners, and future customers perceive a startup.</li>
+                    </ul>
+
+                    <blockquote>"These students are not building toys. They are building real things for real people. Our role as mentors is to remove the romantic fog around entrepreneurship and replace it with productive clarity." — Industry Mentor, Healthcare Sector</blockquote>
+
+                    <h2>What Participants Said</h2>
+                    <p>Post-event surveys showed 94% of student participants rated the sessions as "highly valuable" or "transformative." Several teams cited specific mentor conversations as pivotal in changing their approach to customer discovery and go-to-market planning.</p>
+                    <p>CII-Yi Mangaluru and MissionX are planning to make this a quarterly event in 2025, with expanded mentor representation from Bengaluru, Hyderabad, and Mumbai-based investors and founders.</p>
+                `
+            },
+            'annual-report-2026': {
+                title: 'MissionX Annual Report 2025–26',
+                subtitle: 'A comprehensive review of MissionX\'s programs, impact, partnerships, and financial stewardship across the 2025–26 academic year.',
+                category: 'Annual Report',
+                categoryClass: 'text-white bg-blue-900',
+                date: 'July 2026',
+                author: 'MissionX Leadership Team',
+                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
+                readTime: '12 min read',
+                content: `
+                    <p>The 2025–26 academic year marks MissionX's most expansive year of operations since inception. Across 33 institutions, 18,000+ students, and 8 states, our team of 47 full-time members delivered programs that resulted in measurable, documented community impact.</p>
+
+                    <h2>Program Highlights</h2>
+                    <p>The Social Innovation Program reached 11,950 students across Karnataka, Tamil Nadu, Telangana, and Maharashtra. The IDT (Innovation & Design Thinking) module was adopted by 18 new institutions, and our Makerspace vertical completed installations at 12 new campuses.</p>
+
+                    <h2>Student Outcomes</h2>
+                    <ul>
+                        <li>22 student startups formally registered during the academic year.</li>
+                        <li>₹1.4 Cr in seed funding raised by MissionX-mentored student teams.</li>
+                        <li>500+ working prototypes developed across Makerspace and SIP programs.</li>
+                        <li>98 community leaders engaged as stakeholders and problem-providers.</li>
+                    </ul>
+
+                    <h2>Partnerships & Collaborations</h2>
+                    <p>This year saw deepened partnerships with Karnataka Digital Economy Mission, CII, SELCO Foundation, GAME Global Alliance, and amdocs. Our InPulse ERP platform was deployed in 8 new institutions, providing faculty with data-driven insights on student engagement and program outcomes.</p>
+
+                    <div class="highlight-box">
+                        <p style="margin:0;">MissionX maintained a program satisfaction score of 4.6/5.0 across all institutional partners, measured through independent post-program surveys.</p>
+                    </div>
+
+                    <h2>Financial Stewardship</h2>
+                    <p>MissionX operates on a hybrid revenue model — institutional program fees, corporate social responsibility partnerships, and grant income. In 2025–26, 73% of revenue was deployed directly into program delivery, with 12% into R&D for new program development and 15% into organisational infrastructure.</p>
+                    <p>The complete audited financial statements are available upon request from institutional and CSR partners.</p>
+
+                    <h2>Looking Ahead: 2026–27</h2>
+                    <p>The coming year will see MissionX expand into Rajasthan and Odisha, launch a dedicated fellowship program for community innovation leaders, and release the next version of InPulse with AI-assisted student outcome prediction. We remain committed to the vision of 10³ × 10⁶ &gt; 10⁹ — building a generation of compassionate, competent problem solvers at scale.</p>
+                `
+            },
+            'collective-genius': {
+                title: 'Unlocking the Power of Collective Genius',
+                subtitle: 'How distributed innovation networks outperform centralised R&D — and what Indian education can learn from this.',
+                category: 'Impact Report',
+                categoryClass: 'text-gray-700 bg-gray-100',
+                date: 'January 2025',
+                author: 'MissionX Research Division',
+                image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80',
+                readTime: '10 min read',
+                content: `
+                    <p>The most powerful innovation engine in the world is not a research lab. It is not a corporate skunkworks. It is not a Silicon Valley accelerator. It is a network of curious, motivated people working on problems they genuinely care about, connected by shared values and effective coordination infrastructure.</p>
+                    <p>This is the core thesis of MissionX's Collective Genius framework — and this report documents the evidence for it across 4 years and 33 institutions.</p>
+
+                    <h2>The Network Effect of Community Innovation</h2>
+                    <p>When innovation happens in isolation — a single team, a single lab, a single institution — the outputs are bounded by the inputs available to that team. But when innovation happens across a connected network of communities, students, mentors, and industry partners, the outputs become non-linear.</p>
+                    <p>A student in Mangaluru who solves a fishermen's supply chain problem using blockchain creates knowledge that is directly applicable to agri-supply chains in Tumkur, textile supply chains in Dharwad, and handicraft distribution in Belur. The problem-solution pattern propagates. The collective intelligence grows.</p>
+
+                    <blockquote>"Innovation at the grassroots is not a charitable activity. It is the most efficient form of R&D for problems that centralised institutions consistently fail to reach."</blockquote>
+
+                    <h2>Key Findings</h2>
+                    <ul>
+                        <li>Teams working on community-embedded problems iterate <strong>3.2x faster</strong> than teams working on abstract challenge briefs.</li>
+                        <li>Cross-institutional collaboration (two or more MissionX partner institutions working on a shared challenge) produces solutions with <strong>47% higher community adoption rates</strong>.</li>
+                        <li>Students who participate in community problem-solving are <strong>2.8x more likely</strong> to pursue entrepreneurial paths within 5 years of graduation.</li>
+                    </ul>
+
+                    <h2>Implications for Indian Higher Education</h2>
+                    <p>The data in this report carries a clear implication for policymakers and institutional leaders: the best investment in innovation capacity is not infrastructure alone — it is the deliberate construction of networks that connect student talent to community problems and market opportunities.</p>
+                    <p>MissionX offers a replicable model for doing precisely this. The full report, including methodology, data sets, and institutional case studies, is available from MissionX upon request.</p>
+                `
+            },
+            'impact-report-2023': {
+                title: 'MissionX Impact Report 2023',
+                subtitle: 'Measuring what matters: a data-driven review of MissionX\'s community and student impact across 2023.',
+                category: 'Impact Report',
+                categoryClass: 'text-amber-800 bg-amber-100',
+                date: 'March 2024',
+                author: 'MissionX Impact Team',
+                image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80',
+                readTime: '9 min read',
+                content: `
+                    <p>2023 was a year of significant consolidation and growth for MissionX. After two years of pandemic-disrupted hybrid delivery, we returned to full on-campus engagement — and the results were our strongest to date across every metric we track.</p>
+
+                    <h2>By the Numbers</h2>
+                    <ul>
+                        <li><strong>33 partner institutions</strong> across 5 states</li>
+                        <li><strong>9,200 students</strong> enrolled in active programs</li>
+                        <li><strong>340 community problems</strong> addressed through SIP</li>
+                        <li><strong>17 Makerspaces</strong> operational across partner campuses</li>
+                        <li><strong>14 student startups</strong> formally incorporated</li>
+                        <li><strong>₹82 Lakh</strong> in community value generated through student-built solutions (independently assessed)</li>
+                    </ul>
+
+                    <h2>Community Partners Who Shaped 2023</h2>
+                    <p>Our community-centric model depends critically on the willingness of community organisations to engage meaningfully with student teams. In 2023, 98 community leaders — from gram panchayat representatives to urban small business owners to NGO field staff — served as problem providers and domain advisors for student projects.</p>
+                    <p>Their willingness to dedicate time, open their operations to student scrutiny, and provide honest feedback on prototypes was the single biggest driver of project quality in 2023.</p>
+
+                    <blockquote>"What surprised me was how seriously the students took our feedback. They came back three times with improved versions. By the end, I felt like I had junior R&D partners." — Community Partner, Textile Cooperative, Dharwad</blockquote>
+
+                    <h2>Learning from What Did Not Work</h2>
+                    <p>Honest impact reporting requires transparency about failures. In 2023, 34 student projects were discontinued before reaching prototype stage — primarily due to team cohesion issues, scope creep, and misalignment between team interest and community need. These failures generated important learning that has been incorporated into our 2024 program design.</p>
+                    <p>Key changes implemented for 2024: earlier team formation assessments, structured mid-program pivot protocols, and more explicit community need validation milestones at 6-week intervals.</p>
+
+                    <h2>What 2024 Holds</h2>
+                    <p>Building on 2023's momentum, MissionX enters 2024 with expanded capacity, a refined program curriculum, and a growing body of evidence for the effectiveness of our model. We thank every student, faculty partner, community leader, corporate partner, and funder who made 2023 possible. The best, we believe, is still ahead.</p>
+                `
+            }
+        };
+
+        // ===== ARTICLE NAVIGATION =====
+        function navigateToArticle(articleId) {
+            const article = articleData[articleId];
+            if (!article) return;
+
+            // Populate article page
+            document.getElementById('article-title').textContent = article.title;
+            document.getElementById('article-subtitle').textContent = article.subtitle;
+            document.getElementById('article-date').textContent = article.date;
+            document.getElementById('article-author').textContent = article.author;
+            document.getElementById('article-reading-time').textContent = article.readTime;
+            document.getElementById('article-cover-img').src = article.image;
+            document.getElementById('article-cover-img').alt = article.title;
+            document.getElementById('article-content').innerHTML = article.content;
+
+            const catTag = document.getElementById('article-category-tag');
+            catTag.textContent = article.category;
+            catTag.className = 'article-tag ' + article.categoryClass;
+
+            // Navigate to article page
+            const pages = document.querySelectorAll('.page-section');
+            pages.forEach(page => page.classList.remove('active'));
+            const articlePage = document.getElementById('page-article');
+            articlePage.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Update nav highlights
+            const links = document.querySelectorAll('.nav-link');
+            links.forEach(link => {
+                if (link.getAttribute('href') === '#resources') {
+                    link.classList.add('text-brand-orange');
+                } else {
+                    link.classList.remove('text-brand-orange');
+                }
+            });
+        }
+
+        // Router function for dynamic multi-page navigation
+        function navigateTo(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page-section');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // Show selected page
+            const targetPage = document.getElementById('page-' + pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // Update Active link highlighting
+            const links = document.querySelectorAll('.nav-link');
+            links.forEach(link => {
+                if (link.getAttribute('href') === '#' + pageId) {
+                    link.classList.add('text-brand-orange');
+                } else {
+                    link.classList.remove('text-brand-orange');
+                }
+            });
+        }
+
+        // Mobile drawer toggler
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Video modal controls
+        function openVideoModal(url) {
+            const modal = document.getElementById('video-modal');
+            const iframe = document.getElementById('video-iframe');
+            iframe.src = url;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('video-modal');
+            const iframe = document.getElementById('video-iframe');
+            iframe.src = '';
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // Filter functionality for resources
+        function filterContent(type) {
+            const items = document.querySelectorAll('.filter-item');
+            items.forEach(item => {
+                if (type === 'all' || item.classList.contains(type)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Update button active states
+            ['all', 'news', 'events'].forEach(t => {
+                const btn = document.getElementById('filter-btn-' + t);
+                if (!btn) return;
+                if (t === type) {
+                    btn.classList.remove('bg-white', 'text-gray-700', 'border', 'border-gray-200');
+                    btn.classList.add('bg-black', 'text-white', 'ring-2', 'ring-offset-2', 'ring-black');
+                } else {
+                    btn.classList.remove('bg-black', 'text-white', 'ring-2', 'ring-offset-2', 'ring-black');
+                    btn.classList.add('bg-white', 'text-gray-700', 'border', 'border-gray-200');
+                }
+            });
+        }
+
+        // Custom message modal helpers
+        function showMessage(msg) {
+            document.getElementById('custom-message-text').innerText = msg;
+            const modal = document.getElementById('custom-message-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeMessage() {
+            const modal = document.getElementById('custom-message-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // Handle URL Hash navigation on load
+        window.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash.replace('#', '');
+            if (hash && document.getElementById('page-' + hash)) {
+                navigateTo(hash);
+            } else {
+                navigateTo('home');
+            }
+        });
+    </script>
+</body>
+
+</html>
