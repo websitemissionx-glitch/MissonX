@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innovation & Design Thinking - MissionX | 21st Century Skills</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            orange: '#f58220',
+                            gold: '#f39c12',
+                            blue: '#2563eb',
+                            darkBlue: '#1d4ed8',
+                            dark: '#111827',
+                            cardBg: '#18181b',
+                            lightGray: '#f8fafc'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #1f2937;
+        }
+    </style>
+</head>
+
+<body class="flex flex-col min-h-screen bg-white">
+
+    <!-- NAVIGATION BAR -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center space-x-3 cursor-pointer">
+                    <div class="flex flex-col">
+                        <span class="text-3xl font-black tracking-tight text-black flex items-center gap-1">
+                            MissionX <span class="w-2.5 h-2.5 bg-brand-orange rounded-full inline-block"></span>
+                        </span>
+                        <span class="text-[10px] tracking-wider text-gray-500 font-semibold uppercase -mt-1">Innovation
+                            for community</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav -->
+                <nav
+                    class="hidden md:flex items-center space-x-6 text-sm font-semibold uppercase tracking-wider text-gray-700">
+                    <a href="index.html"
+                        class="nav-link hover:text-brand-orange transition-colors">HOME</a>
+                    <a href="about.html"
+                        class="nav-link hover:text-brand-orange transition-colors">ABOUT US</a>
+                    <a href="careers.html"
+                        class="nav-link hover:text-brand-orange transition-colors">CAREERS</a>
+
+                    <!-- Programs Dropdown -->
+                    <div class="relative group">
+                        <button class="flex items-center space-x-1 text-brand-orange py-2 uppercase">
+                            <span>PROGRAMS</span>
+                            <i class="fa-solid fa-chevron-down text-xs"></i>
+                        </button>
+                        <div
+                            class="absolute top-full left-0 hidden group-hover:block w-64 bg-white shadow-xl rounded-lg py-2 border border-gray-100 uppercase text-xs normal-case">
+                            <a href="sip.html"
+                                class="block px-4 py-2.5 hover:bg-orange-50 hover:text-brand-orange font-semibold text-gray-700">Social
+                                Innovation Program</a>
+                            <a href="idt.html"
+                                class="block px-4 py-2.5 bg-orange-50 text-brand-orange font-semibold">Innovation
+                                &amp; Design Thinking</a>
+                            <a href="makerspaces.html"
+                                class="block px-4 py-2.5 hover:bg-orange-50 hover:text-brand-orange font-semibold text-gray-700">Makerspaces</a>
+                        </div>
+                    </div>
+
+                    <a href="inpulse.html"
+                        class="nav-link hover:text-brand-orange transition-colors text-brand-blue font-bold">INPULSE</a>
+                    <a href="resources.html"
+                        class="nav-link hover:text-brand-orange transition-colors">RESOURCES</a>
+                    <a href="contact.html"
+                        class="nav-link hover:text-brand-orange transition-colors">CONTACT US</a>
+                </nav>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()"
+                        class="text-gray-700 hover:text-black focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobile-menu"
+            class="hidden md:hidden bg-white border-b border-gray-200 px-4 pt-2 pb-6 space-y-3 font-semibold uppercase text-sm">
+            <a href="index.html" class="block py-2 text-gray-700 hover:text-brand-orange">Home</a>
+            <a href="about.html" class="block py-2 text-gray-700 hover:text-brand-orange">About Us</a>
+            <a href="careers.html" class="block py-2 text-gray-700 hover:text-brand-orange">Careers</a>
+            <a href="sip.html" class="block py-2 text-gray-700 hover:text-brand-orange">Programs - SIP</a>
+            <a href="idt.html" class="block py-2 text-brand-orange">Programs - Innovation &amp; Design Thinking</a>
+            <a href="makerspaces.html" class="block py-2 text-gray-700 hover:text-brand-orange">Programs - Makerspaces</a>
+            <a href="inpulse.html" class="block py-2 text-brand-blue font-bold">InPulse ERP</a>
+            <a href="resources.html" class="block py-2 text-gray-700 hover:text-brand-orange">Resources</a>
+            <a href="contact.html" class="block py-2 text-gray-700 hover:text-brand-orange">Contact Us</a>
+        </div>
+    </header>
+
+    <!-- MAIN PAGE CONTENT CONTAINER -->
+    <main class="flex-grow">
+        <!-- Hero Banner -->
+        <section class="relative bg-gray-900 text-white py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+            <div class="absolute inset-0">
+                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1600&q=80"
+                    alt="Design thinking workshop" class="w-full h-full object-cover opacity-25">
+                <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent"></div>
+            </div>
+            <div class="relative max-w-7xl mx-auto space-y-4">
+                <span class="text-xs font-bold text-amber-400 uppercase tracking-widest block">Programs &rsaquo; Innovation &amp; Design Thinking</span>
+                <h1 class="text-4xl sm:text-6xl font-extrabold leading-tight">Innovation &amp; <br>Design Thinking</h1>
+                <p class="text-base text-gray-300 max-w-xl font-light leading-relaxed">
+                    Equip students with the most sought-after skill of the 21st century &mdash; the ability to spot problems, empathise with users, and build creative solutions that actually work.
+                </p>
+                <div class="flex flex-wrap gap-3 pt-2">
+                    <a href="contact.html" class="inline-block px-6 py-3 bg-amber-500 hover:bg-amber-600 text-black font-bold rounded-lg uppercase text-xs shadow-lg">Apply Now</a>
+                    <a href="contact.html" class="inline-block px-6 py-3 border border-white/40 hover:bg-white/10 text-white font-bold rounded-lg uppercase text-xs">Download Brochure</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Highlights Strip -->
+        <section class="bg-amber-500 text-black py-5 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-4 text-center text-sm font-bold">
+                <div><span class="text-2xl font-black block">12</span>Weeks Duration</div>
+                <div><span class="text-2xl font-black block">5+</span>Live Workshops</div>
+                <div><span class="text-2xl font-black block">3</span>Field Immersions</div>
+                <div><span class="text-2xl font-black block">1</span>Capstone Project</div>
+            </div>
+        </section>
+
+        <!-- Program Overview -->
+        <section class="py-16 bg-white border-b border-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-5">
+                    <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">What is this program?</span>
+                    <h2 class="text-3xl font-extrabold text-gray-900">Think like a Designer. Build like an Innovator.</h2>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        Innovation &amp; Design Thinking is an experiential 12-week program that takes students through the five stages of design thinking&mdash;Empathize, Define, Ideate, Prototype, and Test&mdash;applied to real community challenges. Students don't just learn theory; they visit communities, interview stakeholders, and build working prototypes that are validated with real users.
+                    </p>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        The program is facilitated by industry practitioners, academic mentors, and community leaders who co-create the learning journey with students&mdash;ensuring every insight is grounded in lived experience.
+                    </p>
+                    <ul class="space-y-2 text-xs font-semibold text-gray-800">
+                        <li class="flex items-center gap-2"><i class="fa-regular fa-circle-check text-amber-500"></i> Hands-on design sprints every week</li>
+                        <li class="flex items-center gap-2"><i class="fa-regular fa-circle-check text-amber-500"></i> Industry expert guest sessions</li>
+                        <li class="flex items-center gap-2"><i class="fa-regular fa-circle-check text-amber-500"></i> Community immersion &amp; field visits</li>
+                        <li class="flex items-center gap-2"><i class="fa-regular fa-circle-check text-amber-500"></i> Prototype &amp; pitch to real stakeholders</li>
+                    </ul>
+                </div>
+                <div class="lg:col-span-5">
+                    <div class="rounded-2xl overflow-hidden shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80"
+                            alt="Design thinking sticky notes session" class="w-full h-80 object-cover">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5 Stages Process -->
+        <section class="py-16 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">The Framework</span>
+                    <h2 class="text-3xl font-extrabold text-gray-900 mt-2">The 5 Stages of Design Thinking</h2>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-5 gap-4">
+                    <div class="bg-indigo-900 text-white p-6 rounded-2xl text-center space-y-3">
+                        <div class="w-12 h-12 bg-white/15 rounded-full flex items-center justify-center mx-auto text-xl"><i class="fa-solid fa-heart"></i></div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-indigo-300">Stage 01</span>
+                        <h3 class="font-extrabold text-lg">Empathize</h3>
+                        <p class="text-xs text-indigo-200 leading-relaxed">Understand the human needs behind the problem through interviews, observation &amp; immersion.</p>
+                    </div>
+                    <div class="bg-indigo-700 text-white p-6 rounded-2xl text-center space-y-3">
+                        <div class="w-12 h-12 bg-white/15 rounded-full flex items-center justify-center mx-auto text-xl"><i class="fa-solid fa-crosshairs"></i></div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-indigo-300">Stage 02</span>
+                        <h3 class="font-extrabold text-lg">Define</h3>
+                        <p class="text-xs text-indigo-200 leading-relaxed">Synthesise research findings into a sharp, actionable problem statement.</p>
+                    </div>
+                    <div class="bg-amber-500 text-black p-6 rounded-2xl text-center space-y-3">
+                        <div class="w-12 h-12 bg-black/15 rounded-full flex items-center justify-center mx-auto text-xl"><i class="fa-solid fa-lightbulb"></i></div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-amber-900">Stage 03</span>
+                        <h3 class="font-extrabold text-lg">Ideate</h3>
+                        <p class="text-xs text-amber-900 leading-relaxed">Generate hundreds of creative ideas through brainstorming, SCAMPER, and divergent thinking.</p>
+                    </div>
+                    <div class="bg-orange-600 text-white p-6 rounded-2xl text-center space-y-3">
+                        <div class="w-12 h-12 bg-white/15 rounded-full flex items-center justify-center mx-auto text-xl"><i class="fa-solid fa-cubes"></i></div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-orange-200">Stage 04</span>
+                        <h3 class="font-extrabold text-lg">Prototype</h3>
+                        <p class="text-xs text-orange-100 leading-relaxed">Build rapid, low-cost prototypes to make ideas tangible and test assumptions quickly.</p>
+                    </div>
+                    <div class="bg-green-700 text-white p-6 rounded-2xl text-center space-y-3">
+                        <div class="w-12 h-12 bg-white/15 rounded-full flex items-center justify-center mx-auto text-xl"><i class="fa-solid fa-flask"></i></div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-green-200">Stage 05</span>
+                        <h3 class="font-extrabold text-lg">Test</h3>
+                        <p class="text-xs text-green-100 leading-relaxed">Validate solutions with real users, gather feedback, and iterate toward a refined product.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Syllabus -->
+        <section class="py-16 bg-white border-t border-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-12">
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900">Program <span class="uppercase">Syllabus</span></h2>
+                    <button onclick="showMessage('The IDT Syllabus PDF will be sent to your email. Please fill in the Contact form and we will share it with you shortly!')" class="px-5 py-2.5 bg-black text-white font-bold rounded-lg uppercase text-xs">Download Syllabus</button>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="flex gap-6 border-b pb-4">
+                            <span class="text-3xl font-black text-gray-900">01</span>
+                            <div>
+                                <h3 class="font-bold text-sm text-gray-900 uppercase">Foundations of Design Thinking &amp; Empathy</h3>
+                                <p class="text-xs text-gray-600 mt-1">Introduction to human-centred design, empathy mapping, and stakeholder interviews to uncover unmet needs.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6 border-b pb-4">
+                            <span class="text-3xl font-black text-gray-900">02</span>
+                            <div>
+                                <h3 class="font-bold text-sm text-gray-900 uppercase">Problem Framing &amp; Insight Synthesis</h3>
+                                <p class="text-xs text-gray-600 mt-1">Translating raw observations into actionable insights using How Might We statements and affinity mapping.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6 border-b pb-4">
+                            <span class="text-3xl font-black text-gray-900">03</span>
+                            <div>
+                                <h3 class="font-bold text-sm text-gray-900 uppercase">Creative Ideation Techniques</h3>
+                                <p class="text-xs text-gray-600 mt-1">SCAMPER, mind mapping, crazy-8s, and other divergent thinking tools to generate breakthrough ideas.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6 border-b pb-4">
+                            <span class="text-3xl font-black text-gray-900">04</span>
+                            <div>
+                                <h3 class="font-bold text-sm text-gray-900 uppercase">Rapid Prototyping &amp; MVP Building</h3>
+                                <p class="text-xs text-gray-600 mt-1">Paper prototypes, wireframes, and physical models&mdash;moving from concept to tangible artefact in hours.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6 border-b pb-4">
+                            <span class="text-3xl font-black text-gray-900">05</span>
+                            <div>
+                                <h3 class="font-bold text-sm text-gray-900 uppercase">User Testing &amp; Iterative Refinement</h3>
+                                <p class="text-xs text-gray-600 mt-1">Structured user testing protocols, feedback loops, and pivoting strategies to reach a validated solution.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6 pb-4">
+                            <span class="text-3xl font-black text-gray-900">06</span>
+                            <div>
+                                <h3 class="font-bold text-sm text-gray-900 uppercase">Capstone: Pitch to Community Stakeholders</h3>
+                                <p class="text-xs text-gray-600 mt-1">Teams present their final solution to a panel of community leaders, industry mentors, and investors.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Sidebar -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <div class="bg-amber-50 border border-amber-200 p-6 rounded-2xl space-y-4 text-amber-950">
+                            <h3 class="font-bold text-lg">Pre-requisites</h3>
+                            <p class="text-xs leading-relaxed">Open to all streams. No prior design or tech knowledge required &mdash; curiosity and a willingness to learn is enough.</p>
+                            <hr class="border-amber-200">
+                            <h3 class="font-bold text-lg">Course Includes</h3>
+                            <ul class="text-xs space-y-2 list-disc list-inside">
+                                <li>5 Design Sprints</li>
+                                <li>3 Community Field Visits</li>
+                                <li>4 Expert Masterclasses</li>
+                                <li>1 Capstone Project &amp; Pitch</li>
+                                <li>Digital Portfolio of Work</li>
+                                <li>Course Certificate</li>
+                            </ul>
+                        </div>
+                        <a href="contact.html" class="block text-center py-3 bg-amber-500 hover:bg-amber-600 text-black font-extrabold rounded-lg uppercase text-xs">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Photo Gallery -->
+        <section class="py-16 bg-black text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+                <div class="bg-amber-500 text-black p-6 rounded-2xl max-w-sm space-y-2">
+                    <span class="text-xs uppercase font-bold">IDT</span>
+                    <h3 class="text-3xl font-black">Student Showcases</h3>
+                    <p class="text-xs font-medium">See how MissionX students have used design thinking to solve real community problems.</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="h-48 rounded-xl overflow-hidden"><img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=400&q=80" alt="Workshop" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"></div>
+                    <div class="h-48 rounded-xl overflow-hidden"><img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=400&q=80" alt="Presentation" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"></div>
+                    <div class="h-48 rounded-xl overflow-hidden"><img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=400&q=80" alt="Sticky notes ideation" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"></div>
+                    <div class="h-48 rounded-xl overflow-hidden"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" alt="Mentor review" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="bg-black text-white py-8 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
+            <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+                <h2 class="text-2xl font-black uppercase tracking-wide">Ready to Think Differently?</h2>
+                <a href="contact.html" class="px-6 py-2.5 bg-amber-500 hover:bg-amber-600 text-black font-bold rounded-full uppercase text-xs flex items-center gap-2">Get in Touch <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-black text-white border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Column 1 -->
+                <div class="space-y-4">
+                    <h3 class="text-3xl font-extrabold tracking-tight">Be the first to know</h3>
+                    <a href="contact.html"
+                        class="inline-block px-6 py-3 bg-brand-orange hover:bg-orange-600 text-white font-bold rounded-lg text-xs uppercase tracking-wider">
+                        JOIN OUR NEWSLETTER
+                    </a>
+                </div>
+
+                <!-- Column 2 -->
+                <div>
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">QUICK LINKS</h4>
+                    <ul class="space-y-2 text-xs text-gray-300">
+                        <li><a href="index.html" class="hover:text-brand-orange">Home</a></li>
+                        <li><a href="about.html" class="hover:text-brand-orange">About Us</a></li>
+                        <li><a href="careers.html" class="hover:text-brand-orange">Careers</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3 -->
+                <div>
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">RESOURCES</h4>
+                    <ul class="space-y-2 text-xs text-gray-300">
+                        <li><a href="resources.html" class="hover:text-brand-orange">Blogs</a></li>
+                        <li><a href="idt.html" class="hover:text-brand-orange">Innovation &amp; Design Thinking</a></li>
+                        <li><a href="sip.html" class="hover:text-brand-orange">Social Innovation Program</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4 -->
+                <div>
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">COMPANY</h4>
+                    <ul class="space-y-2 text-xs text-gray-300">
+                        <li><a href="about.html" class="hover:text-brand-orange">Our Story</a></li>
+                        <li><a href="contact.html" class="hover:text-brand-orange">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright Sub-footer -->
+        <div class="bg-zinc-900 border-t border-zinc-800 text-gray-400 text-[11px] py-4 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+                <div>Copyright © MissionX LLP</div>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-white">Privacy Policy</a>
+                    <span>|</span>
+                    <a href="#" class="hover:text-white">Terms & Conditions</a>
+                    <span>|</span>
+                    <a href="#" class="hover:text-white">Cancellation & Refund Policy</a>
+                    <span>|</span>
+                    <a href="#" class="hover:text-white">Shipping & Delivery Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Message Modal -->
+    <div id="custom-message-modal" class="fixed inset-0 z-[60] bg-black/60 hidden items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-white p-6 sm:p-8 rounded-2xl max-w-sm w-full text-center shadow-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fa-solid fa-check text-xl"></i>
+            </div>
+            <p id="custom-message-text" class="text-gray-900 font-semibold mb-6 text-sm leading-relaxed"></p>
+            <button onclick="closeMessage()" class="w-full px-4 py-3 bg-brand-orange hover:bg-orange-600 text-white rounded-xl font-bold text-xs uppercase tracking-wider transition-colors shadow-sm">
+                Got it
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function showMessage(msg) {
+            document.getElementById('custom-message-text').innerText = msg;
+            const modal = document.getElementById('custom-message-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeMessage() {
+            const modal = document.getElementById('custom-message-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources & Blogs - MissionX | Insights & News</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            orange: '#f58220',
+                            gold: '#f39c12',
+                            blue: '#2563eb',
+                            darkBlue: '#1d4ed8',
+                            dark: '#111827',
+                            cardBg: '#18181b',
+                            lightGray: '#f8fafc'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #1f2937;
+        }
+
+        .article-tag {
+            display: inline-block;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.3rem 0.85rem;
+            border-radius: 9999px;
+        }
+    </style>
+</head>
+
+<body class="flex flex-col min-h-screen bg-white">
+
+    <!-- NAVIGATION BAR -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center space-x-3 cursor-pointer">
+                    <div class="flex flex-col">
+                        <span class="text-3xl font-black tracking-tight text-black flex items-center gap-1">
+                            MissionX <span class="w-2.5 h-2.5 bg-brand-orange rounded-full inline-block"></span>
+                        </span>
+                        <span class="text-[10px] tracking-wider text-gray-500 font-semibold uppercase -mt-1">Innovation
+                            for community</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav -->
+                <nav
+                    class="hidden md:flex items-center space-x-6 text-sm font-semibold uppercase tracking-wider text-gray-700">
+                    <a href="index.html"
+                        class="nav-link hover:text-brand-orange transition-colors">HOME</a>
+                    <a href="about.html"
+                        class="nav-link hover:text-brand-orange transition-colors">ABOUT US</a>
+                    <a href="careers.html"
+                        class="nav-link hover:text-brand-orange transition-colors">CAREERS</a>
+
+                    <!-- Programs Dropdown -->
+                    <div class="relative group">
+                        <button class="flex items-center space-x-1 hover:text-brand-orange py-2 uppercase">
+                            <span>PROGRAMS</span>
+                            <i class="fa-solid fa-chevron-down text-xs"></i>
+                        </button>
+                        <div
+                            class="absolute top-full left-0 hidden group-hover:block w-64 bg-white shadow-xl rounded-lg py-2 border border-gray-100 uppercase text-xs normal-case">
+                            <a href="sip.html"
+                                class="block px-4 py-2.5 hover:bg-orange-50 hover:text-brand-orange font-semibold text-gray-700">Social
+                                Innovation Program</a>
+                            <a href="idt.html"
+                                class="block px-4 py-2.5 hover:bg-orange-50 hover:text-brand-orange font-semibold text-gray-700">Innovation
+                                &amp; Design Thinking</a>
+                            <a href="makerspaces.html"
+                                class="block px-4 py-2.5 hover:bg-orange-50 hover:text-brand-orange font-semibold text-gray-700">Makerspaces</a>
+                        </div>
+                    </div>
+
+                    <a href="inpulse.html"
+                        class="nav-link hover:text-brand-orange transition-colors text-brand-blue font-bold">INPULSE</a>
+                    <a href="resources.html"
+                        class="nav-link text-brand-orange transition-colors">RESOURCES</a>
+                    <a href="contact.html"
+                        class="nav-link hover:text-brand-orange transition-colors">CONTACT US</a>
+                </nav>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()"
+                        class="text-gray-700 hover:text-black focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobile-menu"
+            class="hidden md:hidden bg-white border-b border-gray-200 px-4 pt-2 pb-6 space-y-3 font-semibold uppercase text-sm">
+            <a href="index.html" class="block py-2 text-gray-700 hover:text-brand-orange">Home</a>
+            <a href="about.html" class="block py-2 text-gray-700 hover:text-brand-orange">About Us</a>
+            <a href="careers.html" class="block py-2 text-gray-700 hover:text-brand-orange">Careers</a>
+            <a href="sip.html" class="block py-2 text-gray-700 hover:text-brand-orange">Programs - SIP</a>
+            <a href="idt.html" class="block py-2 text-gray-700 hover:text-brand-orange">Programs - Innovation &amp; Design Thinking</a>
+            <a href="makerspaces.html" class="block py-2 text-gray-700 hover:text-brand-orange">Programs - Makerspaces</a>
+            <a href="inpulse.html" class="block py-2 text-brand-blue font-bold">InPulse ERP</a>
+            <a href="resources.html" class="block py-2 text-brand-orange">Resources</a>
+            <a href="contact.html" class="block py-2 text-gray-700 hover:text-brand-orange">Contact Us</a>
+        </div>
+    </header>
+
+    <!-- MAIN PAGE CONTENT CONTAINER -->
+    <main class="flex-grow">
+        <!-- Blog Spotlight Header -->
+        <section class="py-16 bg-gray-50 border-b border-gray-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h1 class="text-3xl font-extrabold text-gray-900 mb-8">Recent Blog!</h1>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    <!-- Main Featured Blog -->
+                    <div class="lg:col-span-8 bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-4 cursor-pointer group" onclick="navigateToArticle('solve4dc')">
+                        <div class="overflow-hidden rounded-xl">
+                            <img src="https://images.unsplash.com/photo-1531497865144-0464ef8fb9a9?auto=format&fit=crop&w=800&q=80"
+                                alt="Solve4DC Review" class="w-full h-64 object-cover rounded-xl group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <span class="article-tag text-orange-700 bg-orange-50">Featured Blog</span>
+                        <h2 class="text-xl font-bold text-gray-900 group-hover:text-brand-orange transition-colors">Solve4DC: Team Shiva and Team Rudra Shine in 3rd Review</h2>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            Solve4DC: Team Shiva and Team Rudra Shine in 3rd Review. As part of the Solve4DC
+                            initiative, Teams Shiva and Rudra recently had their 3rd review session with the Deputy
+                            Commissioner (DC). This important milestone took place at the Integrated Command...
+                        </p>
+                        <button onclick="event.stopPropagation(); navigateToArticle('solve4dc')" class="text-xs font-bold text-brand-orange hover:underline inline-flex items-center gap-1">Read Full Article <i class="fa-solid fa-arrow-right text-[10px]"></i></button>
+                    </div>
+
+                    <!-- Newsletter Sidebar -->
+                    <div class="lg:col-span-4 bg-rose-100/60 p-6 rounded-2xl space-y-4">
+                        <h2 class="text-lg font-black text-gray-900 uppercase leading-snug">GET OUR NEWSLETTER TO STAY UP TO DATE.</h2>
+                        <p class="text-xs text-gray-600">Sign up for our newsletter to get the latest blog posts delivered straight to your inbox!</p>
+
+                        <form onsubmit="event.preventDefault(); showMessage('Subscribed successfully! Welcome to the MissionX newsletter.');" class="space-y-3">
+                            <input type="text" placeholder="FIRST NAME" required
+                                class="w-full px-4 py-2.5 rounded-lg text-xs border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-orange">
+                            <input type="text" placeholder="LAST NAME" required
+                                class="w-full px-4 py-2.5 rounded-lg text-xs border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-orange">
+                            <input type="email" placeholder="EMAIL ID" required
+                                class="w-full px-4 py-2.5 rounded-lg text-xs border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-orange">
+                            <button type="submit"
+                                class="w-full py-2.5 bg-black text-white font-bold rounded-lg uppercase text-xs hover:bg-gray-800 transition-colors">
+                                SUBSCRIBE
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Most Read Blogs -->
+        <section class="py-16 bg-white border-b border-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+                <h2 class="text-2xl font-extrabold text-gray-900">Most Read Blogs!</h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Blog Card 1 -->
+                    <div class="bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 p-4 space-y-3 hover:shadow-md transition-shadow cursor-pointer group" onclick="navigateToArticle('founders-dilemma')">
+                        <div class="overflow-hidden rounded-xl">
+                            <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=400&q=80"
+                                alt="Blog 1" class="w-full h-40 object-cover rounded-xl group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <span class="article-tag text-blue-700 bg-blue-50">Blog</span>
+                        <h3 class="font-bold text-sm text-gray-900 group-hover:text-brand-orange transition-colors">The Founder's Dilemma: Building People While Building Yourself</h3>
+                        <p class="text-xs text-gray-500">What if the biggest startup you're building... is you?</p>
+                        <button onclick="event.stopPropagation(); navigateToArticle('founders-dilemma')" class="text-xs font-bold text-brand-blue inline-flex items-center gap-1 hover:text-brand-orange transition-colors">Read More <i class="fa-solid fa-arrow-right text-[10px]"></i></button>
+                    </div>
+
+                    <!-- Blog Card 2 -->
+                    <div class="bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 p-4 space-y-3 hover:shadow-md transition-shadow cursor-pointer group" onclick="navigateToArticle('bigger-shoes')">
+                        <div class="overflow-hidden rounded-xl">
+                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=400&q=80"
+                                alt="Blog 2" class="w-full h-40 object-cover rounded-xl group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <span class="article-tag text-blue-700 bg-blue-50">Blog</span>
+                        <h3 class="font-bold text-sm text-gray-900 group-hover:text-brand-orange transition-colors">Wearing Bigger Shoes: The Unseen Journey of a Builder</h3>
+                        <p class="text-xs text-gray-500">What does it take to grow into shoes that feel too big today?</p>
+                        <button onclick="event.stopPropagation(); navigateToArticle('bigger-shoes')" class="text-xs font-bold text-brand-blue inline-flex items-center gap-1 hover:text-brand-orange transition-colors">Read More <i class="fa-solid fa-arrow-right text-[10px]"></i></button>
+                    </div>
+
+                    <!-- Blog Card 3 -->
+                    <div class="bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 p-4 space-y-3 hover:shadow-md transition-shadow cursor-pointer group" onclick="navigateToArticle('social-innovation')">
+                        <div class="overflow-hidden rounded-xl">
+                            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=400&q=80"
+                                alt="Blog 3" class="w-full h-40 object-cover rounded-xl group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <span class="article-tag text-blue-700 bg-blue-50">Blog</span>
+                        <h3 class="font-bold text-sm text-gray-900 group-hover:text-brand-orange transition-colors">Real-World Impact, Real Student Growth: Why Social Innovation Projects Matter</h3>
+                        <p class="text-xs text-gray-500">In a world evolving at lightning speed with artificial intelligence...</p>
+                        <button onclick="event.stopPropagation(); navigateToArticle('social-innovation')" class="text-xs font-bold text-brand-blue inline-flex items-center gap-1 hover:text-brand-orange transition-colors">Read More <i class="fa-solid fa-arrow-right text-[10px]"></i></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- News & Events Grid Tabbed -->
+        <section class="py-16 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+                <!-- Filter Tabs -->
+                <div class="flex justify-center space-x-4 border-b border-gray-200 pb-4">
+                    <button id="filter-btn-all" onclick="filterContent('all')"
+                        class="px-6 py-2 bg-black text-white font-bold rounded-full text-xs uppercase focus:outline-none ring-2 ring-offset-2 ring-black transition-all">ALL</button>
+                    <button id="filter-btn-news" onclick="filterContent('news')"
+                        class="px-6 py-2 bg-white text-gray-700 hover:bg-gray-100 font-bold rounded-full text-xs uppercase border border-gray-200 transition-all">NEWS</button>
+                    <button id="filter-btn-events" onclick="filterContent('events')"
+                        class="px-6 py-2 bg-white text-gray-700 hover:bg-gray-100 font-bold rounded-full text-xs uppercase border border-gray-200 transition-all">EVENTS</button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="news-events-grid">
+                    <div class="bg-white p-5 rounded-2xl border border-gray-100 space-y-3 filter-item news hover:shadow-md transition-shadow cursor-pointer group" onclick="navigateToArticle('nasscom')">
+                        <div class="overflow-hidden rounded-xl">
+                            <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=400&q=80"
+                                alt="NASSCOM" class="w-full h-40 object-cover rounded-xl group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <span class="inline-block text-[10px] font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2 py-1 rounded-full">NEWS</span>
+                        <h3 class="font-bold text-sm text-gray-900 group-hover:text-brand-orange transition-colors">Advancing to NASSCOM Thingqbator Finale with Tech Solutions</h3>
+                        <p class="text-xs text-gray-500">Congratulations to the teams of Chiranth, Somashekar, and Prathamesh!</p>
+                        <button onclick="event.stopPropagation(); navigateToArticle('nasscom')" class="text-xs font-bold text-brand-blue inline-flex items-center gap-1 hover:text-brand-orange transition-colors">Read More <i class="fa-solid fa-arrow-right text-[10px]"></i></button>
+                    </div>
+                    <div class="bg-white p-5 rounded-2xl border border-gray-100 space-y-3 filter-item events hover:shadow-md transition-shadow cursor-pointer group" onclick="navigateToArticle('bangalore-tech-summit')">
+                        <div class="overflow-hidden rounded-xl">
+                            <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=400&q=80"
+                                alt="Bangalore Tech Summit" class="w-full h-40 object-cover rounded-xl group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <span class="inline-block text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-2 py-1 rounded-full">EVENT</span>
+                        <h3 class="font-bold text-sm text-gray-900 group-hover:text-brand-orange transition-colors">MissionX's Impactful Presence at Bangalore Tech Summit 2023</h3>
+                        <p class="text-xs text-gray-500">MissionX's landmark presence at Bangalore Tech Summit 2023.</p>
+                        <button onclick="event.stopPropagation(); navigateToArticle('bangalore-tech-summit')" class="text-xs font-bold text-amber-700 inline-flex items-center gap-1 hover:text-brand-orange transition-colors">Read More <i class="fa-solid fa-arrow-right text-[10px]"></i></button>
+                    </div>
+                    <div class="bg-white p-5 rounded-2xl border border-gray-100 space-y-3 filter-item events hover:shadow-md transition-shadow cursor-pointer group" onclick="navigateToArticle('cii-mentor-connect')">
+                        <div class="overflow-hidden rounded-xl">
+                            <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=400&q=80"
+                                alt="Startup mentor connect" class="w-full h-40 object-cover rounded-xl group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <span class="inline-block text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-2 py-1 rounded-full">EVENT</span>
+                        <h3 class="font-bold text-sm text-gray-900 group-hover:text-brand-orange transition-colors">Insights from CII-Yi Mangaluru's Startup Mentor Connect Program</h3>
+                        <p class="text-xs text-gray-500">We are thrilled to share highlights from our latest mentoring event.</p>
+                        <button onclick="event.stopPropagation(); navigateToArticle('cii-mentor-connect')" class="text-xs font-bold text-amber-700 inline-flex items-center gap-1 hover:text-brand-orange transition-colors">Read More <i class="fa-solid fa-arrow-right text-[10px]"></i></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reports Section -->
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+                <h2 class="text-3xl font-extrabold text-gray-900">Reports</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
+                    <div class="space-y-3">
+                        <div class="bg-blue-900 text-white p-8 rounded-xl h-56 flex flex-col justify-center items-center shadow-md hover:shadow-xl transition-shadow cursor-pointer" onclick="navigateToArticle('annual-report-2026')">
+                            <span class="text-2xl font-bold">ANNUAL REPORT</span>
+                            <span class="text-sm mt-2">2025&ndash;26</span>
+                        </div>
+                        <span class="font-bold text-sm block">Annual Report 2025&ndash;26</span>
+                        <button onclick="navigateToArticle('annual-report-2026')"
+                            class="px-4 py-2 bg-black text-white font-bold rounded text-xs uppercase hover:bg-gray-800 transition-colors">Read More</button>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="bg-gray-100 border p-8 rounded-xl h-56 flex flex-col justify-center items-center shadow-md hover:shadow-xl transition-shadow cursor-pointer" onclick="navigateToArticle('collective-genius')">
+                            <span class="text-xl font-bold text-gray-800">Unlocking the Power of Collective Genius</span>
+                        </div>
+                        <span class="font-bold text-sm block">Unlocking Collective Genius</span>
+                        <button onclick="navigateToArticle('collective-genius')"
+                            class="px-4 py-2 bg-black text-white font-bold rounded text-xs uppercase hover:bg-gray-800 transition-colors">Read More</button>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="bg-amber-100 border p-8 rounded-xl h-56 flex flex-col justify-center items-center shadow-md hover:shadow-xl transition-shadow cursor-pointer" onclick="navigateToArticle('impact-report-2023')">
+                            <span class="text-xl font-bold text-amber-900">MissionX Impact Report 2023</span>
+                        </div>
+                        <span class="font-bold text-sm block">MissionX Impact Report 2023</span>
+                        <button onclick="navigateToArticle('impact-report-2023')"
+                            class="px-4 py-2 bg-black text-white font-bold rounded text-xs uppercase hover:bg-gray-800 transition-colors">Read More</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-black text-white border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Column 1 -->
+                <div class="space-y-4">
+                    <h3 class="text-3xl font-extrabold tracking-tight">Be the first to know</h3>
+                    <a href="contact.html"
+                        class="inline-block px-6 py-3 bg-brand-orange hover:bg-orange-600 text-white font-bold rounded-lg text-xs uppercase tracking-wider">
+                        JOIN OUR NEWSLETTER
+                    </a>
+                </div>
+
+                <!-- Column 2 -->
+                <div>
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">QUICK LINKS</h4>
+                    <ul class="space-y-2 text-xs text-gray-300">
+                        <li><a href="index.html" class="hover:text-brand-orange">Home</a></li>
+                        <li><a href="about.html" class="hover:text-brand-orange">About Us</a></li>
+                        <li><a href="careers.html" class="hover:text-brand-orange">Careers</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3 -->
+                <div>
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">RESOURCES</h4>
+                    <ul class="space-y-2 text-xs text-gray-300">
+                        <li><a href="resources.html" class="hover:text-brand-orange">Blogs</a></li>
+                        <li><a href="idt.html" class="hover:text-brand-orange">Innovation &amp; Design Thinking</a></li>
+                        <li><a href="sip.html" class="hover:text-brand-orange">Social Innovation Program</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4 -->
+                <div>
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">COMPANY</h4>
+                    <ul class="space-y-2 text-xs text-gray-300">
+                        <li><a href="about.html" class="hover:text-brand-orange">Our Story</a></li>
+                        <li><a href="contact.html" class="hover:text-brand-orange">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright Sub-footer -->
+        <div class="bg-zinc-900 border-t border-zinc-800 text-gray-400 text-[11px] py-4 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+                <div>Copyright © MissionX LLP</div>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-white">Privacy Policy</a>
+                    <span>|</span>
+                    <a href="#" class="hover:text-white">Terms & Conditions</a>
+                    <span>|</span>
+                    <a href="#" class="hover:text-white">Cancellation & Refund Policy</a>
+                    <span>|</span>
+                    <a href="#" class="hover:text-white">Shipping & Delivery Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Message Modal -->
+    <div id="custom-message-modal" class="fixed inset-0 z-[60] bg-black/60 hidden items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-white p-6 sm:p-8 rounded-2xl max-w-sm w-full text-center shadow-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fa-solid fa-check text-xl"></i>
+            </div>
+            <p id="custom-message-text" class="text-gray-900 font-semibold mb-6 text-sm leading-relaxed"></p>
+            <button onclick="closeMessage()" class="w-full px-4 py-3 bg-brand-orange hover:bg-orange-600 text-white rounded-xl font-bold text-xs uppercase tracking-wider transition-colors shadow-sm">
+                Got it
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function navigateToArticle(articleId) {
+            window.location.href = 'article.html?id=' + articleId;
+        }
+
+        function filterContent(type) {
+            const items = document.querySelectorAll('.filter-item');
+            items.forEach(item => {
+                if (type === 'all' || item.classList.contains(type)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Update button active states
+            ['all', 'news', 'events'].forEach(t => {
+                const btn = document.getElementById('filter-btn-' + t);
+                if (!btn) return;
+                if (t === type) {
+                    btn.classList.remove('bg-white', 'text-gray-700', 'border', 'border-gray-200');
+                    btn.classList.add('bg-black', 'text-white', 'ring-2', 'ring-offset-2', 'ring-black');
+                } else {
+                    btn.classList.remove('bg-black', 'text-white', 'ring-2', 'ring-offset-2', 'ring-black');
+                    btn.classList.add('bg-white', 'text-gray-700', 'border', 'border-gray-200');
+                }
+            });
+        }
+
+        function showMessage(msg) {
+            document.getElementById('custom-message-text').innerText = msg;
+            const modal = document.getElementById('custom-message-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeMessage() {
+            const modal = document.getElementById('custom-message-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+    </script>
+</body>
+
+</html>

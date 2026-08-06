@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InPulse ERP - MissionX | Supporting Faculty Role in Enhancing Student Outcomes</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            orange: '#f58220',
+                            gold: '#f39c12',
+                            blue: '#2563eb',
+                            darkBlue: '#1d4ed8',
+                            dark: '#111827',
+                            cardBg: '#18181b',
+                            lightGray: '#f8fafc'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+        }
+    </style>
+</head>
+
+<body class="flex flex-col min-h-screen bg-black text-white">
+
+    <!-- NAVIGATION BAR -->
+    <header class="sticky top-0 z-50 bg-black/95 backdrop-blur-md border-b border-gray-800 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center space-x-3 cursor-pointer">
+                    <div class="flex flex-col">
+                        <span class="text-3xl font-black tracking-tight text-white flex items-center gap-1">
+                            MissionX <span class="w-2.5 h-2.5 bg-brand-orange rounded-full inline-block"></span>
+                        </span>
+                        <span class="text-[10px] tracking-wider text-gray-400 font-semibold uppercase -mt-1">Innovation
+                            for community</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav -->
+                <nav
+                    class="hidden md:flex items-center space-x-6 text-sm font-semibold uppercase tracking-wider text-gray-300">
+                    <a href="index.html"
+                        class="nav-link hover:text-brand-orange transition-colors">HOME</a>
+                    <a href="about.html"
+                        class="nav-link hover:text-brand-orange transition-colors">ABOUT US</a>
+                    <a href="careers.html"
+                        class="nav-link hover:text-brand-orange transition-colors">CAREERS</a>
+
+                    <!-- Programs Dropdown -->
+                    <div class="relative group">
+                        <button class="flex items-center space-x-1 hover:text-brand-orange py-2 uppercase text-gray-300">
+                            <span>PROGRAMS</span>
+                            <i class="fa-solid fa-chevron-down text-xs"></i>
+                        </button>
+                        <div
+                            class="absolute top-full left-0 hidden group-hover:block w-64 bg-gray-900 shadow-xl rounded-lg py-2 border border-gray-800 uppercase text-xs normal-case">
+                            <a href="sip.html"
+                                class="block px-4 py-2.5 hover:bg-gray-800 hover:text-brand-orange font-semibold text-gray-200">Social
+                                Innovation Program</a>
+                            <a href="idt.html"
+                                class="block px-4 py-2.5 hover:bg-gray-800 hover:text-brand-orange font-semibold text-gray-200">Innovation
+                                &amp; Design Thinking</a>
+                            <a href="makerspaces.html"
+                                class="block px-4 py-2.5 hover:bg-gray-800 hover:text-brand-orange font-semibold text-gray-200">Makerspaces</a>
+                        </div>
+                    </div>
+
+                    <a href="inpulse.html"
+                        class="nav-link text-brand-blue font-bold">INPULSE</a>
+                    <a href="resources.html"
+                        class="nav-link hover:text-brand-orange transition-colors">RESOURCES</a>
+                    <a href="contact.html"
+                        class="nav-link hover:text-brand-orange transition-colors">CONTACT US</a>
+                </nav>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()"
+                        class="text-gray-300 hover:text-white focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobile-menu"
+            class="hidden md:hidden bg-gray-900 border-b border-gray-800 px-4 pt-2 pb-6 space-y-3 font-semibold uppercase text-sm">
+            <a href="index.html" class="block py-2 text-gray-300 hover:text-brand-orange">Home</a>
+            <a href="about.html" class="block py-2 text-gray-300 hover:text-brand-orange">About Us</a>
+            <a href="careers.html" class="block py-2 text-gray-300 hover:text-brand-orange">Careers</a>
+            <a href="sip.html" class="block py-2 text-gray-300 hover:text-brand-orange">Programs - SIP</a>
+            <a href="idt.html" class="block py-2 text-gray-300 hover:text-brand-orange">Programs - Innovation &amp; Design Thinking</a>
+            <a href="makerspaces.html" class="block py-2 text-gray-300 hover:text-brand-orange">Programs - Makerspaces</a>
+            <a href="inpulse.html" class="block py-2 text-brand-blue font-bold">InPulse ERP</a>
+            <a href="resources.html" class="block py-2 text-gray-300 hover:text-brand-orange">Resources</a>
+            <a href="contact.html" class="block py-2 text-gray-300 hover:text-brand-orange">Contact Us</a>
+        </div>
+    </header>
+
+    <!-- MAIN PAGE CONTENT CONTAINER -->
+    <main class="flex-grow">
+        <!-- InPulse Sub-Header Nav -->
+        <div
+            class="border-b border-gray-800 py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center max-w-7xl mx-auto text-xs">
+            <div class="font-bold text-xl tracking-tight text-white flex items-baseline gap-2">
+                inpulse <span class="text-[10px] text-gray-400 font-normal">by MissionX</span>
+            </div>
+            <div class="hidden sm:flex space-x-6 text-gray-300 font-medium uppercase">
+                <a href="#hero" class="hover:text-white">Home</a>
+                <a href="#features" class="hover:text-white">Features</a>
+                <a href="#benefits" class="hover:text-white">Benefits</a>
+                <a href="#faq" class="hover:text-white">FAQ</a>
+            </div>
+            <a href="contact.html"
+                class="px-4 py-2 bg-brand-blue hover:bg-blue-600 text-white font-bold rounded-lg uppercase">
+                REQUEST DEMO
+            </a>
+        </div>
+
+        <!-- Hero Section -->
+        <section id="hero"
+            class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-6 space-y-6">
+                <span class="text-xs font-bold text-brand-blue uppercase tracking-widest block">InPulse Platform</span>
+                <h1 class="text-4xl sm:text-6xl font-extrabold leading-tight">Supporting faculty role in enhancing student outcomes</h1>
+                <p class="text-sm text-gray-400 leading-relaxed">
+                    With every interaction, our platform beats with the passion for knowledge and the drive for innovation, nurturing a culture of continuous learning and development.
+                </p>
+                <div class="flex space-x-4 pt-2">
+                    <a href="contact.html" class="px-6 py-3 bg-brand-blue hover:bg-blue-600 text-white font-bold rounded-lg text-xs uppercase tracking-wider">Request Demo</a>
+                    <a href="#features" class="px-6 py-3 border border-gray-700 hover:bg-gray-900 text-gray-300 font-bold rounded-lg text-xs uppercase tracking-wider">Explore Features</a>
+                </div>
+            </div>
+            <div class="lg:col-span-6">
+                <div class="bg-gray-900 border border-gray-800 rounded-2xl p-4 shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80"
+                        alt="InPulse Dashboard" class="rounded-xl w-full object-cover">
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="py-16 border-t border-gray-800 bg-zinc-950">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <span class="text-xs font-bold text-brand-blue uppercase tracking-widest">Capabilities</span>
+                    <h2 class="text-3xl font-extrabold text-white mt-2">Empowering Educators with Data & Analytics</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-gray-900 p-8 rounded-2xl border border-gray-800 space-y-4">
+                        <i class="fa-solid fa-chart-line text-brand-blue text-3xl"></i>
+                        <h3 class="text-xl font-bold text-white">Real-Time Student Analytics</h3>
+                        <p class="text-xs text-gray-400 leading-relaxed">Track student engagement, project milestones, and competency progression in real-time across courses and cohorts.</p>
+                    </div>
+                    <div class="bg-gray-900 p-8 rounded-2xl border border-gray-800 space-y-4">
+                        <i class="fa-solid fa-list-check text-brand-gold text-3xl"></i>
+                        <h3 class="text-xl font-bold text-white">Project Lifecycle Management</h3>
+                        <p class="text-xs text-gray-400 leading-relaxed">Seamlessly manage team formation, field visit logs, mentor reviews, and prototype submissions in one unified platform.</p>
+                    </div>
+                    <div class="bg-gray-900 p-8 rounded-2xl border border-gray-800 space-y-4">
+                        <i class="fa-solid fa-award text-emerald-500 text-3xl"></i>
+                        <h3 class="text-xl font-bold text-white">Competency-Based Evaluation</h3>
+                        <p class="text-xs text-gray-400 leading-relaxed">Replace traditional test scores with multi-parameter rubric evaluations for creativity, problem-solving, and team collaboration.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section id="benefits" class="py-16 border-t border-gray-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-6 space-y-6">
+                        <span class="text-xs font-bold text-brand-blue uppercase tracking-widest block">Why InPulse</span>
+                        <h2 class="text-3xl font-bold leading-snug">Designed for Institutions Seeking Excellence</h2>
+                        <ul class="space-y-4 text-xs text-gray-300">
+                            <li class="flex items-start gap-3"><i class="fa-solid fa-check text-brand-blue mt-0.5"></i> <span><strong>Automated NAAC/NIRF Data Capture:</strong> Automatically collate evidence for institutional accreditation requirements.</span></li>
+                            <li class="flex items-start gap-3"><i class="fa-solid fa-check text-brand-blue mt-0.5"></i> <span><strong>Mentor-Student Bridge:</strong> Connect industry mentors directly with student teams for asynchronous feedback.</span></li>
+                            <li class="flex items-start gap-3"><i class="fa-solid fa-check text-brand-blue mt-0.5"></i> <span><strong>Outcome Prediction:</strong> Identify students needing early intervention or extra challenges.</span></li>
+                        </ul>
+                    </div>
+                    <div class="lg:col-span-6">
+                        <div class="bg-gradient-to-tr from-brand-blue/20 to-indigo-900/40 p-8 rounded-2xl border border-brand-blue/30 space-y-4">
+                            <h3 class="text-2xl font-bold text-white">Schedule an Institutional Demo</h3>
+                            <p class="text-xs text-gray-300">See how InPulse can transform project-based learning evaluation at your institution.</p>
+                            <a href="contact.html" class="inline-block px-6 py-3 bg-brand-blue hover:bg-blue-600 text-white font-bold rounded-lg text-xs uppercase tracking-wider">Book a Demo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="py-16 border-t border-gray-800 bg-zinc-950">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+                <h2 class="text-3xl font-bold text-center text-white mb-8">Frequently Asked Questions</h2>
+                <div class="space-y-4">
+                    <div class="bg-gray-900 p-5 rounded-xl border border-gray-800">
+                        <h3 class="font-bold text-sm text-white">How long does deployment take?</h3>
+                        <p class="text-xs text-gray-400 mt-2">InPulse can be onboarded within 48 hours for standard institutional configurations.</p>
+                    </div>
+                    <div class="bg-gray-900 p-5 rounded-xl border border-gray-800">
+                        <h3 class="font-bold text-sm text-white">Does InPulse integrate with existing ERP systems?</h3>
+                        <p class="text-xs text-gray-400 mt-2">Yes, InPulse provides standard REST APIs and CSV export/import hooks to sync seamlessly with existing university databases.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-black text-white border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Column 1 -->
+                <div class="space-y-4">
+                    <h3 class="text-3xl font-extrabold tracking-tight">Be the first to know</h3>
+                    <a href="contact.html"
+                        class="inline-block px-6 py-3 bg-brand-orange hover:bg-orange-600 text-white font-bold rounded-lg text-xs uppercase tracking-wider">
+                        JOIN OUR NEWSLETTER
+                    </a>
+                </div>
+
+                <!-- Column 2 -->
+                <div>
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">QUICK LINKS</h4>
+                    <ul class="space-y-2 text-xs text-gray-300">
+                        <li><a href="index.html" class="hover:text-brand-orange">Home</a></li>
+                        <li><a href="about.html" class="hover:text-brand-orange">About Us</a></li>
+                        <li><a href="careers.html" class="hover:text-brand-orange">Careers</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3 -->
+                <div>
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">RESOURCES</h4>
+                    <ul class="space-y-2 text-xs text-gray-300">
+                        <li><a href="resources.html" class="hover:text-brand-orange">Blogs</a></li>
+                        <li><a href="idt.html" class="hover:text-brand-orange">Innovation &amp; Design Thinking</a></li>
+                        <li><a href="sip.html" class="hover:text-brand-orange">Social Innovation Program</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4 -->
+                <div>
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">COMPANY</h4>
+                    <ul class="space-y-2 text-xs text-gray-300">
+                        <li><a href="about.html" class="hover:text-brand-orange">Our Story</a></li>
+                        <li><a href="contact.html" class="hover:text-brand-orange">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright Sub-footer -->
+        <div class="bg-zinc-900 border-t border-zinc-800 text-gray-400 text-[11px] py-4 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+                <div>Copyright © MissionX LLP</div>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-white">Privacy Policy</a>
+                    <span>|</span>
+                    <a href="#" class="hover:text-white">Terms & Conditions</a>
+                    <span>|</span>
+                    <a href="#" class="hover:text-white">Cancellation & Refund Policy</a>
+                    <span>|</span>
+                    <a href="#" class="hover:text-white">Shipping & Delivery Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+    </script>
+</body>
+
+</html>

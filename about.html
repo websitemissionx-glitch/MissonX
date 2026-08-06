@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - MissionX | Education Consultation Innovation</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            orange: '#f58220',
+                            gold: '#f39c12',
+                            blue: '#2563eb',
+                            darkBlue: '#1d4ed8',
+                            dark: '#111827',
+                            cardBg: '#18181b',
+                            lightGray: '#f8fafc'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #1f2937;
+        }
+    </style>
+</head>
+
+<body class="flex flex-col min-h-screen bg-white">
+
+    <!-- NAVIGATION BAR -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center space-x-3 cursor-pointer">
+                    <div class="flex flex-col">
+                        <span class="text-3xl font-black tracking-tight text-black flex items-center gap-1">
+                            MissionX <span class="w-2.5 h-2.5 bg-brand-orange rounded-full inline-block"></span>
+                        </span>
+                        <span class="text-[10px] tracking-wider text-gray-500 font-semibold uppercase -mt-1">Innovation
+                            for community</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav -->
+                <nav
+                    class="hidden md:flex items-center space-x-6 text-sm font-semibold uppercase tracking-wider text-gray-700">
+                    <a href="index.html"
+                        class="nav-link hover:text-brand-orange transition-colors">HOME</a>
+                    <a href="about.html"
+                        class="nav-link text-brand-orange transition-colors">ABOUT US</a>
+                    <a href="careers.html"
+                        class="nav-link hover:text-brand-orange transition-colors">CAREERS</a>
+
+                    <!-- Programs Dropdown -->
+                    <div class="relative group">
+                        <button class="flex items-center space-x-1 hover:text-brand-orange py-2 uppercase">
+                            <span>PROGRAMS</span>
+                            <i class="fa-solid fa-chevron-down text-xs"></i>
+                        </button>
+                        <div
+                            class="absolute top-full left-0 hidden group-hover:block w-64 bg-white shadow-xl rounded-lg py-2 border border-gray-100 uppercase text-xs normal-case">
+                            <a href="sip.html"
+                                class="block px-4 py-2.5 hover:bg-orange-50 hover:text-brand-orange font-semibold text-gray-700">Social
+                                Innovation Program</a>
+                            <a href="idt.html"
+                                class="block px-4 py-2.5 hover:bg-orange-50 hover:text-brand-orange font-semibold text-gray-700">Innovation
+                                &amp; Design Thinking</a>
+                            <a href="makerspaces.html"
+                                class="block px-4 py-2.5 hover:bg-orange-50 hover:text-brand-orange font-semibold text-gray-700">Makerspaces</a>
+                        </div>
+                    </div>
+
+                    <a href="inpulse.html"
+                        class="nav-link hover:text-brand-orange transition-colors text-brand-blue font-bold">INPULSE</a>
+                    <a href="resources.html"
+                        class="nav-link hover:text-brand-orange transition-colors">RESOURCES</a>
+                    <a href="contact.html"
+                        class="nav-link hover:text-brand-orange transition-colors">CONTACT US</a>
+                </nav>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()"
+                        class="text-gray-700 hover:text-black focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobile-menu"
+            class="hidden md:hidden bg-white border-b border-gray-200 px-4 pt-2 pb-6 space-y-3 font-semibold uppercase text-sm">
+            <a href="index.html" class="block py-2 text-gray-700 hover:text-brand-orange">Home</a>
+            <a href="about.html" class="block py-2 text-brand-orange">About Us</a>
+            <a href="careers.html" class="block py-2 text-gray-700 hover:text-brand-orange">Careers</a>
+            <a href="sip.html" class="block py-2 text-gray-700 hover:text-brand-orange">Programs - SIP</a>
+            <a href="idt.html" class="block py-2 text-gray-700 hover:text-brand-orange">Programs - Innovation &amp; Design Thinking</a>
+            <a href="makerspaces.html" class="block py-2 text-gray-700 hover:text-brand-orange">Programs - Makerspaces</a>
+            <a href="inpulse.html" class="block py-2 text-brand-blue font-bold">InPulse ERP</a>
+            <a href="resources.html" class="block py-2 text-gray-700 hover:text-brand-orange">Resources</a>
+            <a href="contact.html" class="block py-2 text-gray-700 hover:text-brand-orange">Contact Us</a>
+        </div>
+    </header>
+
+    <!-- MAIN PAGE CONTENT CONTAINER -->
+    <main class="flex-grow">
+        <!-- Hero Header Banner -->
+        <div class="relative bg-gray-900 text-white py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+            <div class="absolute inset-0">
+                <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=1600&q=80"
+                    alt="Banner background" class="w-full h-full object-cover opacity-20">
+            </div>
+            <div class="relative max-w-7xl mx-auto">
+                <span class="text-xs font-bold text-gray-300 uppercase tracking-widest block mb-2">OUR JOURNEY</span>
+                <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight">Education Consultation Innovation</h1>
+            </div>
+        </div>
+
+        <!-- About Us Content & Video Section -->
+        <section class="py-16 bg-white border-b border-gray-100">
+            <div
+                class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-6 space-y-6">
+                    <span class="text-xs font-bold text-gray-400 uppercase tracking-widest block">ABOUT US</span>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        MissionX, a hybrid word formed by merging "Innovation" and "Community," embodies our
+                        commitment to pioneering change within the community itself. We firmly believe that true
+                        innovation emerges from the hearts and minds of the community's own members. <strong
+                            class="text-gray-900">MissionX's visionary goal can be summed up as 10³ X 10⁶ >
+                            10⁹</strong>
+                    </p>
+                    <a href="sip.html"
+                        class="inline-flex text-sm font-bold text-black hover:text-brand-orange items-center gap-2">
+                        <i class="fa-solid fa-play text-xs"></i> Delve deeper into our mission
+                    </a>
+                </div>
+
+                <!-- Video Preview Player Card -->
+                <div class="lg:col-span-6">
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl group cursor-pointer"
+                        onclick="showMessage('Our MissionX Journey video is coming soon! Contact us at reachus@missionx.in to learn more about our story.')">
+                        <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800&q=80"
+                            alt="MissionX Journey Video"
+                            class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-300">
+                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                            <div
+                                class="w-16 h-16 bg-red-600 text-white rounded-2xl flex items-center justify-center shadow-lg group-hover:bg-red-700 transition-colors">
+                                <i class="fa-solid fa-play text-2xl ml-1"></i>
+                            </div>
+                        </div>
+                        <div
+                            class="absolute bottom-4 left-4 right-4 bg-black/80 backdrop-blur text-white p-3 rounded-xl flex justify-between items-center text-xs">
+                            <div>
+                                <span class="font-bold block">MissionX | Journey</span>
+                                <span class="text-gray-400 text-[10px]">Watch on YouTube</span>
+                            </div>
+                            <i class="fa-brands fa-youtube text-red-500 text-xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- From Social Innovation Section -->
+        <section class="relative py-20 bg-gray-900 text-white overflow-hidden">
+            <div class="absolute inset-0">
+                <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1600&q=80"
+                    alt="Children classroom" class="w-full h-full object-cover opacity-20">
+            </div>
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-gray-300">FROM SOCIAL INNOVATION TO
+                    COMMUNITY CENTRIC EDUCATION</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm text-gray-200 leading-relaxed font-light">
+                    <p>
+                        To build compassion among students towards the people of the society and to catalyse
+                        interaction between various stakeholders of the society, we experimented on various fronts.
+                        First we went to the fields with the students, then we brought the stakeholders to the
+                        college campus. Sometimes we had to hear students' parents yelling at us for sending them
+                        out during the college hours, while sometimes faculties complained about students not
+                        attending classes due to extra work given.
+                    </p>
+                    <p>
+                        We endured every bit of it, and finally after 3 years we realised that there are about 4% of
+                        students who have an entrepreneurial mindset built in them due to various stages of life
+                        experiences they have had. We needed to find them and give them a track to help them
+                        explore, develop and build an entrepreneurial career. While the rest had to go through a
+                        curated journey that helps them build an entrepreneurial mindset. Thus, one program for all
+                        was evolved "the community centric education".
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mission Section -->
+        <section class="py-16 bg-white border-b border-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-8">MISSION OF NURTURING
+                    ENTREPRENEURIAL MINDSET IN EVERY YOUTH.</h3>
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-6 space-y-6">
+                        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 leading-snug">
+                            Ever wondered how fostering an entrepreneurial mindset in today's youth can shape a
+                            brighter future for communities and nations?
+                        </h2>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            At MissionX, our mission is crystal clear, we are dedicated to nurturing an
+                            entrepreneurial mindset in every young individual. We recognize the untapped potential
+                            within today's youth, and we firmly believe that fostering an entrepreneurial spirit is
+                            not just a pathway to personal success but also the key to unlocking innovation,
+                            economic growth, and societal progress.
+                        </p>
+                        <a href="contact.html"
+                            class="inline-flex text-sm font-bold text-black hover:text-brand-orange items-center gap-2">
+                            <i class="fa-solid fa-play text-xs"></i> Read More
+                        </a>
+                    </div>
+                    <div class="lg:col-span-6">
+                        <div
+                            class="rounded-2xl overflow-hidden shadow-xl grayscale hover:grayscale-0 transition-all duration-500">
+                            <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80"
+                                alt="Students building hardware prototypes" class="w-full h-80 object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Discover Video Modal Trigger -->
+        <section class="py-16 bg-gray-50 text-center">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+                <h2 class="text-3xl font-extrabold text-gray-900">Find out what MissionX does</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center text-left max-w-5xl mx-auto">
+                    <div class="lg:col-span-5 space-y-4">
+                        <h3 class="text-4xl font-extrabold text-gray-900">Discover</h3>
+                        <p class="text-xs text-gray-600 leading-relaxed">
+                            At MissionX, we believe that true innovation thrives within communities, and we're
+                            dedicated to empowering individuals to drive meaningful change. Join our team to be part
+                            of a mission that nurtures entrepreneurial minds, fosters growth, and creates
+                            sustainable impact.
+                        </p>
+                    </div>
+                    <div class="lg:col-span-7">
+                        <div class="relative rounded-2xl overflow-hidden shadow-2xl group cursor-pointer"
+                            onclick="showMessage('Video coming soon! Reach out to us at reachus@missionx.in to learn more.')">
+                            <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=800&q=80"
+                                alt="MissionX team gather" class="w-full h-80 object-cover">
+                            <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
+                                <div
+                                    class="w-20 h-20 bg-white/90 text-black rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform">
+                                    <i class="fa-solid fa-play text-2xl ml-1 text-black"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-black text-white border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Column 1 -->
+                <div class="space-y-4">
+                    <h3 class="text-3xl font-extrabold tracking-tight">Be the first to know</h3>
+                    <a href="contact.html"
+                        class="inline-block px-6 py-3 bg-brand-orange hover:bg-orange-600 text-white font-bold rounded-lg text-xs uppercase tracking-wider">
+                        JOIN OUR NEWSLETTER
+                    </a>
+                </div>
+
+                <!-- Column 2 -->
+                <div>
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">QUICK LINKS</h4>
+                    <ul class="space-y-2 text-xs text-gray-300">
+                        <li><a href="index.html" class="hover:text-brand-orange">Home</a></li>
+                        <li><a href="about.html" class="hover:text-brand-orange">About Us</a></li>
+                        <li><a href="careers.html" class="hover:text-brand-orange">Careers</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3 -->
+                <div>
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">RESOURCES</h4>
+                    <ul class="space-y-2 text-xs text-gray-300">
+                        <li><a href="resources.html" class="hover:text-brand-orange">Blogs</a></li>
+                        <li><a href="idt.html" class="hover:text-brand-orange">Innovation &amp; Design Thinking</a></li>
+                        <li><a href="sip.html" class="hover:text-brand-orange">Social Innovation Program</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4 -->
+                <div>
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">COMPANY</h4>
+                    <ul class="space-y-2 text-xs text-gray-300">
+                        <li><a href="about.html" class="hover:text-brand-orange">Our Story</a></li>
+                        <li><a href="contact.html" class="hover:text-brand-orange">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright Sub-footer -->
+        <div class="bg-zinc-900 border-t border-zinc-800 text-gray-400 text-[11px] py-4 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+                <div>Copyright © MissionX LLP</div>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-white">Privacy Policy</a>
+                    <span>|</span>
+                    <a href="#" class="hover:text-white">Terms & Conditions</a>
+                    <span>|</span>
+                    <a href="#" class="hover:text-white">Cancellation & Refund Policy</a>
+                    <span>|</span>
+                    <a href="#" class="hover:text-white">Shipping & Delivery Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Message Modal -->
+    <div id="custom-message-modal" class="fixed inset-0 z-[60] bg-black/60 hidden items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-white p-6 sm:p-8 rounded-2xl max-w-sm w-full text-center shadow-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fa-solid fa-check text-xl"></i>
+            </div>
+            <p id="custom-message-text" class="text-gray-900 font-semibold mb-6 text-sm leading-relaxed"></p>
+            <button onclick="closeMessage()" class="w-full px-4 py-3 bg-brand-orange hover:bg-orange-600 text-white rounded-xl font-bold text-xs uppercase tracking-wider transition-colors shadow-sm">
+                Got it
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function showMessage(msg) {
+            document.getElementById('custom-message-text').innerText = msg;
+            const modal = document.getElementById('custom-message-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeMessage() {
+            const modal = document.getElementById('custom-message-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+    </script>
+</body>
+
+</html>

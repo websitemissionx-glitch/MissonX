@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers - MissionX | Make an Impact in Your Career</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            orange: '#f58220',
+                            gold: '#f39c12',
+                            blue: '#2563eb',
+                            darkBlue: '#1d4ed8',
+                            dark: '#111827',
+                            cardBg: '#18181b',
+                            lightGray: '#f8fafc'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #1f2937;
+        }
+    </style>
+</head>
+
+<body class="flex flex-col min-h-screen bg-white">
+
+    <!-- NAVIGATION BAR -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center space-x-3 cursor-pointer">
+                    <div class="flex flex-col">
+                        <span class="text-3xl font-black tracking-tight text-black flex items-center gap-1">
+                            MissionX <span class="w-2.5 h-2.5 bg-brand-orange rounded-full inline-block"></span>
+                        </span>
+                        <span class="text-[10px] tracking-wider text-gray-500 font-semibold uppercase -mt-1">Innovation
+                            for community</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav -->
+                <nav
+                    class="hidden md:flex items-center space-x-6 text-sm font-semibold uppercase tracking-wider text-gray-700">
+                    <a href="index.html"
+                        class="nav-link hover:text-brand-orange transition-colors">HOME</a>
+                    <a href="about.html"
+                        class="nav-link hover:text-brand-orange transition-colors">ABOUT US</a>
+                    <a href="careers.html"
+                        class="nav-link text-brand-orange transition-colors">CAREERS</a>
+
+                    <!-- Programs Dropdown -->
+                    <div class="relative group">
+                        <button class="flex items-center space-x-1 hover:text-brand-orange py-2 uppercase">
+                            <span>PROGRAMS</span>
+                            <i class="fa-solid fa-chevron-down text-xs"></i>
+                        </button>
+                        <div
+                            class="absolute top-full left-0 hidden group-hover:block w-64 bg-white shadow-xl rounded-lg py-2 border border-gray-100 uppercase text-xs normal-case">
+                            <a href="sip.html"
+                                class="block px-4 py-2.5 hover:bg-orange-50 hover:text-brand-orange font-semibold text-gray-700">Social
+                                Innovation Program</a>
+                            <a href="idt.html"
+                                class="block px-4 py-2.5 hover:bg-orange-50 hover:text-brand-orange font-semibold text-gray-700">Innovation
+                                &amp; Design Thinking</a>
+                            <a href="makerspaces.html"
+                                class="block px-4 py-2.5 hover:bg-orange-50 hover:text-brand-orange font-semibold text-gray-700">Makerspaces</a>
+                        </div>
+                    </div>
+
+                    <a href="inpulse.html"
+                        class="nav-link hover:text-brand-orange transition-colors text-brand-blue font-bold">INPULSE</a>
+                    <a href="resources.html"
+                        class="nav-link hover:text-brand-orange transition-colors">RESOURCES</a>
+                    <a href="contact.html"
+                        class="nav-link hover:text-brand-orange transition-colors">CONTACT US</a>
+                </nav>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()"
+                        class="text-gray-700 hover:text-black focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobile-menu"
+            class="hidden md:hidden bg-white border-b border-gray-200 px-4 pt-2 pb-6 space-y-3 font-semibold uppercase text-sm">
+            <a href="index.html" class="block py-2 text-gray-700 hover:text-brand-orange">Home</a>
+            <a href="about.html" class="block py-2 text-gray-700 hover:text-brand-orange">About Us</a>
+            <a href="careers.html" class="block py-2 text-brand-orange">Careers</a>
+            <a href="sip.html" class="block py-2 text-gray-700 hover:text-brand-orange">Programs - SIP</a>
+            <a href="idt.html" class="block py-2 text-gray-700 hover:text-brand-orange">Programs - Innovation &amp; Design Thinking</a>
+            <a href="makerspaces.html" class="block py-2 text-gray-700 hover:text-brand-orange">Programs - Makerspaces</a>
+            <a href="inpulse.html" class="block py-2 text-brand-blue font-bold">InPulse ERP</a>
+            <a href="resources.html" class="block py-2 text-gray-700 hover:text-brand-orange">Resources</a>
+            <a href="contact.html" class="block py-2 text-gray-700 hover:text-brand-orange">Contact Us</a>
+        </div>
+    </header>
+
+    <!-- MAIN PAGE CONTENT CONTAINER -->
+    <main class="flex-grow">
+        <!-- Careers Banner -->
+        <section class="relative bg-gray-900 text-white py-24 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto space-y-6">
+                <span class="text-xs font-bold text-gray-300 uppercase tracking-widest block">Unlock your
+                    success</span>
+                <h1 class="text-4xl sm:text-6xl font-extrabold">Make an Impact in Your Career!</h1>
+                <p class="text-base sm:text-lg text-gray-300 max-w-2xl font-light">
+                    Join passionate professionals dedicated to growth and community impact. Here, your career drives
+                    meaningful change, shapes a sustainable future, and redefines possibilities.
+                </p>
+                <a href="contact.html"
+                    class="inline-block px-8 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg shadow-lg uppercase text-xs tracking-wider">
+                    FIND YOUR NEXT JOB
+                </a>
+            </div>
+        </section>
+
+        <!-- What We're Looking For -->
+        <section class="py-16 bg-gray-50 border-b border-gray-200">
+            <div
+                class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-6">
+                    <h2 class="text-3xl font-extrabold text-gray-900">What We're Looking For</h2>
+                    <p class="text-xs text-gray-600 leading-relaxed">
+                        We're looking for passionate, forward-thinking individuals who are excited to contribute to
+                        the mission of MissionX. If you're someone who thrives in an entrepreneurial, fast-paced
+                        environment, and are motivated to make a tangible difference in the world, we want to hear
+                        from you.
+                    </p>
+                    <ul class="space-y-3 text-xs font-semibold text-gray-800">
+                        <li class="flex items-center gap-3"><i
+                                class="fa-regular fa-circle-check text-green-600 text-base"></i> Innovative minds
+                            shaping the future</li>
+                        <li class="flex items-center gap-3"><i
+                                class="fa-regular fa-circle-check text-green-600 text-base"></i> Strategic thinkers
+                            solving complex challenges</li>
+                        <li class="flex items-center gap-3"><i
+                                class="fa-regular fa-circle-check text-green-600 text-base"></i> Visionary leaders
+                            driving meaningful impact</li>
+                        <li class="flex items-center gap-3"><i
+                                class="fa-regular fa-circle-check text-green-600 text-base"></i> Agile professionals
+                            thriving in change</li>
+                    </ul>
+                </div>
+
+                <!-- Logo Card -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div
+                        class="bg-black text-white w-72 h-72 rounded-2xl flex items-center justify-center shadow-2xl">
+                        <span class="text-8xl font-black tracking-tighter">iu</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Ribbon -->
+        <section class="bg-black text-white py-8 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+                <h2 class="text-2xl font-black uppercase tracking-wide">TURN YOUR AMBITIONS INTO REALITY</h2>
+                <a href="contact.html"
+                    class="px-6 py-2.5 bg-amber-500 hover:bg-amber-600 text-black font-bold rounded-full uppercase text-xs flex items-center gap-2">
+                    APPLY NOW <i class="fa-solid fa-check"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- Life at MissionX -->
+        <section class="py-16 bg-white border-b border-gray-100">
+            <div
+                class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-6">
+                    <div class="rounded-2xl overflow-hidden shadow-xl">
+                        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80"
+                            alt="Team outing in raincoat" class="w-full h-80 object-cover">
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6 space-y-6">
+                    <h2 class="text-3xl font-bold text-gray-900">Life at MissionX</h2>
+                    <p class="text-xs text-gray-600 leading-relaxed">
+                        At MissionX, we are delighted to have a team of diverse and dedicated professionals who bring
+                        their passion for innovation to every project. Our commitment to excellence in service and
+                        technology is unwavering, and our team's collective talent fuels our success. Join us and
+                        participate in a collaborative network where each role is crucial to our shared vision of
+                        transformative impact.
+                    </p>
+                    <a href="contact.html"
+                        class="inline-block px-6 py-2.5 border-2 border-amber-500 text-amber-600 hover:bg-amber-50 font-bold rounded text-xs uppercase">
+                        Apply Now
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Collage -->
+        <section class="py-12 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="rounded-2xl overflow-hidden h-64 shadow-md">
+                    <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=600&q=80"
+                        alt="Team meeting" class="w-full h-full object-cover">
+                </div>
+                <div class="rounded-2xl overflow-hidden h-64 shadow-md">
+                    <img src="https://images.unsplash.com/photo-1531497865144-0464ef8fb9a9?auto=format&fit=crop&w=600&q=80"
+                        alt="Outdoors activity" class="w-full h-full object-cover">
+                </div>
+                <div class="rounded-2xl overflow-hidden h-64 shadow-md">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80"
+                        alt="Students teamwork" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </section>
+
+        <!-- Culture Testimonial -->
+        <section class="py-16 bg-gray-50 text-center">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+                <h2 class="text-3xl font-extrabold text-gray-900">Our Culture, Through Our People</h2>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 space-y-4">
+                    <p class="text-xs sm:text-sm text-gray-600 italic">
+                        "Joining MissionX has not only enriched my professional experience but has also given me an
+                        extended family."
+                    </p>
+                    <div class="flex items-center justify-center gap-3">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80"
+                            alt="Tejas Nayak" class="w-12 h-12 rounded-full object-cover border">
+                        <div class="text-left">
+                            <span class="font-bold text-gray-900 text-xs block">TEJAS NAYAK</span>
+                            <span class="text-[10px] text-gray-500 uppercase">Branding Intern</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-black text-white border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Column 1 -->
+                <div class="space-y-4">
+                    <h3 class="text-3xl font-extrabold tracking-tight">Be the first to know</h3>
+                    <a href="contact.html"
+                        class="inline-block px-6 py-3 bg-brand-orange hover:bg-orange-600 text-white font-bold rounded-lg text-xs uppercase tracking-wider">
+                        JOIN OUR NEWSLETTER
+                    </a>
+                </div>
+
+                <!-- Column 2 -->
+                <div>
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">QUICK LINKS</h4>
+                    <ul class="space-y-2 text-xs text-gray-300">
+                        <li><a href="index.html" class="hover:text-brand-orange">Home</a></li>
+                        <li><a href="about.html" class="hover:text-brand-orange">About Us</a></li>
+                        <li><a href="careers.html" class="hover:text-brand-orange">Careers</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3 -->
+                <div>
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">RESOURCES</h4>
+                    <ul class="space-y-2 text-xs text-gray-300">
+                        <li><a href="resources.html" class="hover:text-brand-orange">Blogs</a></li>
+                        <li><a href="idt.html" class="hover:text-brand-orange">Innovation &amp; Design Thinking</a></li>
+                        <li><a href="sip.html" class="hover:text-brand-orange">Social Innovation Program</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4 -->
+                <div>
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">COMPANY</h4>
+                    <ul class="space-y-2 text-xs text-gray-300">
+                        <li><a href="about.html" class="hover:text-brand-orange">Our Story</a></li>
+                        <li><a href="contact.html" class="hover:text-brand-orange">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright Sub-footer -->
+        <div class="bg-zinc-900 border-t border-zinc-800 text-gray-400 text-[11px] py-4 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+                <div>Copyright © MissionX LLP</div>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-white">Privacy Policy</a>
+                    <span>|</span>
+                    <a href="#" class="hover:text-white">Terms & Conditions</a>
+                    <span>|</span>
+                    <a href="#" class="hover:text-white">Cancellation & Refund Policy</a>
+                    <span>|</span>
+                    <a href="#" class="hover:text-white">Shipping & Delivery Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+    </script>
+</body>
+
+</html>

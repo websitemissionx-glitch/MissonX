@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Innovation Program - MissionX | Empower Social Change</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            orange: '#f58220',
+                            gold: '#f39c12',
+                            blue: '#2563eb',
+                            darkBlue: '#1d4ed8',
+                            dark: '#111827',
+                            cardBg: '#18181b',
+                            lightGray: '#f8fafc'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #1f2937;
+        }
+    </style>
+</head>
+
+<body class="flex flex-col min-h-screen bg-white">
+
+    <!-- NAVIGATION BAR -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center space-x-3 cursor-pointer">
+                    <div class="flex flex-col">
+                        <span class="text-3xl font-black tracking-tight text-black flex items-center gap-1">
+                            MissionX <span class="w-2.5 h-2.5 bg-brand-orange rounded-full inline-block"></span>
+                        </span>
+                        <span class="text-[10px] tracking-wider text-gray-500 font-semibold uppercase -mt-1">Innovation
+                            for community</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav -->
+                <nav
+                    class="hidden md:flex items-center space-x-6 text-sm font-semibold uppercase tracking-wider text-gray-700">
+                    <a href="index.html"
+                        class="nav-link hover:text-brand-orange transition-colors">HOME</a>
+                    <a href="about.html"
+                        class="nav-link hover:text-brand-orange transition-colors">ABOUT US</a>
+                    <a href="careers.html"
+                        class="nav-link hover:text-brand-orange transition-colors">CAREERS</a>
+
+                    <!-- Programs Dropdown -->
+                    <div class="relative group">
+                        <button class="flex items-center space-x-1 text-brand-orange py-2 uppercase">
+                            <span>PROGRAMS</span>
+                            <i class="fa-solid fa-chevron-down text-xs"></i>
+                        </button>
+                        <div
+                            class="absolute top-full left-0 hidden group-hover:block w-64 bg-white shadow-xl rounded-lg py-2 border border-gray-100 uppercase text-xs normal-case">
+                            <a href="sip.html"
+                                class="block px-4 py-2.5 bg-orange-50 text-brand-orange font-semibold">Social
+                                Innovation Program</a>
+                            <a href="idt.html"
+                                class="block px-4 py-2.5 hover:bg-orange-50 hover:text-brand-orange font-semibold text-gray-700">Innovation
+                                &amp; Design Thinking</a>
+                            <a href="makerspaces.html"
+                                class="block px-4 py-2.5 hover:bg-orange-50 hover:text-brand-orange font-semibold text-gray-700">Makerspaces</a>
+                        </div>
+                    </div>
+
+                    <a href="inpulse.html"
+                        class="nav-link hover:text-brand-orange transition-colors text-brand-blue font-bold">INPULSE</a>
+                    <a href="resources.html"
+                        class="nav-link hover:text-brand-orange transition-colors">RESOURCES</a>
+                    <a href="contact.html"
+                        class="nav-link hover:text-brand-orange transition-colors">CONTACT US</a>
+                </nav>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()"
+                        class="text-gray-700 hover:text-black focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobile-menu"
+            class="hidden md:hidden bg-white border-b border-gray-200 px-4 pt-2 pb-6 space-y-3 font-semibold uppercase text-sm">
+            <a href="index.html" class="block py-2 text-gray-700 hover:text-brand-orange">Home</a>
+            <a href="about.html" class="block py-2 text-gray-700 hover:text-brand-orange">About Us</a>
+            <a href="careers.html" class="block py-2 text-gray-700 hover:text-brand-orange">Careers</a>
+            <a href="sip.html" class="block py-2 text-brand-orange">Programs - SIP</a>
+            <a href="idt.html" class="block py-2 text-gray-700 hover:text-brand-orange">Programs - Innovation &amp; Design Thinking</a>
+            <a href="makerspaces.html" class="block py-2 text-gray-700 hover:text-brand-orange">Programs - Makerspaces</a>
+            <a href="inpulse.html" class="block py-2 text-brand-blue font-bold">InPulse ERP</a>
+            <a href="resources.html" class="block py-2 text-gray-700 hover:text-brand-orange">Resources</a>
+            <a href="contact.html" class="block py-2 text-gray-700 hover:text-brand-orange">Contact Us</a>
+        </div>
+    </header>
+
+    <!-- MAIN PAGE CONTENT CONTAINER -->
+    <main class="flex-grow">
+        <!-- Hero Banner -->
+        <section class="relative bg-gray-900 text-white py-20 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto space-y-3">
+                <span class="text-xs font-bold text-gray-300 uppercase tracking-widest block">First step towards
+                    becoming a change maker!</span>
+                <h1 class="text-4xl sm:text-5xl font-extrabold">Social Innovation Program</h1>
+            </div>
+        </section>
+
+        <!-- Program Overview -->
+        <section class="py-16 bg-white border-b border-gray-100">
+            <div
+                class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-4">
+                    <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">One step at a time
+                        to</span>
+                    <h2 class="text-3xl font-extrabold text-gray-900">Empower Social change.</h2>
+                    <p class="text-xs text-gray-600 leading-relaxed">
+                        In this course students will be introduced to various sector specific, real time problems of
+                        the region. During the 12 weeks of the course, students go on multiple field visits to
+                        experience social immersion and develop compassion for their communities through continuous
+                        interactions. They simultaneously conduct primary research using the knowledge of research
+                        tools and methodologies. This is a completely activity based class, with a fun-loving
+                        environment that is infused with challenges.
+                    </p>
+                </div>
+                <div class="lg:col-span-5">
+                    <div class="rounded-2xl overflow-hidden shadow-xl">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80"
+                            alt="Students planning social impact project" class="w-full h-72 object-cover">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Outcomes Cards -->
+        <section class="py-16 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <div class="space-y-3">
+                        <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Outcomes</span>
+                        <h2 class="text-2xl font-extrabold text-gray-900">of the program!</h2>
+                        <p class="text-xs text-gray-600 leading-relaxed">
+                            They are challenged to get out of their comfort zones and start engaging with the
+                            diverse sectors around the region.
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm space-y-3">
+                        <h3 class="font-bold text-base text-gray-900">Apply research methods</h3>
+                        <p class="text-xs text-gray-600 leading-relaxed">Apply research methods to organise, analyse
+                            and define the problem.</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm space-y-3">
+                        <h3 class="font-bold text-base text-gray-900">Design solutions</h3>
+                        <p class="text-xs text-gray-600 leading-relaxed">Design solutions to the challenges
+                            identified along with the stakeholders of the community.</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm space-y-3">
+                        <h3 class="font-bold text-base text-gray-900">Build rapid prototypes</h3>
+                        <p class="text-xs text-gray-600 leading-relaxed">Build prototype using rapid prototyping
+                            tools for the ideas that can solve the identified problem.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Syllabus Section -->
+        <section class="py-16 bg-white border-t border-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-12">
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900">Social Innovation Program
+                        <span class="uppercase">SYLLABUS!</span></h2>
+                    <button onclick="showMessage('The SIP Syllabus PDF will be sent to your email. Please fill in the Contact form and we will share it with you shortly!')"
+                        class="px-5 py-2.5 bg-black text-white font-bold rounded-lg uppercase text-xs">
+                        DOWNLOAD SYLLABUS
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="flex gap-6 border-b pb-4">
+                            <span class="text-3xl font-black text-gray-900">01</span>
+                            <div>
+                                <h3 class="font-bold text-sm text-gray-900 uppercase">INTRODUCTION TO REAL-TIME
+                                    PROBLEM STATEMENT</h3>
+                                <p class="text-xs text-gray-600 mt-1">Through hands-on activities, problem-solving
+                                    exercises, and real-world case studies.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6 border-b pb-4">
+                            <span class="text-3xl font-black text-gray-900">02</span>
+                            <div>
+                                <h3 class="font-bold text-sm text-gray-900 uppercase">MARKET RESEARCH & PROBLEM
+                                    ANALYSIS</h3>
+                                <p class="text-xs text-gray-600 mt-1">In this topic students will learn various
+                                    market research methodologies and techniques.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6 border-b pb-4">
+                            <span class="text-3xl font-black text-gray-900">03</span>
+                            <div>
+                                <h3 class="font-bold text-sm text-gray-900 uppercase">IDEA GENERATION & VALIDATION
+                                </h3>
+                                <p class="text-xs text-gray-600 mt-1">Students will learn ideation techniques,
+                                    market research methods, and best practices.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6 border-b pb-4">
+                            <span class="text-3xl font-black text-gray-900">04</span>
+                            <div>
+                                <h3 class="font-bold text-sm text-gray-900 uppercase">BUILDING BUSINESS MODEL FOR
+                                    IDEA</h3>
+                                <p class="text-xs text-gray-600 mt-1">Through lectures and creation exercises,
+                                    students develop business model skills.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6 border-b pb-4">
+                            <span class="text-3xl font-black text-gray-900">05</span>
+                            <div>
+                                <h3 class="font-bold text-sm text-gray-900 uppercase">PROTOTYPING & USER VALIDATION
+                                </h3>
+                                <p class="text-xs text-gray-600 mt-1">By creating prototypes and testing them with
+                                    users, students develop user-centered design.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sidebar Course Card -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <div class="bg-indigo-100 p-6 rounded-2xl space-y-4 text-indigo-950">
+                            <h3 class="font-bold text-lg">Pre-requisites</h3>
+                            <p class="text-xs leading-relaxed">Prior knowledge of design thinking concepts and
+                                prototyping tools is required to take up this program.</p>
+                            <hr class="border-indigo-200">
+                            <h3 class="font-bold text-lg">Course Includes</h3>
+                            <ul class="text-xs space-y-2 list-disc list-inside">
+                                <li>3 Case studies</li>
+                                <li>3 Expert Workshops</li>
+                                <li>2 Technical Events</li>
+                                <li>2 Field Visits</li>
+                                <li>1 Real-time project</li>
+                                <li>Course Certificate</li>
+                            </ul>
+                        </div>
+                        <a href="contact.html"
+                            class="block text-center py-3 bg-amber-500 hover:bg-amber-600 text-black font-extrabold rounded-lg uppercase text-xs">
+                            ENROLL NOW
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Student Projects Collage -->
+        <section class="py-16 bg-black text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+                <div class="bg-brand-orange text-black p-6 rounded-2xl max-w-sm space-y-2">
+                    <span class="text-xs uppercase font-bold">SIP</span>
+                    <h3 class="text-3xl font-black">Student Projects</h3>
+                    <p class="text-xs font-medium">MissionX hosts a set of events and programs to help foster an
+                        environment of creativity and innovation.</p>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="h-48 rounded-xl overflow-hidden"><img
+                            src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=80"
+                            alt="Robotics circuit" class="w-full h-full object-cover"></div>
+                    <div class="h-48 rounded-xl overflow-hidden"><img
+                            src="https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=400&q=80"
+                            alt="Interactive Chess" class="w-full h-full object-cover"></div>
+                    <div class="h-48 rounded-xl overflow-hidden"><img
+                            src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?auto=format&fit=crop&w=400&q=80"
+                            alt="Sensor technology" class="w-full h-full object-cover"></div>
+                    <div class="h-48 rounded-xl overflow-hidden"><img
+                            src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=400&q=80"
+                            alt="Hardware glove prototype" class="w-full h-full object-cover"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-black text-white border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Column 1 -->
+                <div class="space-y-4">
+                    <h3 class="text-3xl font-extrabold tracking-tight">Be the first to know</h3>
+                    <a href="contact.html"
+                        class="inline-block px-6 py-3 bg-brand-orange hover:bg-orange-600 text-white font-bold rounded-lg text-xs uppercase tracking-wider">
+                        JOIN OUR NEWSLETTER
+                    </a>
+                </div>
+
+                <!-- Column 2 -->
+                <div>
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">QUICK LINKS</h4>
+                    <ul class="space-y-2 text-xs text-gray-300">
+                        <li><a href="index.html" class="hover:text-brand-orange">Home</a></li>
+                        <li><a href="about.html" class="hover:text-brand-orange">About Us</a></li>
+                        <li><a href="careers.html" class="hover:text-brand-orange">Careers</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3 -->
+                <div>
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">RESOURCES</h4>
+                    <ul class="space-y-2 text-xs text-gray-300">
+                        <li><a href="resources.html" class="hover:text-brand-orange">Blogs</a></li>
+                        <li><a href="idt.html" class="hover:text-brand-orange">Innovation &amp; Design Thinking</a></li>
+                        <li><a href="sip.html" class="hover:text-brand-orange">Social Innovation Program</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4 -->
+                <div>
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">COMPANY</h4>
+                    <ul class="space-y-2 text-xs text-gray-300">
+                        <li><a href="about.html" class="hover:text-brand-orange">Our Story</a></li>
+                        <li><a href="contact.html" class="hover:text-brand-orange">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright Sub-footer -->
+        <div class="bg-zinc-900 border-t border-zinc-800 text-gray-400 text-[11px] py-4 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+                <div>Copyright © MissionX LLP</div>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-white">Privacy Policy</a>
+                    <span>|</span>
+                    <a href="#" class="hover:text-white">Terms & Conditions</a>
+                    <span>|</span>
+                    <a href="#" class="hover:text-white">Cancellation & Refund Policy</a>
+                    <span>|</span>
+                    <a href="#" class="hover:text-white">Shipping & Delivery Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Message Modal -->
+    <div id="custom-message-modal" class="fixed inset-0 z-[60] bg-black/60 hidden items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-white p-6 sm:p-8 rounded-2xl max-w-sm w-full text-center shadow-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fa-solid fa-check text-xl"></i>
+            </div>
+            <p id="custom-message-text" class="text-gray-900 font-semibold mb-6 text-sm leading-relaxed"></p>
+            <button onclick="closeMessage()" class="w-full px-4 py-3 bg-brand-orange hover:bg-orange-600 text-white rounded-xl font-bold text-xs uppercase tracking-wider transition-colors shadow-sm">
+                Got it
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function showMessage(msg) {
+            document.getElementById('custom-message-text').innerText = msg;
+            const modal = document.getElementById('custom-message-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeMessage() {
+            const modal = document.getElementById('custom-message-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+    </script>
+</body>
+
+</html>
