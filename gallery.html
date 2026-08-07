@@ -44,7 +44,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, rgba(13,13,13,0.78) 0%, rgba(30,20,10,0.65) 100%);
+            background: linear-gradient(135deg, rgba(13,13,13,0.82) 0%, rgba(30,20,10,0.7) 100%);
         }
 
         /* ═══════════════════════ TOP NAV ═══════════════════════ */
@@ -383,9 +383,6 @@
             padding: 2.5rem 2rem;
             text-align: center;
             border-right: 1px solid rgba(255,255,255,0.08);
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s, transform 0.6s;
         }
         .impact-item:last-child { border-right: none; }
         .impact-item.visible { opacity: 1; transform: translateY(0); }
@@ -416,9 +413,6 @@
             gap: 3.5rem;
             align-items: center;
             margin-bottom: 6rem;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1);
         }
         .story-row.visible { opacity: 1; transform: translateY(0); }
         .story-row.reverse { direction: rtl; }
@@ -569,9 +563,6 @@
         }
         .bento-header {
             margin-bottom: 2.5rem;
-            opacity: 0;
-            transform: translateY(25px);
-            transition: opacity 0.7s, transform 0.7s;
         }
         .bento-header.visible { opacity: 1; transform: translateY(0); }
         .bento-eyebrow {
@@ -601,9 +592,6 @@
             border-radius: 4px;
             background: rgba(255,255,255,0.04);
             border: 1px solid rgba(255,255,255,0.07);
-            opacity: 0;
-            transform: translateY(30px) scale(0.98);
-            transition: opacity 0.7s, transform 0.7s;
         }
         .b-card.visible { opacity: 1; transform: translateY(0) scale(1); }
         .b-card img {
@@ -673,9 +661,6 @@
             z-index: 10;
             text-align: center;
             padding: 6rem 2rem;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s, transform 0.8s;
         }
         .cta-section.visible { opacity: 1; transform: translateY(0); }
         .cta-eyebrow {
@@ -854,30 +839,155 @@
         }
         .lb-close:hover { background: var(--orange); }
 
-        /* ═══════════════════════ SCROLL REVEAL CURSOR LINE ═══════════════════════ */
-        .cursor-line {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 2px;
-            height: 0;
-            background: var(--orange);
-            z-index: 9999;
-            transition: height 0.1s;
-            pointer-events: none;
-            opacity: 0.5;
-        }
-
         /* ═══════════════════════ PAGE PROGRESS ═══════════════════════ */
         .page-progress {
             position: fixed;
             top: 0; left: 0;
             height: 2.5px;
-            background: var(--orange);
+            background: linear-gradient(90deg, var(--orange), #ffb347);
             z-index: 9999;
             width: 0%;
-            transition: width 0.1s;
+            transition: width 0.08s linear;
         }
+
+        /* ═══════════════════════ SCROLL ANIMATION SYSTEM ═══════════════════════ */
+
+        /* ── Blur-Up reveal (enter) ── */
+        .anim-blur-up {
+            opacity: 0;
+            filter: blur(12px);
+            transform: translateY(36px);
+            transition:
+                opacity 0.85s cubic-bezier(0.22,1,0.36,1),
+                filter 0.85s cubic-bezier(0.22,1,0.36,1),
+                transform 0.85s cubic-bezier(0.22,1,0.36,1);
+            will-change: opacity, filter, transform;
+        }
+        .anim-blur-up.in-view {
+            opacity: 1;
+            filter: blur(0);
+            transform: translateY(0);
+        }
+        /* Blur-out as element exits viewport upward */
+        .anim-blur-up.out-view {
+            opacity: 0;
+            filter: blur(10px);
+            transform: translateY(-24px);
+        }
+
+        /* ── Clip wipe-in (left → right) ── */
+        .anim-clip-x {
+            clip-path: inset(0 100% 0 0);
+            transition: clip-path 0.9s cubic-bezier(0.77,0,0.18,1);
+            will-change: clip-path;
+        }
+        .anim-clip-x.in-view { clip-path: inset(0 0% 0 0); }
+
+        /* ── Fade-slide from left ── */
+        .anim-slide-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            filter: blur(6px);
+            transition:
+                opacity 0.9s cubic-bezier(0.22,1,0.36,1),
+                transform 0.9s cubic-bezier(0.22,1,0.36,1),
+                filter 0.9s cubic-bezier(0.22,1,0.36,1);
+            will-change: opacity, transform, filter;
+        }
+        .anim-slide-left.in-view { opacity: 1; transform: translateX(0); filter: blur(0); }
+        .anim-slide-left.out-view { opacity: 0; transform: translateX(-30px); filter: blur(8px); }
+
+        /* ── Fade-slide from right ── */
+        .anim-slide-right {
+            opacity: 0;
+            transform: translateX(50px);
+            filter: blur(6px);
+            transition:
+                opacity 0.9s cubic-bezier(0.22,1,0.36,1),
+                transform 0.9s cubic-bezier(0.22,1,0.36,1),
+                filter 0.9s cubic-bezier(0.22,1,0.36,1);
+            will-change: opacity, transform, filter;
+        }
+        .anim-slide-right.in-view { opacity: 1; transform: translateX(0); filter: blur(0); }
+        .anim-slide-right.out-view { opacity: 0; transform: translateX(30px); filter: blur(8px); }
+
+        /* ── Scale fade ── */
+        .anim-scale {
+            opacity: 0;
+            transform: scale(0.92);
+            filter: blur(8px);
+            transition:
+                opacity 0.8s cubic-bezier(0.22,1,0.36,1),
+                transform 0.8s cubic-bezier(0.22,1,0.36,1),
+                filter 0.8s cubic-bezier(0.22,1,0.36,1);
+            will-change: opacity, transform, filter;
+        }
+        .anim-scale.in-view { opacity: 1; transform: scale(1); filter: blur(0); }
+        .anim-scale.out-view { opacity: 0; transform: scale(1.04); filter: blur(8px); }
+
+        /* ── Stagger delay helpers ── */
+        .d-100 { transition-delay: 0.1s; }
+        .d-150 { transition-delay: 0.15s; }
+        .d-200 { transition-delay: 0.2s; }
+        .d-250 { transition-delay: 0.25s; }
+        .d-300 { transition-delay: 0.3s; }
+        .d-350 { transition-delay: 0.35s; }
+        .d-400 { transition-delay: 0.4s; }
+        .d-500 { transition-delay: 0.5s; }
+
+        /* ── Split-word heading animation ── */
+        .split-word .word {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(60%);
+            filter: blur(6px);
+            transition:
+                opacity 0.7s cubic-bezier(0.22,1,0.36,1),
+                transform 0.7s cubic-bezier(0.22,1,0.36,1),
+                filter 0.7s cubic-bezier(0.22,1,0.36,1);
+            margin-right: 0.25em;
+        }
+        .split-word.in-view .word { opacity: 1; transform: translateY(0); filter: blur(0); }
+
+        /* ── Horizontal line wipe for eyebrows ── */
+        .eyebrow-line {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .eyebrow-line::before {
+            content: '';
+            display: block;
+            width: 0;
+            height: 1px;
+            background: var(--orange);
+            transition: width 0.7s cubic-bezier(0.77,0,0.18,1);
+        }
+        .eyebrow-line.in-view::before { width: 28px; }
+
+        /* ── Image reveal cover ── */
+        .img-reveal-wrap {
+            position: relative;
+            overflow: hidden;
+        }
+        .img-reveal-wrap::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--dark);
+            transform-origin: left;
+            transition: transform 0.95s cubic-bezier(0.77,0,0.18,1);
+            z-index: 2;
+        }
+        .img-reveal-wrap.in-view::after { transform: scaleX(0); transform-origin: right; }
+
+        /* ── Parallax host ── */
+        .parallax-el {
+            will-change: transform;
+        }
+
+        /* ── Counter numbers ── */
+        .impact-num { transition: none; }
 
         /* ═══════════════════════ RESPONSIVE ═══════════════════════ */
         @media (max-width: 900px) {
@@ -1117,20 +1227,20 @@
 
 <!-- ═══════════ IMPACT NUMBERS ═══════════ -->
 <div class="impact-strip scroll-section" style="padding:0">
-    <div class="impact-item reveal-item">
-        <div class="impact-num">500+</div>
+    <div class="impact-item anim-blur-up">
+        <div class="impact-num" data-count="500+">0+</div>
         <div class="impact-label">Prototypes Built</div>
     </div>
-    <div class="impact-item reveal-item" style="transition-delay:0.1s">
-        <div class="impact-num">18K+</div>
+    <div class="impact-item anim-blur-up d-150">
+        <div class="impact-num" data-count="18000+">0K+</div>
         <div class="impact-label">Students Empowered</div>
     </div>
-    <div class="impact-item reveal-item" style="transition-delay:0.2s">
-        <div class="impact-num">33+</div>
+    <div class="impact-item anim-blur-up d-250">
+        <div class="impact-num" data-count="33+">0+</div>
         <div class="impact-label">Campus Hubs</div>
     </div>
-    <div class="impact-item reveal-item" style="transition-delay:0.3s">
-        <div class="impact-num">120+</div>
+    <div class="impact-item anim-blur-up d-350">
+        <div class="impact-num" data-count="120+">0+</div>
         <div class="impact-label">Community Drives</div>
     </div>
 </div>
@@ -1140,60 +1250,60 @@
     <div class="story-rows">
 
         <!-- Row 1 -->
-        <div class="story-row reveal-item">
-            <div class="story-img-wrap">
+        <div class="story-row">
+            <div class="story-img-wrap img-reveal-wrap anim-slide-left">
                 <img src="images/gallery-makerspace.png" alt="Makerspace Innovation">
                 <div class="story-img-tag">Makerspaces</div>
                 <div class="story-img-num">01</div>
             </div>
-            <div class="story-text">
-                <p class="story-eyebrow">Labs & Innovation Hubs</p>
-                <h2 class="story-heading">Where Ideas Become Physical Reality</h2>
-                <p class="story-body">Our state-of-the-art Makerspace hubs are equipped with 3D printers, laser cutters, IoT rapid-testing benches, and CNC machinery. Students transition from paper sketches to deployable prototypes under guided mentorship — no idea is too ambitious.</p>
-                <div class="story-meta">
-                    <span class="story-location"><i class="fa-solid fa-location-dot"></i> 33+ campuses across Karnataka & Maharashtra</span>
+            <div class="story-text anim-slide-right">
+                <p class="story-eyebrow eyebrow-line">Labs &amp; Innovation Hubs</p>
+                <h2 class="story-heading" data-split>Where Ideas Become Physical Reality</h2>
+                <p class="story-body anim-blur-up d-200">Our state-of-the-art Makerspace hubs are equipped with 3D printers, laser cutters, IoT rapid-testing benches, and CNC machinery. Students transition from paper sketches to deployable prototypes under guided mentorship — no idea is too ambitious.</p>
+                <div class="story-meta anim-blur-up d-300">
+                    <span class="story-location"><i class="fa-solid fa-location-dot"></i> 33+ campuses across Karnataka &amp; Maharashtra</span>
                 </div>
-                <div class="story-meta" style="margin-top:1rem">
+                <div class="story-meta anim-blur-up d-350" style="margin-top:1rem">
                     <a href="makerspaces.html" class="story-link">Explore Makerspaces <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
 
         <!-- Row 2 (reversed) -->
-        <div class="story-row reverse reveal-item">
-            <div class="story-img-wrap">
+        <div class="story-row reverse">
+            <div class="story-img-wrap img-reveal-wrap anim-slide-right">
                 <img src="images/gallery-hackathon.png" alt="Pitch Event">
                 <div class="story-img-tag">Events</div>
                 <div class="story-img-num">02</div>
             </div>
-            <div class="story-text">
-                <p class="story-eyebrow">Hackathons & Innovation Summits</p>
-                <h2 class="story-heading">Pressure-Testing Ideas in the Real Arena</h2>
-                <p class="story-body">From local college hackathons to national-scale summits, MissionX students present live working MVPs to a jury of investors, founders, and policymakers. These events serve as a pressure-test and launchpad simultaneously.</p>
-                <div class="story-meta">
+            <div class="story-text anim-slide-left">
+                <p class="story-eyebrow eyebrow-line">Hackathons &amp; Innovation Summits</p>
+                <h2 class="story-heading" data-split>Pressure-Testing Ideas in the Real Arena</h2>
+                <p class="story-body anim-blur-up d-200">From local college hackathons to national-scale summits, MissionX students present live working MVPs to a jury of investors, founders, and policymakers. These events serve as a pressure-test and launchpad simultaneously.</p>
+                <div class="story-meta anim-blur-up d-300">
                     <span class="story-location"><i class="fa-solid fa-location-dot"></i> Bangalore, Mysore, Hyderabad, Pune</span>
                 </div>
-                <div class="story-meta" style="margin-top:1rem">
+                <div class="story-meta anim-blur-up d-350" style="margin-top:1rem">
                     <a href="sip.html" class="story-link">View SIP Program <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
 
         <!-- Row 3 -->
-        <div class="story-row reveal-item">
-            <div class="story-img-wrap">
+        <div class="story-row">
+            <div class="story-img-wrap img-reveal-wrap anim-slide-left">
                 <img src="images/gallery-mentor.png" alt="Mentorship">
                 <div class="story-img-tag">Mentorship</div>
                 <div class="story-img-num">03</div>
             </div>
-            <div class="story-text">
-                <p class="story-eyebrow">Industry Mentors & Ecosystem Partners</p>
-                <h2 class="story-heading">Guided by People Who've Built Real Things</h2>
-                <p class="story-body">Our 150+ network of startup founders, patent attorneys, and domain consultants provides direct feedback on student innovations — helping shape them for market readiness, IP filing, and investor conversations.</p>
-                <div class="story-meta">
-                    <span class="story-location"><i class="fa-solid fa-location-dot"></i> Remote & on-site across all program batches</span>
+            <div class="story-text anim-slide-right">
+                <p class="story-eyebrow eyebrow-line">Industry Mentors &amp; Ecosystem Partners</p>
+                <h2 class="story-heading" data-split>Guided by People Who've Built Real Things</h2>
+                <p class="story-body anim-blur-up d-200">Our 150+ network of startup founders, patent attorneys, and domain consultants provides direct feedback on student innovations — helping shape them for market readiness, IP filing, and investor conversations.</p>
+                <div class="story-meta anim-blur-up d-300">
+                    <span class="story-location"><i class="fa-solid fa-location-dot"></i> Remote &amp; on-site across all program batches</span>
                 </div>
-                <div class="story-meta" style="margin-top:1rem">
+                <div class="story-meta anim-blur-up d-350" style="margin-top:1rem">
                     <a href="about.html" class="story-link">Meet Our Mentors <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
@@ -1204,19 +1314,19 @@
 
 <!-- ═══════════ QUOTE BAND ═══════════ -->
 <div class="quote-band">
-    <p class="quote-text reveal-item">"MissionX transformed our campus lab into a live launchpad. We shipped an IoT health monitor used by 3 local clinics within 8 months of joining the program."</p>
-    <div class="quote-author">Priya Nair, 4th Year Biomedical Engineering · BMSCE Batch 2025</div>
+    <p class="quote-text anim-blur-up" style="transition-delay:0s">"MissionX transformed our campus lab into a live launchpad. We shipped an IoT health monitor used by 3 local clinics within 8 months of joining the program."</p>
+    <div class="quote-author anim-blur-up d-300">Priya Nair, 4th Year Biomedical Engineering · BMSCE Batch 2025</div>
 </div>
 
 <!-- ═══════════ BENTO GRID ═══════════ -->
 <div class="bento-section">
-    <div class="bento-header reveal-item">
-        <p class="bento-eyebrow">Community & Impact</p>
-        <h2 class="bento-title">Every Frame, a Story of Change</h2>
+    <div class="bento-header anim-blur-up">
+        <p class="bento-eyebrow eyebrow-line">Community &amp; Impact</p>
+        <h2 class="bento-title" data-split>Every Frame, a Story of Change</h2>
     </div>
     <div class="bento-grid">
 
-        <div class="b-card b-wide reveal-item" style="transition-delay:0.1s">
+        <div class="b-card b-wide anim-scale d-100">
             <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80" alt="Collaboration">
             <div class="b-card-overlay"></div>
             <div class="b-card-label">
@@ -1225,13 +1335,13 @@
             </div>
         </div>
 
-        <div class="b-card b-quote reveal-item" style="transition-delay:0.2s">
+        <div class="b-card b-quote anim-scale d-200">
             <div class="b-quote-mark">&ldquo;</div>
             <p class="b-quote-text">We co-create with communities first — then we build the technology around their real lives.</p>
             <div class="b-quote-author">MissionX Design Philosophy</div>
         </div>
 
-        <div class="b-card reveal-item" style="transition-delay:0.15s">
+        <div class="b-card anim-scale d-150">
             <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80" alt="Community Empathy">
             <div class="b-card-overlay"></div>
             <div class="b-card-label">
@@ -1262,10 +1372,10 @@
 </div>
 
 <!-- ═══════════ CTA ═══════════ -->
-<section class="cta-section reveal-item">
-    <p class="cta-eyebrow">Start Your Innovation Journey</p>
-    <h2 class="cta-heading">Ready to bring <span>MissionX</span><br>to your campus?</h2>
-    <div>
+<section class="cta-section">
+    <p class="cta-eyebrow anim-blur-up">Start Your Innovation Journey</p>
+    <h2 class="cta-heading anim-blur-up d-100" data-split>Ready to bring <span>MissionX</span> to your campus?</h2>
+    <div class="anim-blur-up d-250">
         <a href="contact.html" class="cta-btn"><span>Partner With Us</span><i class="fa-solid fa-arrow-right"></i></a>
         <a href="sip.html" class="cta-btn-ghost"><span>Explore Programs</span></a>
     </div>
@@ -1316,18 +1426,17 @@
 
 <!-- ═══════════ SCRIPTS ═══════════ -->
 <script>
-    // ── Page progress bar ──
+    /* ════════════════════════════════════════════════════════
+       PREMIUM SCROLL ANIMATION ENGINE
+       • blur-out exit  • blur-up enter  • clip wipe
+       • parallax       • split words    • counters
+    ════════════════════════════════════════════════════════ */
+
+    // ── 1. PAGE PROGRESS + HEADER ──────────────────────────
     const progressBar = document.getElementById('progressBar');
-    window.addEventListener('scroll', () => {
-        const scrolled = window.scrollY;
-        const maxScroll = document.body.scrollHeight - window.innerHeight;
-        progressBar.style.width = (scrolled / maxScroll * 100) + '%';
+    const siteHeader  = document.getElementById('siteHeader');
 
-        // Header scroll effect
-        document.getElementById('siteHeader').classList.toggle('scrolled', scrolled > 50);
-    });
-
-    // ── Mobile nav ──
+    // ── 2. MOBILE NAV ──────────────────────────────────────
     function toggleMobileNav() {
         document.body.classList.toggle('mobile-nav-open');
         const icon = document.getElementById('menuIcon');
@@ -1335,38 +1444,144 @@
             ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
     }
 
-    // ── Scroll reveal ──
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-            if (e.isIntersecting) {
-                e.target.classList.add('visible');
+    // ── 3. SPLIT-WORD PREP ────────────────────────────────
+    function splitWords(el) {
+        const words = el.textContent.trim().split(/\s+/);
+        el.innerHTML = words.map((w, i) =>
+            `<span class="word" style="transition-delay:${i * 0.07}s">${w}</span>`
+        ).join(' ');
+        el.classList.add('split-word');
+    }
+    document.querySelectorAll('[data-split]').forEach(splitWords);
+
+    // ── 4. COUNTERS (animated number count-up) ─────────────
+    const counters = [
+        { el: document.querySelector('[data-count="500+"]'), end: 500, suffix: '+' },
+        { el: document.querySelector('[data-count="18000+"]'), end: 18, suffix: 'K+' },
+        { el: document.querySelector('[data-count="33+"]'), end: 33, suffix: '+' },
+        { el: document.querySelector('[data-count="120+"]'), end: 120, suffix: '+' },
+    ];
+    function runCounter(counter) {
+        let start = 0;
+        const duration = 1600;
+        const startTime = performance.now();
+        function tick(now) {
+            const elapsed = Math.min((now - startTime) / duration, 1);
+            const eased = 1 - Math.pow(1 - elapsed, 3);
+            const value = Math.round(eased * counter.end);
+            if (counter.el) counter.el.textContent = value + counter.suffix;
+            if (elapsed < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+    }
+    let countersDone = false;
+
+    // ── 5. MAIN SCROLL HANDLER ─────────────────────────────
+    let ticking = false;
+    function onScroll() {
+        if (!ticking) {
+            requestAnimationFrame(frame);
+            ticking = true;
+        }
+    }
+
+    function frame() {
+        ticking = false;
+        const scrollY   = window.scrollY;
+        const winH      = window.innerHeight;
+        const maxScroll = document.body.scrollHeight - winH;
+
+        // Progress bar
+        progressBar.style.width = (scrollY / maxScroll * 100) + '%';
+
+        // Header
+        siteHeader.classList.toggle('scrolled', scrollY > 50);
+
+        // Parallax background — subtle Ken Burns scale on the bg image
+        const bg = document.querySelector('.site-bg');
+        if (bg) {
+            // scale from 1.0 to 1.08 as user scrolls through the page
+            const scaleVal = 1 + (scrollY / (maxScroll || 1)) * 0.08;
+            bg.style.transform = `scale(${scaleVal.toFixed(4)})`;
+            bg.style.transformOrigin = 'center center';
+        }
+
+        // Parallax on panel (subtle lift)
+        const panel = document.getElementById('galleryPanel');
+        if (panel) {
+            const rect = panel.getBoundingClientRect();
+            const rel = (rect.top + rect.height / 2) / winH - 0.5;
+            panel.style.transform = panel.classList.contains('visible')
+                ? `translateY(${rel * -18}px)`
+                : 'translateY(40px) scale(0.98)';
+        }
+
+        // Animate: anim-blur-up, anim-slide-left, anim-slide-right, anim-scale
+        const animClasses = ['anim-blur-up','anim-slide-left','anim-slide-right','anim-scale','anim-clip-x','split-word','reveal-item','eyebrow-line'];
+        document.querySelectorAll(animClasses.map(c => '.' + c).join(',')).forEach(el => {
+            const rect = el.getBoundingClientRect();
+            const inView   = rect.top < winH * 0.88 && rect.bottom > winH * 0.06;
+            const exitUp   = rect.bottom < winH * 0.06;  // fully scrolled past
+
+            if (exitUp) {
+                // blur-out as element leaves viewport going up
+                el.classList.remove('in-view');
+                el.classList.add('out-view');
+            } else if (inView) {
+                el.classList.remove('out-view');
+                el.classList.add('in-view');
+                el.classList.add('visible'); // compat
+            } else {
+                // below viewport — reset for re-entrance
+                el.classList.remove('in-view', 'out-view');
             }
         });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-    // Panel
-    revealObserver.observe(document.getElementById('galleryPanel'));
+        // Image reveal covers
+        document.querySelectorAll('.img-reveal-wrap').forEach(el => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top < winH * 0.85) el.classList.add('in-view');
+        });
 
-    // All reveal-items
-    document.querySelectorAll('.reveal-item').forEach(el => revealObserver.observe(el));
+        // Gallery panel enter
+        if (panel) {
+            const rect = panel.getBoundingClientRect();
+            if (rect.top < winH * 0.9) panel.classList.add('visible');
+        }
 
-    // ── Gallery filter ──
+        // Counter trigger
+        const strip = document.querySelector('.impact-strip');
+        if (strip && !countersDone) {
+            const rect = strip.getBoundingClientRect();
+            if (rect.top < winH * 0.88) {
+                countersDone = true;
+                counters.forEach((c, i) => setTimeout(() => runCounter(c), i * 120));
+            }
+        }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', () => { requestAnimationFrame(frame); });
+    // Trigger on load
+    requestAnimationFrame(frame);
+
+    // ── 6. GALLERY FILTER ─────────────────────────────────
     let currentFilter = 'all';
     function setFilter(cat, btn) {
         currentFilter = cat;
         document.querySelectorAll('.panel-filter-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-
         document.querySelectorAll('.g-card').forEach(card => {
             const match = cat === 'all' || card.dataset.cat === cat;
-            card.style.transition = 'opacity 0.35s, transform 0.35s';
-            card.style.opacity = match ? '1' : '0.25';
-            card.style.transform = match ? 'scale(1)' : 'scale(0.97)';
+            card.style.transition = 'opacity 0.4s cubic-bezier(0.22,1,0.36,1), transform 0.4s cubic-bezier(0.22,1,0.36,1), filter 0.4s';
+            card.style.opacity = match ? '1' : '0.18';
+            card.style.transform = match ? 'scale(1)' : 'scale(0.94)';
+            card.style.filter = match ? 'blur(0)' : 'blur(3px)';
             card.style.pointerEvents = match ? 'auto' : 'none';
         });
     }
 
-    // ── Pagination (demo — changes ghost text) ──
+    // ── 7. PAGINATION ─────────────────────────────────────
     let page = 1;
     const totalPages = 3;
     const ghostTexts = ['on view', 'featured', 'exclusive'];
@@ -1374,28 +1589,22 @@
         document.getElementById('pageNum').textContent = page;
         document.querySelector('.ghost-text').textContent = ghostTexts[(page - 1) % ghostTexts.length];
     }
-    function nextPage() {
-        page = page < totalPages ? page + 1 : 1;
-        updatePage();
-        animateGrid();
-    }
-    function prevPage() {
-        page = page > 1 ? page - 1 : totalPages;
-        updatePage();
-        animateGrid();
-    }
+    function nextPage() { page = page < totalPages ? page + 1 : 1; updatePage(); animateGrid(); }
+    function prevPage() { page = page > 1 ? page - 1 : totalPages; updatePage(); animateGrid(); }
     function animateGrid() {
         const grid = document.getElementById('masonryGrid');
+        grid.style.transition = 'opacity 0.35s, filter 0.35s, transform 0.35s';
         grid.style.opacity = '0';
-        grid.style.transform = 'translateY(12px)';
+        grid.style.filter = 'blur(8px)';
+        grid.style.transform = 'scale(0.98) translateY(10px)';
         setTimeout(() => {
-            grid.style.transition = 'opacity 0.45s, transform 0.45s';
             grid.style.opacity = '1';
-            grid.style.transform = 'translateY(0)';
-        }, 180);
+            grid.style.filter = 'blur(0)';
+            grid.style.transform = 'scale(1) translateY(0)';
+        }, 220);
     }
 
-    // ── Lightbox ──
+    // ── 8. LIGHTBOX ───────────────────────────────────────
     function openLightbox(src, tag, title, desc, location) {
         const lb = document.getElementById('lightbox');
         document.getElementById('lb-img').src = src;
@@ -1410,11 +1619,9 @@
     function closeLightbox() {
         const lb = document.getElementById('lightbox');
         lb.classList.remove('fade-in');
-        setTimeout(() => { lb.classList.remove('open'); document.body.style.overflow = ''; }, 280);
+        setTimeout(() => { lb.classList.remove('open'); document.body.style.overflow = ''; }, 300);
     }
-    function closeLightboxOutside(e) {
-        if (e.target.id === 'lightbox') closeLightbox();
-    }
+    function closeLightboxOutside(e) { if (e.target.id === 'lightbox') closeLightbox(); }
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 </script>
 
