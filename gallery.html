@@ -223,6 +223,7 @@
             grid-template-columns: 1.15fr 1fr 1fr;
             grid-template-rows: 200px 180px 170px;
             gap: 10px;
+            transition: opacity 0.35s cubic-bezier(0.22,1,0.36,1), transform 0.35s cubic-bezier(0.22,1,0.36,1);
         }
         .g-card-tall { grid-row: span 2; }
 
@@ -325,15 +326,15 @@
         .page-arrow {
             background: none;
             border: 1px solid #ddd;
-            width: 28px; height: 28px;
+            width: 32px; height: 32px;
             border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
             cursor: pointer;
-            font-size: 0.7rem;
-            color: #888;
+            font-size: 0.75rem;
+            color: #555;
             transition: border-color 0.2s, color 0.2s, background 0.2s;
         }
-        .page-arrow:hover { border-color: var(--orange); color: var(--orange); background: rgba(245,130,32,0.06); }
+        .page-arrow:hover { border-color: var(--orange); color: var(--orange); background: rgba(245,130,32,0.1); }
         .pagination-quote {
             font-family: 'Playfair Display', serif;
             font-size: 4rem;
@@ -924,123 +925,19 @@
             </div>
         </div>
 
-        <!-- MASONRY FEATURED GRID -->
+        <!-- DYNAMIC MASONRY FEATURED GRID -->
         <div class="masonry-grid" id="masonryGrid">
-
-            <!-- Card 1: SKIT Drone Internship -->
-            <div class="g-card g-card-tall" data-cat="internships" onclick="openAlbum('skit-drone-internship')">
-                <img src="images/site-files/Drone 1.jpg" alt="Hands on Drone Technology Internship">
-                <div class="g-card-expand"><i class="fa-solid fa-images"></i></div>
-                <div class="g-card-label">
-                    <div>
-                        <div class="g-card-category">Internships</div>
-                        <div class="g-card-title">Drone Tech Internship &middot; SKIT</div>
-                    </div>
-                    <div class="g-card-year">2022</div>
-                </div>
-            </div>
-
-            <!-- Card 2: RYMEC Bellary 5-Day IoT -->
-            <div class="g-card" data-cat="workshops" onclick="openAlbum('rymec-iot-bellary')">
-                <img src="images/gallery-images/rymce/20230310091809_IMG_1780.JPG" alt="RYMEC Bellary IoT Workshop">
-                <div class="g-card-expand"><i class="fa-solid fa-images"></i></div>
-                <div class="g-card-label">
-                    <div>
-                        <div class="g-card-category">Workshops</div>
-                        <div class="g-card-title">IoT &amp; AI/ML &middot; RYMEC Bellary (192 Students)</div>
-                    </div>
-                    <div class="g-card-year">2023</div>
-                </div>
-            </div>
-
-            <!-- Card 3: Sri Sairam Hand Gesture Robot -->
-            <div class="g-card" data-cat="workshops" onclick="openAlbum('sairam-hand-gesture')">
-                <img src="images/site-files/HG1.jpg" alt="Hand Gesture Robot Workshop">
-                <div class="g-card-expand"><i class="fa-solid fa-images"></i></div>
-                <div class="g-card-label">
-                    <div>
-                        <div class="g-card-category">Workshops</div>
-                        <div class="g-card-title">Hand Gesture Robot &middot; Sri Sairam</div>
-                    </div>
-                    <div class="g-card-year">2022</div>
-                </div>
-            </div>
-
-            <!-- Card 4: Cardiem 2022 Project Evaluator -->
-            <div class="g-card" data-cat="expos" onclick="openAlbum('cardiem-2022')">
-                <img src="images/site-files/seminar.JPG" alt="Cardiem 2022 Project Evaluator">
-                <div class="g-card-expand"><i class="fa-solid fa-images"></i></div>
-                <div class="g-card-label">
-                    <div>
-                        <div class="g-card-category">Expos &amp; Seminars</div>
-                        <div class="g-card-title">Cardiem 2022 Evaluator &middot; Sri Sairam</div>
-                    </div>
-                    <div class="g-card-year">2022</div>
-                </div>
-            </div>
-
-            <!-- Card 5: Anurag University MICRO-BOT -->
-            <div class="g-card" data-cat="workshops" onclick="openAlbum('anurag-microbot')">
-                <img src="images/site-files/Square Fit_2023826222815993.jpg" alt="Anurag University MICRO-BOT Workshop">
-                <div class="g-card-expand"><i class="fa-solid fa-images"></i></div>
-                <div class="g-card-label">
-                    <div>
-                        <div class="g-card-category">Workshops</div>
-                        <div class="g-card-title">MICRO-BOT Workshop &middot; AnuragU</div>
-                    </div>
-                    <div class="g-card-year">2023</div>
-                </div>
-            </div>
-
-            <!-- Card 6: Sri Sairam Industry 4.0 -->
-            <div class="g-card" data-cat="workshops" onclick="openAlbum('sairam-industry40')">
-                <img src="images/site-files/Sairam Internship.jpg" alt="Industry 4.0 Skills Bootcamp">
-                <div class="g-card-expand"><i class="fa-solid fa-images"></i></div>
-                <div class="g-card-label">
-                    <div>
-                        <div class="g-card-category">Workshops</div>
-                        <div class="g-card-title">Industry 4.0 Skills &middot; Sri Sairam</div>
-                    </div>
-                    <div class="g-card-year">2022</div>
-                </div>
-            </div>
-
-            <!-- Card 7: Dr. TTIT HAND-BOT -->
-            <div class="g-card" data-cat="workshops" onclick="openAlbum('ttit-handbot')">
-                <img src="images/site-files/IMG_20240102_123208.jpg" alt="HAND-BOT AIML Workshop">
-                <div class="g-card-expand"><i class="fa-solid fa-images"></i></div>
-                <div class="g-card-label">
-                    <div>
-                        <div class="g-card-category">Workshops</div>
-                        <div class="g-card-title">HAND-BOT AIML &middot; Dr. TTIT KGF</div>
-                    </div>
-                    <div class="g-card-year">2024</div>
-                </div>
-            </div>
-
-            <!-- Card 8: Cambridge CIT MICRO-INTRO -->
-            <div class="g-card" data-cat="workshops" onclick="openAlbum('citech-microintro')">
-                <img src="images/site-files/IMG-20231218-WA0004.jpg" alt="Cambridge CIT MICRO-INTRO">
-                <div class="g-card-expand"><i class="fa-solid fa-images"></i></div>
-                <div class="g-card-label">
-                    <div>
-                        <div class="g-card-category">Workshops</div>
-                        <div class="g-card-title">MICRO-INTRO ECE &middot; Cambridge CIT</div>
-                    </div>
-                    <div class="g-card-year">2023</div>
-                </div>
-            </div>
-
+            <!-- Dynamically populated by renderMasonryGrid() -->
         </div>
 
-        <!-- Panel Footer -->
+        <!-- Panel Footer with Interactive Pagination -->
         <div class="panel-footer">
             <div class="pagination-left">
                 <span class="page-current" id="pageNum">1</span>
                 <span class="page-total" id="pageTotal">/ 3</span>
                 <div class="page-arrows">
-                    <button class="page-arrow" onclick="prevPage()"><i class="fa-solid fa-chevron-left"></i></button>
-                    <button class="page-arrow" onclick="nextPage()"><i class="fa-solid fa-chevron-right"></i></button>
+                    <button class="page-arrow" onclick="prevPage()" aria-label="Previous Page"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button class="page-arrow" onclick="nextPage()" aria-label="Next Page"><i class="fa-solid fa-chevron-right"></i></button>
                 </div>
             </div>
             <div class="pagination-quote">&rdquo;</div>
@@ -1266,10 +1163,290 @@
     </div>
 </div>
 
-<!-- ═══════════ SCRIPTS & EVENT DATABASE ═══════════ -->
+<!-- ═══════════ SCRIPTS & MASONRY PAGINATION ENGINE ═══════════ -->
 <script>
     /* ════════════════════════════════════════════════════════
-       EVENT ALBUMS DATABASE WITH AUTHENTIC EVENT PHOTOS
+       MASONRY FEATURED CARDS DATABASE (3 PAGES OF DISTINCT CARDS)
+    ════════════════════════════════════════════════════════ */
+    const MASONRY_PAGES = [
+        // PAGE 1
+        [
+            {
+                albumId: 'skit-drone-internship',
+                cat: 'internships',
+                tall: true,
+                title: 'Drone Tech Internship &middot; SKIT',
+                categoryName: 'Internships',
+                year: '2022',
+                img: 'images/site-files/Drone 1.jpg'
+            },
+            {
+                albumId: 'rymec-iot-bellary',
+                cat: 'workshops',
+                tall: false,
+                title: 'IoT &amp; AI/ML &middot; RYMEC Bellary (192 Students)',
+                categoryName: 'Workshops',
+                year: '2023',
+                img: 'images/gallery-images/rymce/20230310091809_IMG_1780.JPG'
+            },
+            {
+                albumId: 'sairam-hand-gesture',
+                cat: 'workshops',
+                tall: false,
+                title: 'Hand Gesture Robot &middot; Sri Sairam',
+                categoryName: 'Workshops',
+                year: '2022',
+                img: 'images/site-files/HG1.jpg'
+            },
+            {
+                albumId: 'cardiem-2022',
+                cat: 'expos',
+                tall: false,
+                title: 'Cardiem 2022 Evaluator &middot; Sri Sairam',
+                categoryName: 'Expos &amp; Seminars',
+                year: '2022',
+                img: 'images/site-files/seminar.JPG'
+            },
+            {
+                albumId: 'anurag-microbot',
+                cat: 'workshops',
+                tall: false,
+                title: 'MICRO-BOT Workshop &middot; AnuragU',
+                categoryName: 'Workshops',
+                year: '2023',
+                img: 'images/site-files/Square Fit_2023826222815993.jpg'
+            },
+            {
+                albumId: 'sairam-industry40',
+                cat: 'workshops',
+                tall: false,
+                title: 'Industry 4.0 Skills &middot; Sri Sairam',
+                categoryName: 'Workshops',
+                year: '2022',
+                img: 'images/site-files/Sairam Internship.jpg'
+            },
+            {
+                albumId: 'ttit-handbot',
+                cat: 'workshops',
+                tall: false,
+                title: 'HAND-BOT AIML &middot; Dr. TTIT KGF',
+                categoryName: 'Workshops',
+                year: '2024',
+                img: 'images/site-files/IMG_20240102_123208.jpg'
+            },
+            {
+                albumId: 'citech-microintro',
+                cat: 'workshops',
+                tall: false,
+                title: 'MICRO-INTRO ECE &middot; Cambridge CIT',
+                categoryName: 'Workshops',
+                year: '2023',
+                img: 'images/site-files/IMG-20231218-WA0004.jpg'
+            }
+        ],
+        // PAGE 2
+        [
+            {
+                albumId: 'sairam-industry40',
+                cat: 'workshops',
+                tall: true,
+                title: 'Industry 4.0 Bootcamp &middot; Sri Sairam',
+                categoryName: 'Workshops',
+                year: '2022',
+                img: 'images/site-files/Sairam Internship.jpg'
+            },
+            {
+                albumId: 'atria-microduino',
+                cat: 'workshops',
+                tall: false,
+                title: 'MICRODUINO Workshop &middot; Atria Institute',
+                categoryName: 'Workshops',
+                year: '2022',
+                img: 'images/site-files/1663738302775.jpg'
+            },
+            {
+                albumId: 'sairam-embedded-iot',
+                cat: 'workshops',
+                tall: false,
+                title: 'Embedded Systems &amp; IoT &middot; Sri Sairam',
+                categoryName: 'Workshops',
+                year: '2022',
+                img: 'images/site-files/SS1.jpg'
+            },
+            {
+                albumId: 'skit-micropi',
+                cat: 'workshops',
+                tall: false,
+                title: 'MICRO-PI Python &amp; ESP8266 &middot; SKIT',
+                categoryName: 'Workshops',
+                year: '2022',
+                img: 'images/site-files/ai1.jpg'
+            },
+            {
+                albumId: 'adhiyamaan-microbot',
+                cat: 'workshops',
+                tall: false,
+                title: 'MICRO-BOT Mechanical &middot; Adhiyamaan',
+                categoryName: 'Workshops',
+                year: '2023',
+                img: 'images/site-files/IMG-20231106-WA0005.jpg'
+            },
+            {
+                albumId: 'rgit-motbot',
+                cat: 'workshops',
+                tall: false,
+                title: 'MOT-BOT CSE &middot; RGIT Bengaluru',
+                categoryName: 'Workshops',
+                year: '2023',
+                img: 'images/site-files/IMG-20231205-WA0001.jpg'
+            },
+            {
+                albumId: 'skit-drone-internship',
+                cat: 'internships',
+                tall: false,
+                title: 'Flight Aerodynamics &amp; Assembly &middot; SKIT',
+                categoryName: 'Internships',
+                year: '2022',
+                img: 'images/site-files/Drone 2.jpg'
+            },
+            {
+                albumId: 'cardiem-2022',
+                cat: 'expos',
+                tall: false,
+                title: 'Project Expo Jury Session &middot; Cardiem',
+                categoryName: 'Expos &amp; Seminars',
+                year: '2022',
+                img: 'images/site-files/1647583572008.jpg'
+            }
+        ],
+        // PAGE 3
+        [
+            {
+                albumId: 'rgit-motbot',
+                cat: 'workshops',
+                tall: true,
+                title: 'MOT-BOT Wireless Control &middot; RGIT',
+                categoryName: 'Workshops',
+                year: '2023',
+                img: 'images/site-files/IMG-20231205-WA0001.jpg'
+            },
+            {
+                albumId: 'citech-microintro',
+                cat: 'workshops',
+                tall: false,
+                title: 'Cloud &amp; Automation &middot; Cambridge CIT',
+                categoryName: 'Workshops',
+                year: '2023',
+                img: 'images/site-files/IMG-20231218-WA0016.jpg'
+            },
+            {
+                albumId: 'ttit-handbot',
+                cat: 'workshops',
+                tall: false,
+                title: 'Gestural Motion Tracking &middot; Dr. TTIT',
+                categoryName: 'Workshops',
+                year: '2024',
+                img: 'images/site-files/IMG_7834.JPG'
+            },
+            {
+                albumId: 'anurag-microbot',
+                cat: 'workshops',
+                tall: false,
+                title: 'AI/ML Micro-Bots Demo &middot; AnuragU',
+                categoryName: 'Workshops',
+                year: '2023',
+                img: 'images/site-files/Square Fit_2023826223243181.jpg'
+            },
+            {
+                albumId: 'sairam-hand-gesture',
+                cat: 'workshops',
+                tall: false,
+                title: 'Gesture Accelerometer Mapping',
+                categoryName: 'Workshops',
+                year: '2022',
+                img: 'images/site-files/HG2.jpg'
+            },
+            {
+                albumId: 'skit-micropi',
+                cat: 'workshops',
+                tall: false,
+                title: 'Wi-Fi Micro-controller Data Logging',
+                categoryName: 'Workshops',
+                year: '2022',
+                img: 'images/site-files/ai2.jpg'
+            },
+            {
+                albumId: 'atria-microduino',
+                cat: 'workshops',
+                tall: false,
+                title: 'Modular Electronics Assembly &middot; Atria',
+                categoryName: 'Workshops',
+                year: '2022',
+                img: 'images/site-files/1663738302791.jpg'
+            },
+            {
+                albumId: 'sairam-embedded-iot',
+                cat: 'workshops',
+                tall: false,
+                title: 'Sensor Interfacing Workshop &middot; Sairam',
+                categoryName: 'Workshops',
+                year: '2022',
+                img: 'images/site-files/SS2.jpg'
+            }
+        ]
+    ];
+
+    let currentMasonryPage = 1;
+    const totalMasonryPages = 3;
+    let activeFilterCategory = 'all';
+
+    function renderMasonryGrid() {
+        const grid = document.getElementById('masonryGrid');
+        if (!grid) return;
+
+        grid.style.opacity = '0';
+        grid.style.transform = 'translateY(12px)';
+
+        setTimeout(() => {
+            const pageItems = MASONRY_PAGES[currentMasonryPage - 1];
+            grid.innerHTML = pageItems.map(item => `
+                <div class="g-card ${item.tall ? 'g-card-tall' : ''}" data-cat="${item.cat}" onclick="openAlbum('${item.albumId}')">
+                    <img src="${item.img}" alt="${item.title}">
+                    <div class="g-card-expand"><i class="fa-solid fa-images"></i></div>
+                    <div class="g-card-label">
+                        <div>
+                            <div class="g-card-category">${item.categoryName}</div>
+                            <div class="g-card-title">${item.title}</div>
+                        </div>
+                        <div class="g-card-year">${item.year}</div>
+                    </div>
+                </div>
+            `).join('');
+
+            document.getElementById('pageNum').textContent = currentMasonryPage;
+            document.getElementById('pageTotal').textContent = '/ ' + totalMasonryPages;
+
+            if (activeFilterCategory !== 'all') {
+                filterMasonryGrid(activeFilterCategory);
+            }
+
+            grid.style.opacity = '1';
+            grid.style.transform = 'translateY(0)';
+        }, 180);
+    }
+
+    function nextPage() {
+        currentMasonryPage = (currentMasonryPage % totalMasonryPages) + 1;
+        renderMasonryGrid();
+    }
+
+    function prevPage() {
+        currentMasonryPage = ((currentMasonryPage - 2 + totalMasonryPages) % totalMasonryPages) + 1;
+        renderMasonryGrid();
+    }
+
+    /* ════════════════════════════════════════════════════════
+       EVENT ALBUMS DATABASE
     ════════════════════════════════════════════════════════ */
     const EVENT_ALBUMS = {
         'cardiem-2022': {
@@ -1512,7 +1689,6 @@
             mainImg.style.transform = 'scale(1)';
         }, 150);
 
-        // Update active thumb
         document.querySelectorAll('.album-thumb').forEach((thumb, i) => {
             thumb.classList.toggle('active', i === currentPhotoIdx);
         });
@@ -1564,10 +1740,15 @@
     function setFilter(cat, btn) {
         document.querySelectorAll('.panel-filter-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
+        activeFilterCategory = cat;
+        filterMasonryGrid(cat);
+    }
+
+    function filterMasonryGrid(cat) {
         document.querySelectorAll('.g-card').forEach(card => {
             const match = cat === 'all' || card.dataset.cat === cat;
             card.style.transition = 'opacity 0.4s, transform 0.4s, filter 0.4s';
-            card.style.opacity = match ? '1' : '0.2';
+            card.style.opacity = match ? '1' : '0.15';
             card.style.transform = match ? 'scale(1)' : 'scale(0.95)';
             card.style.pointerEvents = match ? 'auto' : 'none';
         });
@@ -1603,7 +1784,12 @@
     }
 
     window.addEventListener('scroll', onScroll, { passive: true });
-    requestAnimationFrame(frame);
+
+    // Initial Masonry Grid Render
+    document.addEventListener('DOMContentLoaded', () => {
+        renderMasonryGrid();
+    });
+    renderMasonryGrid();
 </script>
 
 </body>
