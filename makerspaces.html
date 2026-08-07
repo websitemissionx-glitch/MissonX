@@ -300,10 +300,7 @@
                 <!-- Column 1 -->
                 <div class="space-y-4">
                     <h3 class="text-3xl font-extrabold tracking-tight">Be the first to know</h3>
-                    <a href="contact.html"
-                        class="inline-block px-6 py-3 bg-brand-orange hover:bg-orange-600 text-white font-bold rounded-lg text-xs uppercase tracking-wider">
-                        JOIN OUR NEWSLETTER
-                    </a>
+                    <button onclick="openNewsletterModal()" class="inline-block px-6 py-3 bg-brand-orange hover:bg-orange-600 text-white font-bold rounded-lg text-xs uppercase tracking-wider">JOIN OUR NEWSLETTER</button>
                 </div>
 
                 <!-- Column 2 -->
@@ -360,6 +357,33 @@
             menu.classList.toggle('hidden');
         }
     </script>
+
+<!-- Formspree Newsletter & Contact Modal -->
+<div id="newsletter-modal" class="fixed inset-0 z-[100] bg-black/70 hidden items-center justify-center p-4 backdrop-blur-sm">
+    <div class="bg-white p-6 sm:p-8 rounded-2xl max-w-md w-full text-left shadow-2xl border border-gray-100 relative">
+        <button onclick="closeNewsletterModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-lg p-1" aria-label="Close">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="flex items-center space-x-3 mb-4">
+            <div class="w-10 h-10 bg-orange-100 text-brand-orange rounded-full flex items-center justify-center font-bold">
+                <i class="fa-solid fa-envelope"></i>
+            </div>
+            <div>
+                <h3 class="text-lg font-extrabold text-gray-900">Join MissionX Newsletter</h3>
+                <p class="text-xs text-gray-500">Get regular updates on programs, workshops &amp; events</p>
+            </div>
+        </div>
+        <form action="https://formspree.io/f/mnpanogz" method="POST" onsubmit="submitNewsletterFormspree(event, this)" class="space-y-3">
+            <input type="text" name="name" placeholder="YOUR FULL NAME" required class="w-full px-4 py-2.5 bg-gray-50 rounded-xl text-xs border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-orange">
+            <input type="email" name="email" placeholder="YOUR EMAIL ADDRESS" required class="w-full px-4 py-2.5 bg-gray-50 rounded-xl text-xs border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-orange">
+            <input type="text" name="institution" placeholder="COLLEGE / INSTITUTION NAME (OPTIONAL)" class="w-full px-4 py-2.5 bg-gray-50 rounded-xl text-xs border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-orange">
+            <button type="submit" class="w-full py-3 bg-brand-orange hover:bg-orange-600 text-white font-bold rounded-xl text-xs uppercase tracking-wider transition-colors shadow-md">
+                SUBSCRIBE NOW
+            </button>
+        </form>
+    </div>
+</div>
+
 </body>
 
 </html>
