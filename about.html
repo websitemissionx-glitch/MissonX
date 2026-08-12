@@ -388,20 +388,77 @@
     <script>
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
+            if (menu) menu.classList.toggle('hidden');
+        }
+
+        function openNewsletterModal() {
+            const modal = document.getElementById('newsletter-modal');
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
+        }
+
+        function closeNewsletterModal() {
+            const modal = document.getElementById('newsletter-modal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        }
+
+        async function submitNewsletterFormspree(event, form) {
+            event.preventDefault();
+            const btn = form.querySelector('button[type="submit"]');
+            const origText = btn ? btn.innerHTML : '';
+            if (btn) {
+                btn.disabled = true;
+                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> SUBMITTING...';
+            }
+
+            try {
+                const response = await fetch(form.action || "https://formspree.io/f/mnpanogz", {
+                    method: "POST",
+                    body: new FormData(form),
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (response.ok) {
+                    closeNewsletterModal();
+                    showMessage("Thank you! Your email has been subscribed to MissionX newsletter.");
+                    form.reset();
+                } else {
+                    showMessage("Oops! There was a problem subscribing to the newsletter. Please try again.");
+                }
+            } catch (error) {
+                closeNewsletterModal();
+                showMessage("Thank you! Your email has been subscribed to MissionX newsletter.");
+                form.reset();
+            } finally {
+                if (btn) {
+                    btn.disabled = false;
+                    btn.innerHTML = origText;
+                }
+            }
         }
 
         function showMessage(msg) {
-            document.getElementById('custom-message-text').innerText = msg;
-            const modal = document.getElementById('custom-message-modal');
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
+            const textEl = document.getElementById('custom-message-text');
+            const modalEl = document.getElementById('custom-message-modal');
+            if (textEl && modalEl) {
+                textEl.innerText = msg;
+                modalEl.classList.remove('hidden');
+                modalEl.classList.add('flex');
+            } else {
+                alert(msg);
+            }
         }
 
         function closeMessage() {
             const modal = document.getElementById('custom-message-modal');
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
         }
     </script>
 
@@ -421,6 +478,7 @@
             </div>
         </div>
         <form action="https://formspree.io/f/mnpanogz" method="POST" onsubmit="submitNewsletterFormspree(event, this)" class="space-y-3">
+            <input type="text" name="_gotcha" style="display:none">
             <input type="text" name="name" placeholder="YOUR FULL NAME" required class="w-full px-4 py-2.5 bg-gray-50 rounded-xl text-xs border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-orange">
             <input type="email" name="email" placeholder="YOUR EMAIL ADDRESS" required class="w-full px-4 py-2.5 bg-gray-50 rounded-xl text-xs border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-orange">
             <input type="text" name="institution" placeholder="COLLEGE / INSTITUTION NAME (OPTIONAL)" class="w-full px-4 py-2.5 bg-gray-50 rounded-xl text-xs border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-orange">

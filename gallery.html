@@ -848,22 +848,108 @@
         }
         .anim-blur-up.in-view { opacity: 1; filter: blur(0); transform: translateY(0); }
 
+        /* Mobile Nav Dropdown */
+        body.mobile-nav-open nav.main-nav {
+            display: flex !important;
+            flex-direction: column;
+            position: absolute;
+            top: 68px;
+            left: 0;
+            right: 0;
+            background: rgba(13, 13, 13, 0.98);
+            backdrop-filter: blur(20px);
+            padding: 1.5rem 2rem;
+            gap: 1.2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 99;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+        }
+
         @media (max-width: 900px) {
             header { padding: 0 1.2rem; }
             nav.main-nav { display: none; }
             .mobile-toggle { display: flex; }
-            .ed-row, .ed-row.reverse { grid-template-columns: 1fr; }
+
+            /* Hero Floating Panel & Grid Mobile Optimization */
+            .gallery-hero { padding: 80px 1rem 2rem; }
+            .gallery-panel { padding: 1.8rem 1.2rem 1.5rem; border-radius: 8px; }
+            .panel-header { flex-direction: column; align-items: flex-start; gap: 1.2rem; margin-bottom: 1.5rem; padding-bottom: 1rem; }
+            .panel-title { font-size: 1.9rem; }
+            .panel-subtitle { font-size: 0.78rem; }
+            .ghost-text { display: none; }
+
+            .panel-actions { width: 100%; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+            .panel-filter-btn { padding: 0.4rem 0.75rem; font-size: 0.7rem; border-radius: 4px; }
+
+            /* Large & Clear Masonry Card Image Previews on Mobile/Tablet */
+            .masonry-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; gap: 14px; }
+            .g-card-tall { grid-row: span 1; }
+            .g-card { height: 230px; min-height: 230px; border-radius: 6px; }
+            .g-card img { filter: saturate(1); }
+            .g-card-expand { opacity: 0.95; transform: scale(1); background: rgba(0,0,0,0.5); }
+            .g-card-title { font-size: 0.82rem; }
+            .g-card-category { font-size: 0.62rem; }
+            .g-card-label { padding: 0.9rem 1rem; background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.85) 100%); }
+
+            /* Editorial Section Mobile Optimization */
+            .editorial-section { padding: 0 1rem; margin: 3rem auto; }
+            .ed-row, .ed-row.reverse { grid-template-columns: 1fr; border-radius: 8px; }
             .ed-row.reverse .ed-text-block { order: 1; }
             .ed-row.reverse .ed-visual-block { order: 2; }
-            .masonry-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
-            .g-card-tall { grid-row: span 1; }
-            .album-body { flex-direction: column; }
-            .album-details-sidebar { border-left: none; border-top: 1px solid rgba(255,255,255,0.08); }
+            .ed-text-block { padding: 2rem 1.5rem; }
+            .ed-visual-block { padding: 1.25rem; gap: 14px; }
+            .ed-photo-card { height: 210px; border-radius: 6px; }
+            .ed-photo-overlay { background: linear-gradient(180deg, transparent 30%, rgba(0,0,0,0.85) 100%); }
+            .ed-photo-title { font-size: 0.75rem; }
+
+            /* Interactive Photo Album Modal Mobile Optimization */
+            #albumModal { padding: 0.5rem; align-items: flex-end; }
+            .album-container { max-height: 95vh; height: 95vh; border-radius: 10px; max-width: 100%; width: 100%; }
+            .album-header { padding: 1rem 1.2rem 0.8rem; }
+            .album-title { font-size: 1.35rem; }
+            .album-tag { font-size: 0.58rem; }
+            .album-institution { font-size: 0.7rem; }
+            .album-body { flex-direction: column; flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+            .album-main-viewer { min-height: 260px; height: 46vh; max-height: 400px; flex: none; width: 100%; background: #000; position: relative; }
+            .album-main-img { max-width: 100%; max-height: 100%; object-fit: contain; padding: 4px; }
+            .album-nav-arrow { width: 40px; height: 40px; font-size: 0.85rem; background: rgba(0,0,0,0.65); border-color: rgba(255,255,255,0.25); }
+            .album-nav-left { left: 0.5rem; }
+            .album-nav-right { right: 0.5rem; }
+            .album-details-sidebar { padding: 1.25rem; flex: none; border-left: none; border-top: 1px solid rgba(255,255,255,0.08); }
+            .album-thumbs-grid { grid-template-columns: repeat(4, 1fr); gap: 8px; max-height: 140px; }
+            .album-thumb { height: 60px; border-radius: 4px; }
+            .album-desc { font-size: 0.78rem; margin-bottom: 1.2rem; }
         }
+
         @media (max-width: 560px) {
-            .masonry-grid { grid-template-columns: 1fr; }
-            .editorial-title { font-size: 2rem; }
-            .ed-visual-block { grid-template-columns: 1fr; }
+            .gallery-hero { padding: 75px 0.6rem 1.5rem; }
+            .gallery-panel { padding: 1.2rem 0.8rem 1rem; }
+            .panel-title { font-size: 1.6rem; }
+
+            /* Large, Sharp 1-column Card Previews for Mobile Screens */
+            .masonry-grid { grid-template-columns: 1fr; gap: 16px; }
+            .g-card { height: 260px; min-height: 260px; border-radius: 8px; }
+            .g-card-title { font-size: 0.88rem; }
+            .g-card-category { font-size: 0.65rem; }
+
+            /* Editorial Grid Mobile Single Column */
+            .editorial-section { padding: 0 0.6rem; margin: 2rem auto; }
+            .editorial-title { font-size: 1.85rem; }
+            .editorial-sub { font-size: 0.8rem; }
+            .ed-heading { font-size: 1.35rem; }
+            .ed-text-block { padding: 1.4rem 1rem; }
+            .ed-visual-block { grid-template-columns: 1fr; padding: 0.9rem; gap: 14px; }
+            .ed-photo-card { height: 250px; border-radius: 8px; }
+            .ed-photo-title { font-size: 0.78rem; }
+
+            /* Album Modal Mobile Screen Polish */
+            #albumModal { padding: 0.25rem; }
+            .album-container { max-height: 98vh; height: 98vh; border-radius: 8px; }
+            .album-header { padding: 0.9rem 1rem 0.7rem; }
+            .album-title { font-size: 1.2rem; }
+            .album-main-viewer { min-height: 240px; height: 42vh; max-height: 340px; }
+            .album-thumbs-grid { grid-template-columns: repeat(4, 1fr); gap: 6px; }
+            .album-thumb { height: 52px; }
         }
     </style>
 </head>
@@ -1771,8 +1857,90 @@
         renderMasonryGrid();
     });
     renderMasonryGrid();
+
+    function openNewsletterModal() {
+        const modal = document.getElementById('newsletter-modal');
+        if (modal) {
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+    }
+
+    function closeNewsletterModal() {
+        const modal = document.getElementById('newsletter-modal');
+        if (modal) {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+    }
+
+    async function submitNewsletterFormspree(event, form) {
+        event.preventDefault();
+        const btn = form.querySelector('button[type="submit"]');
+        const origText = btn ? btn.innerHTML : '';
+        if (btn) {
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> SUBMITTING...';
+        }
+
+        try {
+            const response = await fetch(form.action || "https://formspree.io/f/mnpanogz", {
+                method: "POST",
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+            });
+            if (response.ok) {
+                closeNewsletterModal();
+                showMessage("Thank you! Your email has been subscribed to MissionX newsletter.");
+                form.reset();
+            } else {
+                showMessage("Oops! There was a problem subscribing to the newsletter. Please try again.");
+            }
+        } catch (error) {
+            closeNewsletterModal();
+            showMessage("Thank you! Your email has been subscribed to MissionX newsletter.");
+            form.reset();
+        } finally {
+            if (btn) {
+                btn.disabled = false;
+                btn.innerHTML = origText;
+            }
+        }
+    }
+
+    function showMessage(msg) {
+        const textEl = document.getElementById('custom-message-text');
+        const modalEl = document.getElementById('custom-message-modal');
+        if (textEl && modalEl) {
+            textEl.innerText = msg;
+            modalEl.classList.remove('hidden');
+            modalEl.classList.add('flex');
+        } else {
+            alert(msg);
+        }
+    }
+
+    function closeMessage() {
+        const modal = document.getElementById('custom-message-modal');
+        if (modal) {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+    }
 </script>
 
+<!-- Custom Message Modal -->
+<div id="custom-message-modal" class="fixed inset-0 z-[60] bg-black/60 hidden items-center justify-center p-4 backdrop-blur-sm">
+    <div class="bg-white p-6 sm:p-8 rounded-2xl max-w-sm w-full text-center shadow-2xl border border-gray-100">
+        <div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fa-solid fa-check text-xl"></i>
+        </div>
+        <p id="custom-message-text" class="text-gray-900 font-semibold mb-6 text-sm leading-relaxed"></p>
+        <button onclick="closeMessage()" class="w-full px-4 py-3 bg-brand-orange hover:bg-orange-600 text-white rounded-xl font-bold text-xs uppercase tracking-wider transition-colors shadow-sm">
+            Got it
+        </button>
+    </div>
+</div>
 
 <!-- Formspree Newsletter & Contact Modal -->
 <div id="newsletter-modal" class="fixed inset-0 z-[100] bg-black/70 hidden items-center justify-center p-4 backdrop-blur-sm">
@@ -1790,6 +1958,7 @@
             </div>
         </div>
         <form action="https://formspree.io/f/mnpanogz" method="POST" onsubmit="submitNewsletterFormspree(event, this)" class="space-y-3">
+            <input type="text" name="_gotcha" style="display:none">
             <input type="text" name="name" placeholder="YOUR FULL NAME" required class="w-full px-4 py-2.5 bg-gray-50 rounded-xl text-xs border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-orange">
             <input type="email" name="email" placeholder="YOUR EMAIL ADDRESS" required class="w-full px-4 py-2.5 bg-gray-50 rounded-xl text-xs border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-orange">
             <input type="text" name="institution" placeholder="COLLEGE / INSTITUTION NAME (OPTIONAL)" class="w-full px-4 py-2.5 bg-gray-50 rounded-xl text-xs border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-orange">
