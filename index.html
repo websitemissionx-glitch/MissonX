@@ -74,7 +74,7 @@
             perspective: 1000px;
             cursor: pointer;
             overflow: hidden;
-            border-radius: 1rem;
+            border-radius: 1.25rem;
         }
 
         .flip-card-inner {
@@ -85,7 +85,8 @@
             transform-style: preserve-3d;
         }
 
-        .flip-card:hover .flip-card-inner {
+        .flip-card:hover .flip-card-inner,
+        .flip-card.flipped .flip-card-inner {
             transform: rotateY(180deg);
         }
 
@@ -97,7 +98,7 @@
             height: 100%;
             -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
-            border-radius: 1rem;
+            border-radius: 1.25rem;
         }
 
         .flip-card-front {
@@ -112,54 +113,50 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 1rem 1.25rem;
+            padding: 1.5rem 1.25rem;
             text-align: center;
             color: #fff;
             overflow: hidden;
         }
 
         .flip-card-back .back-icon {
-            width: 42px;
-            height: 42px;
-            min-height: 42px;
+            width: 50px;
+            height: 50px;
+            min-height: 50px;
             background: rgba(255, 255, 255, 0.2);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            font-size: 1.25rem;
             backdrop-filter: blur(4px);
             border: 2px solid rgba(255, 255, 255, 0.35);
         }
 
         .flip-card-back h4 {
-            font-size: 0.92rem;
+            font-size: 1.15rem;
             font-weight: 800;
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.5rem;
             letter-spacing: 0.02em;
             line-height: 1.25;
         }
 
         .flip-card-back p {
-            font-size: 0.7rem;
-            line-height: 1.5;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 0.5rem;
-            display: -webkit-box;
-            -webkit-line-clamp: 4;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
+            font-size: 0.825rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 0.85rem;
         }
 
         .flip-card-back .back-tag {
-            font-size: 0.62rem;
+            font-size: 0.65rem;
             font-weight: 700;
             letter-spacing: 0.12em;
             text-transform: uppercase;
             background: rgba(255, 255, 255, 0.25);
             border: 1px solid rgba(255, 255, 255, 0.4);
-            padding: 0.25rem 0.8rem;
+            padding: 0.3rem 0.9rem;
             border-radius: 9999px;
             white-space: nowrap;
         }
@@ -324,46 +321,44 @@
         <!-- Programs Designed for Building Problem Solvers Grid -->
         <section class="py-16 bg-black text-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
                     <!-- Yellow Banner Card -->
-                    <div class="bg-brand-orange text-black p-8 rounded-2xl flex flex-col justify-center font-bold">
-                        <span class="text-sm uppercase tracking-wider text-black/80 font-semibold mb-1">Programs
+                    <div class="bg-brand-orange text-black p-8 rounded-2xl flex flex-col justify-center font-bold h-80 sm:h-96 shadow-lg">
+                        <span class="text-sm uppercase tracking-wider text-black/80 font-semibold mb-2">Programs
                             Designed for</span>
-                        <h3 class="text-3xl font-extrabold leading-tight">Building Problem Solvers</h3>
+                        <h3 class="text-3xl sm:text-4xl font-extrabold leading-tight">Building Problem Solvers</h3>
                     </div>
 
-                    <!-- Flip Card 1: Hardware Tinkering -->
-                    <div class="flip-card rounded-2xl h-64">
+                    <!-- Flip Card 1: Region x -->
+                    <div class="flip-card rounded-2xl h-80 sm:h-96 shadow-xl">
                         <div class="flip-card-inner">
                             <div class="flip-card-front">
-                                <img src="images/gallery-images/IMG_5914.JPG" alt="Hardware tinkering"
+                                <img src="images/Home page card images/first image.jpg" alt="Region x - Farmers Interview"
                                     class="w-full h-full object-cover">
                                 <div
-                                    class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-4">
+                                    class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end p-5">
                                     <span
-                                        class="text-white text-xs font-bold uppercase tracking-wider opacity-80">Hardware
-                                        Tinkering &rarr;</span>
+                                        class="text-white text-sm font-extrabold uppercase tracking-wider">Region x &rarr;</span>
                                 </div>
                             </div>
                             <div class="flip-card-back">
-                                <div class="back-icon"><i class="fa-solid fa-microchip"></i></div>
-                                <h4>Hardware & Prototyping</h4>
-                                <p>Students get hands-on experience building real electronic prototypes, from circuit
-                                    design to 3D printing &mdash; bridging theory with maker culture.</p>
-                                <span class="back-tag">Makerspace Program</span>
+                                <div class="back-icon"><i class="fa-solid fa-wheat-awn"></i></div>
+                                <h4>Region x</h4>
+                                <p>Students interviewing farmers to understand crop yield losses, gathering real-world insights, identifying challenges, and exploring sustainable agricultural solutions</p>
+                                <span class="back-tag">Field Research</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- Flip Card 2: Group Collaboration -->
-                    <div class="flip-card rounded-2xl h-64">
+                    <div class="flip-card rounded-2xl h-80 sm:h-96 shadow-xl">
                         <div class="flip-card-inner">
                             <div class="flip-card-front">
                                 <img src="images/gallery-images/rajiv-college/IMG_7660.JPG" alt="Group collaboration"
                                     class="w-full h-full object-cover">
                                 <div
-                                    class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-4">
-                                    <span class="text-white text-xs font-bold uppercase tracking-wider opacity-80">Team
+                                    class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end p-5">
+                                    <span class="text-white text-sm font-extrabold uppercase tracking-wider">Team
                                         Collaboration &rarr;</span>
                                 </div>
                             </div>
@@ -378,14 +373,14 @@
                     </div>
 
                     <!-- Flip Card 3: Students Pitching -->
-                    <div class="flip-card rounded-2xl h-64">
+                    <div class="flip-card rounded-2xl h-80 sm:h-96 shadow-xl">
                         <div class="flip-card-inner">
                             <div class="flip-card-front">
                                 <img src="images/gallery-images/20240302081120_IMG_8842.JPG" alt="Students pitching"
                                     class="w-full h-full object-cover">
                                 <div
-                                    class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-4">
-                                    <span class="text-white text-xs font-bold uppercase tracking-wider opacity-80">Pitch
+                                    class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end p-5">
+                                    <span class="text-white text-sm font-extrabold uppercase tracking-wider">Pitch
                                         & Present &rarr;</span>
                                 </div>
                             </div>
@@ -914,6 +909,15 @@
                 modal.classList.remove('flex');
             }
         }
+
+        // Enable touch/click tap to toggle flip on flip-cards
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.flip-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    card.classList.toggle('flipped');
+                });
+            });
+        });
     </script>
 
     <!-- Formspree Newsletter & Contact Modal -->
