@@ -75,6 +75,7 @@
             cursor: pointer;
             overflow: hidden;
             border-radius: 1.25rem;
+            width: 100%;
         }
 
         .flip-card-inner {
@@ -113,29 +114,29 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 1.5rem 1.25rem;
+            padding: 1.5rem 2rem;
             text-align: center;
             color: #fff;
             overflow: hidden;
         }
 
         .flip-card-back .back-icon {
-            width: 50px;
-            height: 50px;
-            min-height: 50px;
+            width: 52px;
+            height: 52px;
+            min-height: 52px;
             background: rgba(255, 255, 255, 0.2);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 0.75rem;
-            font-size: 1.25rem;
+            font-size: 1.35rem;
             backdrop-filter: blur(4px);
             border: 2px solid rgba(255, 255, 255, 0.35);
         }
 
         .flip-card-back h4 {
-            font-size: 1.15rem;
+            font-size: 1.25rem;
             font-weight: 800;
             margin-bottom: 0.5rem;
             letter-spacing: 0.02em;
@@ -143,20 +144,21 @@
         }
 
         .flip-card-back p {
-            font-size: 0.825rem;
+            font-size: 0.9rem;
             line-height: 1.6;
             color: rgba(255, 255, 255, 0.95);
             margin-bottom: 0.85rem;
+            max-width: 95%;
         }
 
         .flip-card-back .back-tag {
-            font-size: 0.65rem;
+            font-size: 0.7rem;
             font-weight: 700;
             letter-spacing: 0.12em;
             text-transform: uppercase;
             background: rgba(255, 255, 255, 0.25);
             border: 1px solid rgba(255, 255, 255, 0.4);
-            padding: 0.3rem 0.9rem;
+            padding: 0.35rem 1rem;
             border-radius: 9999px;
             white-space: nowrap;
         }
@@ -321,24 +323,25 @@
         <!-- Programs Designed for Building Problem Solvers Grid -->
         <section class="py-16 bg-black text-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                    <!-- Yellow Banner Card -->
-                    <div class="bg-brand-orange text-black p-8 rounded-2xl flex flex-col justify-center font-bold h-80 sm:h-96 shadow-lg">
-                        <span class="text-sm uppercase tracking-wider text-black/80 font-semibold mb-2">Programs
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                    <!-- Landscape Banner Card -->
+                    <div class="bg-brand-orange text-black p-8 sm:p-10 rounded-2xl flex flex-col justify-center font-bold aspect-[16/9] shadow-lg relative overflow-hidden group">
+                        <div class="absolute -right-8 -bottom-8 w-40 h-40 bg-black/5 rounded-full pointer-events-none"></div>
+                        <span class="text-sm sm:text-base uppercase tracking-widest text-black/80 font-bold mb-3">Programs
                             Designed for</span>
-                        <h3 class="text-3xl sm:text-4xl font-extrabold leading-tight">Building Problem Solvers</h3>
+                        <h3 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">Building Problem Solvers</h3>
                     </div>
 
-                    <!-- Flip Card 1: Region x -->
-                    <div class="flip-card rounded-2xl h-80 sm:h-96 shadow-xl">
+                    <!-- Flip Card 1: Region x (Landscape) -->
+                    <div class="flip-card rounded-2xl aspect-[16/9] shadow-xl">
                         <div class="flip-card-inner">
                             <div class="flip-card-front">
                                 <img src="images/Home page card images/first image.jpg" alt="Region x - Farmers Interview"
                                     class="w-full h-full object-cover">
                                 <div
-                                    class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end p-5">
+                                    class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-6">
                                     <span
-                                        class="text-white text-sm font-extrabold uppercase tracking-wider">Region x &rarr;</span>
+                                        class="text-white text-base sm:text-lg font-extrabold uppercase tracking-wider">Region x &rarr;</span>
                                 </div>
                             </div>
                             <div class="flip-card-back">
@@ -350,15 +353,15 @@
                         </div>
                     </div>
 
-                    <!-- Flip Card 2: Group Collaboration -->
-                    <div class="flip-card rounded-2xl h-80 sm:h-96 shadow-xl">
+                    <!-- Flip Card 2: Group Collaboration (Landscape) -->
+                    <div class="flip-card rounded-2xl aspect-[16/9] shadow-xl">
                         <div class="flip-card-inner">
                             <div class="flip-card-front">
                                 <img src="images/gallery-images/rajiv-college/IMG_7660.JPG" alt="Group collaboration"
                                     class="w-full h-full object-cover">
                                 <div
-                                    class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end p-5">
-                                    <span class="text-white text-sm font-extrabold uppercase tracking-wider">Team
+                                    class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-6">
+                                    <span class="text-white text-base sm:text-lg font-extrabold uppercase tracking-wider">Team
                                         Collaboration &rarr;</span>
                                 </div>
                             </div>
@@ -372,15 +375,15 @@
                         </div>
                     </div>
 
-                    <!-- Flip Card 3: Students Pitching -->
-                    <div class="flip-card rounded-2xl h-80 sm:h-96 shadow-xl">
+                    <!-- Flip Card 3: Students Pitching (Landscape) -->
+                    <div class="flip-card rounded-2xl aspect-[16/9] shadow-xl">
                         <div class="flip-card-inner">
                             <div class="flip-card-front">
                                 <img src="images/gallery-images/20240302081120_IMG_8842.JPG" alt="Students pitching"
                                     class="w-full h-full object-cover">
                                 <div
-                                    class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end p-5">
-                                    <span class="text-white text-sm font-extrabold uppercase tracking-wider">Pitch
+                                    class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-6">
+                                    <span class="text-white text-base sm:text-lg font-extrabold uppercase tracking-wider">Pitch
                                         & Present &rarr;</span>
                                 </div>
                             </div>
@@ -388,9 +391,7 @@
                                 <div class="back-icon"><i class="fa-solid fa-lightbulb"></i></div>
                                 <h4>Pitch & Entrepreneurship</h4>
                                 <p>From idea to investor pitch &mdash; students develop business acumen, storytelling
-                                    skills,
-                                    and the confidence to present solutions to industry mentors and community leaders.
-                                </p>
+                                    skills, and the confidence to present solutions to industry mentors and community leaders.</p>
                                 <span class="back-tag">Innovation Lab</span>
                             </div>
                         </div>
