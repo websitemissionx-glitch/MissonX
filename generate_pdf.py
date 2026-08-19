@@ -31,7 +31,7 @@ class NumberedCanvas(canvas.Canvas):
         
         # Header (Pages 2 & 3)
         if self._pageNumber > 1:
-            self.drawString(36, 756, "MISSIONX WEBSITE — UI/UX & STRATEGIC AUDIENCE REACH")
+            self.drawString(36, 756, "IDEONIX WEBSITE — UI/UX & STRATEGIC AUDIENCE REACH")
             self.drawRightString(576, 756, "EXECUTIVE BRIEF")
             self.setStrokeColor(colors.HexColor("#E5E7EB"))
             self.setLineWidth(0.75)
@@ -43,12 +43,12 @@ class NumberedCanvas(canvas.Canvas):
         self.line(36, 42, 576, 42)
         
         self.setFont("Helvetica", 8)
-        self.drawString(36, 28, "MissionX LLP — Innovation for Community")
+        self.drawString(36, 28, "Ideonix — Innovation for Community")
         page_str = f"Page {self._pageNumber} of {page_count}"
         self.drawRightString(576, 28, page_str)
         self.restoreState()
 
-def build_pdf(filename="MissionX_Website_Design_and_UX.pdf"):
+def build_pdf(filename="Ideonix_Website_Design_and_UX.pdf"):
     doc = SimpleDocTemplate(
         filename,
         pagesize=letter,
@@ -136,8 +136,8 @@ def build_pdf(filename="MissionX_Website_Design_and_UX.pdf"):
     # =========================================================================
     # PAGE 1: Strategic Purpose, Design Theme & Brand Perception
     # =========================================================================
-    story.append(Paragraph("MISSIONX DIGITAL ECOSYSTEM", style_subtitle))
-    story.append(Paragraph("How UI/UX & Visual Theme Amplify MissionX's Reach", style_doc_title))
+    story.append(Paragraph("IDEONIX DIGITAL ECOSYSTEM", style_subtitle))
+    story.append(Paragraph("How UI/UX & Visual Theme Amplify Ideonix's Reach", style_doc_title))
     
     meta_data = [
         [
@@ -161,7 +161,7 @@ def build_pdf(filename="MissionX_Website_Design_and_UX.pdf"):
 
     story.append(Paragraph("1. Executive Summary & Purpose", style_h1))
     story.append(Paragraph(
-        "MissionX's core mission is to transform higher education by developing <b>Compassionate, Creative Problem Solvers</b> "
+        "Ideonix's core mission is to transform higher education by developing <b>Compassionate, Creative Problem Solvers</b> "
         "through community-centric innovation. To achieve this at scale, the organization requires a digital gateway that instantly "
         "communicates its vision, earns trust from institutional stakeholders, and engages diverse audiences.",
         style_body
@@ -169,7 +169,7 @@ def build_pdf(filename="MissionX_Website_Design_and_UX.pdf"):
     story.append(Paragraph(
         "The website's design, user interface (UI), and user experience (UX) serve as a strategic communication multiplier. "
         "By translating complex academic methodologies into intuitive, visually compelling experiences, the platform allows "
-        "MissionX to articulate its value proposition clearly, inspire prospective partners, and expand its regional impact.",
+        "Ideonix to articulate its value proposition clearly, inspire prospective partners, and expand its regional impact.",
         style_body
     ))
 
@@ -209,21 +209,21 @@ def build_pdf(filename="MissionX_Website_Design_and_UX.pdf"):
     story.append(PageBreak())
 
     # =========================================================================
-    # PAGE 2: How UI/UX Architecture Contributes to MissionX's Work
+    # PAGE 2: How UI/UX Architecture Contributes to Ideonix's Work
     # =========================================================================
     story.append(Paragraph("4. Translating Complex Work into Interactive UX", style_h1))
     story.append(Paragraph(
         "Abstract educational concepts can be difficult to convey through text alone. The website uses specialized UX components "
-        "to make MissionX's methodology tangible, understandable, and memorable:",
+        "to make Ideonix's methodology tangible, understandable, and memorable:",
         style_body
     ))
 
     ux_contrib_data = [
-        [Paragraph("<b>MissionX Work Area</b>", style_body), Paragraph("<b>Interactive UI/UX Solution</b>", style_body), Paragraph("<b>How It Contributes to Work & Engagement</b>", style_body)],
-        [Paragraph("<b>Community Innovation Model</b>", style_body), Paragraph("Interactive Venn Diagram (Community + Technocrats + Mentors)", style_body), Paragraph("Visually demonstrates how MissionX brings diverse stakeholders together to solve regional problems, instantly clarifying the model.", style_body)],
+        [Paragraph("<b>Ideonix Work Area</b>", style_body), Paragraph("<b>Interactive UI/UX Solution</b>", style_body), Paragraph("<b>How It Contributes to Work & Engagement</b>", style_body)],
+        [Paragraph("<b>Community Innovation Model</b>", style_body), Paragraph("Interactive Venn Diagram (Community + Technocrats + Mentors)", style_body), Paragraph("Visually demonstrates how Ideonix brings diverse stakeholders together to solve regional problems, instantly clarifying the model.", style_body)],
         [Paragraph("<b>Design Thinking Methodology</b>", style_body), Paragraph("5-Stage Process Visualizer (Empathize to Test)", style_body), Paragraph("Breaks down the 12-week IDT framework into simple, step-by-step visual milestones that faculty can evaluate effortlessly.", style_body)],
         [Paragraph("<b>Hardware & Prototyping</b>", style_body), Paragraph("Interactive 3D Hover Cards & Equipment Grids", style_body), Paragraph("Encourages active exploration; visitors flip cards to see circuit prototyping, 3D printing, and robotics lab capabilities.", style_body)],
-        [Paragraph("<b>InPulse Digital Platform</b>", style_body), Paragraph("Live-Style Student Dashboard & Skill Tracker Widget", style_body), Paragraph("Demonstrates how the software tracks student CGPA, skills, and projects, proving MissionX's technology capability.", style_body)],
+        [Paragraph("<b>InPulse Digital Platform</b>", style_body), Paragraph("Live-Style Student Dashboard & Skill Tracker Widget", style_body), Paragraph("Demonstrates how the software tracks student CGPA, skills, and projects, proving Ideonix's technology capability.", style_body)],
         [Paragraph("<b>Program Inquiries</b>", style_body), Paragraph("Interactive FAQ Accordion", style_body), Paragraph("Proactively answers institutional onboarding questions, reducing sales friction and accelerating partner decision-making.", style_body)]
     ]
     t_ux_contrib = Table(ux_contrib_data, colWidths=[120, 160, 260])
@@ -250,10 +250,10 @@ def build_pdf(filename="MissionX_Website_Design_and_UX.pdf"):
     callout_data = [[
         Paragraph(
             "<b>How the Article Reader Expands Reach & Thought Leadership:</b><br/>"
-            "• <b>Distraction-Free Immersion:</b> Clicking any news item, blog, or report opens a clean full-page editorial view, allowing visitors to deeply engage with MissionX's philosophy.<br/>"
-            "• <b>Sticky Navigation & Share Triggers:</b> Features an instant '<i>← Back to Resources</i>' return bar alongside social sharing links (Twitter, LinkedIn) so readers can easily broadcast MissionX articles.<br/>"
+            "• <b>Distraction-Free Immersion:</b> Clicking any news item, blog, or report opens a clean full-page editorial view, allowing visitors to deeply engage with Ideonix's philosophy.<br/>"
+            "• <b>Sticky Navigation & Share Triggers:</b> Features an instant '<i>← Back to Resources</i>' return bar alongside social sharing links (Twitter, LinkedIn) so readers can easily broadcast Ideonix articles.<br/>"
             "• <b>Complete Storytelling:</b> Pre-loaded with comprehensive articles on civic innovation (Solve4DC), student mindset growth, NASSCOM achievements, and Annual Impact Reports.<br/>"
-            "• <b>Establishes Policy & Industry Authority:</b> Positions MissionX not just as a service provider, but as a thought leader shaping the future of Indian engineering education.",
+            "• <b>Establishes Policy & Industry Authority:</b> Positions Ideonix not just as a service provider, but as a thought leader shaping the future of Indian engineering education.",
             style_callout
         )
     ]]
@@ -306,9 +306,9 @@ def build_pdf(filename="MissionX_Website_Design_and_UX.pdf"):
     story.append(Paragraph("• <b>Polished User Feedback:</b> Replaced harsh browser popups with elegant, branded success dialogs when users request brochures or submit forms, leaving a positive impression.", style_bullet))
     story.append(Paragraph("• <b>Direct Communication Channels:</b> Direct contact email, office campus address (Sahyadri Campus, Mangaluru), phone numbers, and social links are visible on every major page footer.", style_bullet))
 
-    story.append(Paragraph("8. Summary: How the Website Propels MissionX Forward", style_h1))
+    story.append(Paragraph("8. Summary: How the Website Propels Ideonix Forward", style_h1))
     story.append(Paragraph(
-        "By combining a modern aesthetic with thoughtful user experience design, the MissionX website accomplishes three strategic objectives:",
+        "By combining a modern aesthetic with thoughtful user experience design, the Ideonix website accomplishes three strategic objectives:",
         style_body
     ))
     story.append(Paragraph("1. <b>Articulates Mission & Vision:</b> Turns abstract educational ideas into tangible, visual learning journeys that resonate with college leadership.", style_bullet))
@@ -318,8 +318,8 @@ def build_pdf(filename="MissionX_Website_Design_and_UX.pdf"):
 
     summary_data = [[
         Paragraph(
-            "<b>Strategic Conclusion:</b> The MissionX website's UI/UX is not merely decorative — it is a functional "
-            "growth driver that amplifies MissionX's work, enhances brand perception, and enables the organization "
+            "<b>Strategic Conclusion:</b> The Ideonix website's UI/UX is not merely decorative — it is a functional "
+            "growth driver that amplifies Ideonix's work, enhances brand perception, and enables the organization "
             "to reach and inspire a significantly wider audience.",
             style_callout
         )
