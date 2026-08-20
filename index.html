@@ -73,20 +73,27 @@
         .flip-card {
             perspective: 1000px;
             cursor: pointer;
-            overflow: hidden;
             border-radius: 1.25rem;
             width: 100%;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .flip-card-inner {
             position: relative;
             width: 100%;
             height: 100%;
-            transition: transform 0.75s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
             transform-style: preserve-3d;
+            will-change: transform;
         }
 
-        .flip-card:hover .flip-card-inner,
+        @media (hover: hover) {
+            .flip-card:hover .flip-card-inner {
+                transform: rotateY(180deg);
+            }
+        }
+
         .flip-card.flipped .flip-card-inner {
             transform: rotateY(180deg);
         }
@@ -100,11 +107,11 @@
             -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
             border-radius: 1.25rem;
+            overflow: hidden;
         }
 
         .flip-card-front {
             background: #1f2937;
-            overflow: hidden;
         }
 
         .flip-card-back {
@@ -114,10 +121,11 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 1.25rem 1.5rem;
+            padding: 1.25rem 1.25rem;
             text-align: center;
             color: #fff;
-            overflow: hidden;
+            overflow-y: auto;
+            scrollbar-width: thin;
         }
 
         .flip-card-back .back-icon {
@@ -136,7 +144,7 @@
         }
 
         .flip-card-back h4 {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             font-weight: 800;
             margin-bottom: 0.35rem;
             letter-spacing: 0.02em;
@@ -144,23 +152,49 @@
         }
 
         .flip-card-back p {
-            font-size: 0.8rem;
-            line-height: 1.48;
+            font-size: 0.78rem;
+            line-height: 1.45;
             color: rgba(255, 255, 255, 0.95);
             margin-bottom: 0.65rem;
             max-width: 98%;
         }
 
         .flip-card-back .back-tag {
-            font-size: 0.7rem;
+            font-size: 0.68rem;
             font-weight: 700;
-            letter-spacing: 0.12em;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
             background: rgba(255, 255, 255, 0.25);
             border: 1px solid rgba(255, 255, 255, 0.4);
-            padding: 0.35rem 1rem;
+            padding: 0.3rem 0.85rem;
             border-radius: 9999px;
             white-space: nowrap;
+        }
+
+        @media (max-width: 639px) {
+            .flip-card-back {
+                padding: 1rem 1rem;
+            }
+            .flip-card-back .back-icon {
+                width: 36px;
+                height: 36px;
+                min-height: 36px;
+                margin-bottom: 0.25rem;
+                font-size: 1rem;
+            }
+            .flip-card-back h4 {
+                font-size: 1rem;
+                margin-bottom: 0.25rem;
+            }
+            .flip-card-back p {
+                font-size: 0.73rem;
+                line-height: 1.38;
+                margin-bottom: 0.5rem;
+            }
+            .flip-card-back .back-tag {
+                font-size: 0.62rem;
+                padding: 0.25rem 0.75rem;
+            }
         }
     </style>
 </head>
@@ -257,27 +291,27 @@
             <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
                 <div class="max-w-3xl space-y-6">
                     <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight text-white">
-                        Empowering young minds to <br />
-                        create with compassion and <br />
+                        Empowering young minds to <br class="hidden sm:inline" />
+                        create with compassion and <br class="hidden sm:inline" />
                         solve with purpose.
                     </h1>
-                    <p class="text-lg text-gray-200 font-light">
+                    <p class="text-base sm:text-lg text-gray-200 font-light">
                         We empower institutions to develop creative thinkers and purpose-driven problem solvers.
                     </p>
 
                     <!-- Key Metrics Grid -->
-                    <div class="grid grid-cols-3 gap-6 pt-6 border-t border-gray-700/60 max-w-xl">
+                    <div class="grid grid-cols-3 gap-2 sm:gap-6 pt-6 border-t border-gray-700/60 max-w-xl">
                         <div>
-                            <span class="text-3xl sm:text-4xl font-extrabold text-brand-gold block">20+</span>
-                            <span class="text-xs sm:text-sm text-gray-300">engineering institutions</span>
+                            <span class="text-2xl sm:text-4xl font-extrabold text-brand-gold block">20+</span>
+                            <span class="text-[11px] sm:text-sm text-gray-300 leading-tight block">engineering institutions</span>
                         </div>
                         <div>
-                            <span class="text-3xl sm:text-4xl font-extrabold text-brand-gold block">10,000+</span>
-                            <span class="text-xs sm:text-sm text-gray-300">students nurtured</span>
+                            <span class="text-2xl sm:text-4xl font-extrabold text-brand-gold block">10,000+</span>
+                            <span class="text-[11px] sm:text-sm text-gray-300 leading-tight block">students nurtured</span>
                         </div>
                         <div>
-                            <span class="text-3xl sm:text-4xl font-extrabold text-brand-gold block">50+</span>
-                            <span class="text-xs sm:text-sm text-gray-300">solutions built</span>
+                            <span class="text-2xl sm:text-4xl font-extrabold text-brand-gold block">50+</span>
+                            <span class="text-[11px] sm:text-sm text-gray-300 leading-tight block">solutions built</span>
                         </div>
                     </div>
                     <p class="text-xs text-gray-400 italic">All this was possible due to our model.</p>
@@ -325,69 +359,71 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
                     <!-- Landscape Banner Card -->
-                    <div class="bg-brand-orange text-black p-8 sm:p-10 rounded-2xl flex flex-col justify-center font-bold aspect-[16/9] shadow-lg relative overflow-hidden group">
+                    <div class="bg-brand-orange text-black p-6 sm:p-10 rounded-2xl flex flex-col justify-center font-bold min-h-[180px] sm:min-h-0 sm:aspect-[16/9] shadow-lg relative overflow-hidden group">
                         <div class="absolute -right-8 -bottom-8 w-40 h-40 bg-black/5 rounded-full pointer-events-none"></div>
-                        <span class="text-sm sm:text-base uppercase tracking-widest text-black/80 font-bold mb-3">Programs
+                        <span class="text-xs sm:text-base uppercase tracking-widest text-black/80 font-bold mb-2 sm:mb-3">Programs
                             Designed for</span>
-                        <h3 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">Building Problem Solvers</h3>
+                        <h3 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">Building Problem Solvers</h3>
                     </div>
 
-                    <!-- Flip Card 1: Region x (Landscape) -->
-                    <div class="flip-card rounded-2xl aspect-[16/9] shadow-xl">
+                    <!-- Flip Card 1: Region x -->
+                    <div class="flip-card rounded-2xl min-h-[320px] sm:min-h-0 sm:aspect-[16/9] shadow-xl">
                         <div class="flip-card-inner">
                             <div class="flip-card-front">
                                 <img src="images/Home page card images/first image.jpg" alt="Region x - Farmers Interview"
                                     class="w-full h-full object-cover">
                                 <div
-                                    class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-6">
-                                    <span
-                                        class="text-white text-base sm:text-lg font-extrabold uppercase tracking-wider">Region x &rarr;</span>
+                                    class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent flex items-end justify-between p-4 sm:p-6">
+                                    <span class="text-white text-base sm:text-lg font-extrabold uppercase tracking-wider">Region x &rarr;</span>
+                                    <span class="text-[10px] sm:text-xs text-brand-orange bg-black/70 px-2.5 py-1 rounded-full border border-orange-500/40 backdrop-blur">Tap to flip <i class="fa-solid fa-rotate text-[9px] ml-1"></i></span>
                                 </div>
                             </div>
                             <div class="flip-card-back">
                                 <div class="back-icon"><i class="fa-solid fa-wheat-awn"></i></div>
                                 <h4>Region x</h4>
-                                <p>Students interviewing farmers to understand crop yield losses, gathering real-world insights, identifying challenges, and exploring sustainable agricultural solutions</p>
+                                <p>Students interviewing farmers to understand crop yield losses, gathering real-world insights, identifying challenges, and exploring sustainable agricultural solutions.</p>
                                 <span class="back-tag">Field Research</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Flip Card 2: NxGen Club (Landscape) -->
-                    <div class="flip-card rounded-2xl aspect-[16/9] shadow-xl">
+                    <!-- Flip Card 2: NxGen Club -->
+                    <div class="flip-card rounded-2xl min-h-[320px] sm:min-h-0 sm:aspect-[16/9] shadow-xl">
                         <div class="flip-card-inner">
                             <div class="flip-card-front">
                                 <img src="images/Home page card images/second image.jpg" alt="NxGen Club"
                                     class="w-full h-full object-cover">
                                 <div
-                                    class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-6">
+                                    class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent flex items-end justify-between p-4 sm:p-6">
                                     <span class="text-white text-base sm:text-lg font-extrabold uppercase tracking-wider">NxGen Club &rarr;</span>
+                                    <span class="text-[10px] sm:text-xs text-brand-orange bg-black/70 px-2.5 py-1 rounded-full border border-orange-500/40 backdrop-blur">Tap to flip <i class="fa-solid fa-rotate text-[9px] ml-1"></i></span>
                                 </div>
                             </div>
                             <div class="flip-card-back">
                                 <div class="back-icon"><i class="fa-solid fa-users-gear"></i></div>
                                 <h4>NxGen Club</h4>
-                                <p>NxGen Club is a student-driven platform focused on practical learning, innovation, and skill development beyond the classroom. Through hands-on activities, technical projects, and regular workshops, students explore real-world concepts, strengthen their technical abilities, and gain practical experience that complements their theoretical knowledge.</p>
+                                <p>A student-driven platform focused on practical learning, innovation, and skill development beyond the classroom through hands-on technical projects and workshops.</p>
                                 <span class="back-tag">Skill Development</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Flip Card 3: Robomania - Team Quantum Shooters (Landscape) -->
-                    <div class="flip-card rounded-2xl aspect-[16/9] shadow-xl">
+                    <!-- Flip Card 3: Robomania -->
+                    <div class="flip-card rounded-2xl min-h-[320px] sm:min-h-0 sm:aspect-[16/9] shadow-xl">
                         <div class="flip-card-inner">
                             <div class="flip-card-front">
                                 <img src="images/Home page card images/third image.png" alt="Robomania - Team Quantum Shooters"
                                     class="w-full h-full object-cover">
                                 <div
-                                    class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-6">
+                                    class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent flex items-end justify-between p-4 sm:p-6">
                                     <span class="text-white text-base sm:text-lg font-extrabold uppercase tracking-wider">Robomania &bull; Team Quantum Shooters &rarr;</span>
+                                    <span class="text-[10px] sm:text-xs text-brand-orange bg-black/70 px-2.5 py-1 rounded-full border border-orange-500/40 backdrop-blur">Tap to flip <i class="fa-solid fa-rotate text-[9px] ml-1"></i></span>
                                 </div>
                             </div>
                             <div class="flip-card-back">
                                 <div class="back-icon"><i class="fa-solid fa-robot"></i></div>
                                 <h4>Robomania &mdash; Team Quantum Shooters</h4>
-                                <p>Robomania was a hands-on robotics event where participants worked in teams like Team Quantum Shooters to design, build, and program functional robots such as Robo Soccer Bots, Pick-and-Place Bots, and Line-Following Bots. The event provided valuable practical experience in robotics, electronics, programming, mechanical design, teamwork, and problem-solving, turning concepts into real-world working prototypes.</p>
+                                <p>Hands-on robotics event where teams design, build, and program functional Robo Soccer, Pick-and-Place, and Line-Following bots into working prototypes.</p>
                                 <span class="back-tag">Team Quantum Shooters</span>
                             </div>
                         </div>

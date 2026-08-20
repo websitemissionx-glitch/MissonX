@@ -123,6 +123,52 @@
             cursor: pointer;
         }
 
+        @media (max-width: 768px) {
+            header {
+                padding: 0 1rem;
+                height: 60px;
+            }
+            .mobile-toggle {
+                display: block;
+            }
+            nav.main-nav {
+                display: none;
+                position: absolute;
+                top: 60px;
+                left: 0; right: 0;
+                background: rgba(13, 13, 13, 0.98);
+                flex-direction: column;
+                padding: 1.5rem 1rem;
+                gap: 1rem;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            }
+            nav.main-nav.mobile-active {
+                display: flex;
+            }
+            .gallery-hero {
+                padding: 75px 1rem 2rem;
+            }
+            .gallery-panel {
+                padding: 1.5rem 1rem 1rem;
+            }
+            .panel-title {
+                font-size: 1.6rem;
+            }
+            .panel-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .panel-actions {
+                width: 100%;
+                overflow-x: auto;
+                padding-bottom: 0.5rem;
+            }
+            .masonry-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
         /* ═══════════════════════ HERO FLOATING PANEL ═══════════════════════ */
         .gallery-hero {
             position: relative;
@@ -1918,6 +1964,11 @@
         } else {
             alert(msg);
         }
+    }
+
+    function toggleMobileNav() {
+        const nav = document.querySelector('nav.main-nav');
+        if (nav) nav.classList.toggle('mobile-active');
     }
 
     function closeMessage() {
