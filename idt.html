@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innovation & Design Thinking - Ideonix | 21st Century Skills</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            orange: '#f58220',
+                            gold: '#f39c12',
+                            blue: '#2563eb',
+                            darkBlue: '#1d4ed8',
+                            dark: '#111827',
+                            cardBg: '#18181b',
+                            lightGray: '#f8fafc'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #1f2937;
+        }
+    </style>
+</head>
+
+<body class="flex flex-col min-h-screen bg-white">
+
+    <!-- NAVIGATION BAR -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center space-x-3 cursor-pointer">
+                    <div class="flex flex-col">
+                        <span class="text-3xl font-black tracking-tight text-black flex items-center gap-1">
+                            Ideonix <span class="w-2.5 h-2.5 bg-brand-orange rounded-full inline-block"></span>
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav -->
+                <nav
+                    class="hidden md:flex items-center space-x-6 text-sm font-semibold uppercase tracking-wider text-gray-700">
+                    <a href="index.html"
+                        class="nav-link hover:text-brand-orange transition-colors">HOME</a>
+                    <a href="about.html"
+                        class="nav-link hover:text-brand-orange transition-colors">ABOUT US</a>
+                    <a href="careers.html"
+                        class="nav-link hover:text-brand-orange transition-colors">CAREERS</a>
+                    <a href="gallery.html"
+                        class="nav-link hover:text-brand-orange transition-colors">GALLERY</a>
+
+                    <!-- Programs Dropdown -->
+                    <div class="relative group">
+                        <button class="flex items-center space-x-1 text-brand-orange py-2 uppercase">
+                            <span>PROGRAMS</span>
+                            <i class="fa-solid fa-chevron-down text-xs"></i>
+                        </button>
+                        <div
+                            class="absolute top-full left-0 hidden group-hover:block w-64 bg-white shadow-xl rounded-lg py-2 border border-gray-100 uppercase text-xs normal-case">
+                            <a href="mindshift360.html"
+                                class="block px-4 py-2.5 hover:bg-orange-50 hover:text-brand-orange text-gray-700 font-semibold">MindShift 360</a>
+                            <a href="innovation-design-thinking.html"
+                                class="block px-4 py-2.5 bg-orange-50 text-brand-orange font-semibold">Innovation
+                                &amp; Design Thinking</a>
+                            <a href="launchpad.html"
+                                class="block px-4 py-2.5 hover:bg-orange-50 hover:text-brand-orange text-gray-700 font-semibold">Launch Pad</a>
+                            <a href="region-x.html"
+                                class="block px-4 py-2.5 hover:bg-orange-50 hover:text-brand-orange text-gray-700 font-semibold">Region X Field Immersion</a>
+                        </div>
+                    </div>
+
+                    <a href="lms.html"
+                        class="nav-link hover:text-brand-orange transition-colors text-brand-blue font-bold">LMS</a>
+                    <a href="resources.html"
+                        class="nav-link hover:text-brand-orange transition-colors">RESOURCES</a>
+                    <a href="contact.html"
+                        class="nav-link hover:text-brand-orange transition-colors">CONTACT US</a>
+                </nav>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()"
+                        class="text-gray-700 hover:text-black focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobile-menu"
+            class="hidden md:hidden bg-white border-b border-gray-200 px-4 pt-2 pb-6 space-y-3 font-semibold uppercase text-sm">
+            <a href="index.html" class="block py-2 text-gray-700 hover:text-brand-orange">Home</a>
+            <a href="about.html" class="block py-2 text-gray-700 hover:text-brand-orange">About Us</a>
+            <a href="careers.html" class="block py-2 text-gray-700 hover:text-brand-orange">Careers</a>
+            <a href="gallery.html" class="block py-2 text-gray-700 hover:text-brand-orange">Gallery</a>
+            <a href="mindshift360.html" class="block py-2 text-gray-700 hover:text-brand-orange">Programs - MindShift 360</a>
+            <a href="innovation-design-thinking.html" class="block py-2 text-brand-orange font-bold">Programs - Innovation &amp; Design Thinking</a>
+            <a href="launchpad.html" class="block py-2 text-gray-700 hover:text-brand-orange">Programs - Launch Pad</a>
+            <a href="region-x.html" class="block py-2 text-gray-700 hover:text-brand-orange">Programs - Region X</a>
+            <a href="lms.html" class="block py-2 text-brand-blue font-bold">LMS</a>
+            <a href="resources.html" class="block py-2 text-gray-700 hover:text-brand-orange">Resources</a>
+            <a href="contact.html" class="block py-2 text-gray-700 hover:text-brand-orange">Contact Us</a>
+        </div>
+    </header>
+
+    <!-- MAIN PAGE CONTENT CONTAINER -->
+    <main class="flex-grow">
+        <!-- Hero Banner -->
+        <section class="relative bg-gray-900 text-white py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+            <div class="absolute inset-0">
+                <img src="images/idt-images/idt background image.jpeg" alt="Innovation &amp; Design Thinking Workshop" class="w-full h-full object-cover opacity-40 filter saturate-150">
+                <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent"></div>
+            </div>
+            <div class="relative max-w-7xl mx-auto space-y-4">
+                <span class="text-xs font-bold text-amber-400 uppercase tracking-widest block">Programs &rsaquo; Innovation &amp; Design Thinking</span>
+                <h1 class="text-4xl sm:text-6xl font-extrabold leading-tight">Innovation &amp; <br>Design Thinking</h1>
+                <p class="text-base text-gray-300 max-w-xl font-light leading-relaxed">
+                    Equip students with the most sought-after skill of the 21st century &mdash; the ability to spot problems, empathise with users, and build creative solutions that actually work.
+                </p>
+                <div class="flex flex-wrap gap-3 pt-2">
+                    <a href="contact.html" class="inline-block px-6 py-3 bg-amber-500 hover:bg-amber-600 text-black font-bold rounded-lg uppercase text-xs shadow-lg">Apply Now</a>
+                    <a href="contact.html" class="inline-block px-6 py-3 border border-white/40 hover:bg-white/10 text-white font-bold rounded-lg uppercase text-xs">Download Brochure</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Highlights Strip -->
+        <section class="bg-amber-500 text-black py-5 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-4 text-center text-sm font-bold">
+                <div><span class="text-2xl font-black block">12</span>Weeks Duration</div>
+                <div><span class="text-2xl font-black block">5+</span>Live Workshops</div>
+                <div><span class="text-2xl font-black block">3</span>Field Immersions</div>
+                <div><span class="text-2xl font-black block">1</span>Capstone Project</div>
+            </div>
+        </section>
+
+        <!-- Program Overview -->
+        <section class="py-16 bg-white border-b border-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-5">
+                    <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">What is this program?</span>
+                    <h2 class="text-3xl font-extrabold text-gray-900">Think like a Designer. Build like an Innovator.</h2>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        Innovation &amp; Design Thinking is an experiential 12-week program that takes students through the five stages of design thinking&mdash;Empathize, Define, Ideate, Prototype, and Test&mdash;applied to real community challenges. Students don't just learn theory; they visit communities, interview stakeholders, and build working prototypes that are validated with real users.
+                    </p>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        The program is facilitated by industry practitioners, academic mentors, and community leaders who co-create the learning journey with students&mdash;ensuring every insight is grounded in lived experience.
+                    </p>
+                    <ul class="space-y-2 text-xs font-semibold text-gray-800">
+                        <li class="flex items-center gap-2"><i class="fa-regular fa-circle-check text-amber-500"></i> Hands-on design sprints every week</li>
+                        <li class="flex items-center gap-2"><i class="fa-regular fa-circle-check text-amber-500"></i> Industry expert guest sessions</li>
+                        <li class="flex items-center gap-2"><i class="fa-regular fa-circle-check text-amber-500"></i> Community immersion &amp; field visits</li>
+                        <li class="flex items-center gap-2"><i class="fa-regular fa-circle-check text-amber-500"></i> Prototype &amp; pitch to real stakeholders</li>
+                    </ul>
+                </div>
+                <div class="lg:col-span-5">
+                    <div class="rounded-2xl overflow-hidden shadow-2xl">
+                        <img src="images/idt-images/WhatsApp Image 2026-08-08 at 9.17.04 PM (2).jpeg" alt="Design thinking workshop and discussion session" class="w-full h-80 object-cover">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5 Stages Process -->
+        <section class="py-16 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">The Framework</span>
+                    <h2 class="text-3xl font-extrabold text-gray-900 mt-2">The 5 Stages of Design Thinking</h2>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-5 gap-4">
+                    <div class="bg-indigo-900 text-white p-6 rounded-2xl text-center space-y-3">
+                        <div class="w-12 h-12 bg-white/15 rounded-full flex items-center justify-center mx-auto text-xl"><i class="fa-solid fa-heart"></i></div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-indigo-300">Stage 01</span>
+                        <h3 class="font-extrabold text-lg">Empathize</h3>
+                        <p class="text-xs text-indigo-200 leading-relaxed">Understand the human needs behind the problem through interviews, observation &amp; immersion.</p>
+                    </div>
+                    <div class="bg-indigo-700 text-white p-6 rounded-2xl text-center space-y-3">
+                        <div class="w-12 h-12 bg-white/15 rounded-full flex items-center justify-center mx-auto text-xl"><i class="fa-solid fa-crosshairs"></i></div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-indigo-300">Stage 02</span>
+                        <h3 class="font-extrabold text-lg">Define</h3>
+                        <p class="text-xs text-indigo-200 leading-relaxed">Synthesise research findings into a sharp, actionable problem statement.</p>
+                    </div>
+                    <div class="bg-amber-500 text-black p-6 rounded-2xl text-center space-y-3">
+                        <div class="w-12 h-12 bg-black/15 rounded-full flex items-center justify-center mx-auto text-xl"><i class="fa-solid fa-lightbulb"></i></div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-amber-900">Stage 03</span>
+                        <h3 class="font-extrabold text-lg">Ideate</h3>
+                        <p class="text-xs text-amber-900 leading-relaxed">Generate hundreds of creative ideas through brainstorming, SCAMPER, and divergent thinking.</p>
+                    </div>
+                    <div class="bg-orange-600 text-white p-6 rounded-2xl text-center space-y-3">
+                        <div class="w-12 h-12 bg-white/15 rounded-full flex items-center justify-center mx-auto text-xl"><i class="fa-solid fa-cubes"></i></div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-orange-200">Stage 04</span>
+                        <h3 class="font-extrabold text-lg">Prototype</h3>
+                        <p class="text-xs text-orange-100 leading-relaxed">Build rapid, low-cost prototypes to make ideas tangible and test assumptions quickly.</p>
+                    </div>
+                    <div class="bg-green-700 text-white p-6 rounded-2xl text-center space-y-3">
+                        <div class="w-12 h-12 bg-white/15 rounded-full flex items-center justify-center mx-auto text-xl"><i class="fa-solid fa-flask"></i></div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-green-200">Stage 05</span>
+                        <h3 class="font-extrabold text-lg">Test</h3>
+                        <p class="text-xs text-green-100 leading-relaxed">Validate solutions with real users, gather feedback, and iterate toward a refined product.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Syllabus -->
+        <section class="py-16 bg-white border-t border-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-12">
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900">Program <span class="uppercase">Syllabus</span></h2>
+                    <button onclick="showMessage('The IDT Syllabus PDF will be sent to your email. Please fill in the Contact form and we will share it with you shortly!')" class="px-5 py-2.5 bg-black text-white font-bold rounded-lg uppercase text-xs">Download Syllabus</button>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="flex gap-6 border-b pb-4">
+                            <span class="text-3xl font-black text-gray-900">01</span>
+                            <div>
+                                <h3 class="font-bold text-sm text-gray-900 uppercase">Foundations of Design Thinking &amp; Empathy</h3>
+                                <p class="text-xs text-gray-600 mt-1">Introduction to human-centred design, empathy mapping, and stakeholder interviews to uncover unmet needs.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6 border-b pb-4">
+                            <span class="text-3xl font-black text-gray-900">02</span>
+                            <div>
+                                <h3 class="font-bold text-sm text-gray-900 uppercase">Problem Framing &amp; Insight Synthesis</h3>
+                                <p class="text-xs text-gray-600 mt-1">Translating raw observations into actionable insights using How Might We statements and affinity mapping.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6 border-b pb-4">
+                            <span class="text-3xl font-black text-gray-900">03</span>
+                            <div>
+                                <h3 class="font-bold text-sm text-gray-900 uppercase">Creative Ideation Techniques</h3>
+                                <p class="text-xs text-gray-600 mt-1">SCAMPER, mind mapping, crazy-8s, and other divergent thinking tools to generate breakthrough ideas.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6 border-b pb-4">
+                            <span class="text-3xl font-black text-gray-900">04</span>
+                            <div>
+                                <h3 class="font-bold text-sm text-gray-900 uppercase">Rapid Prototyping &amp; MVP Building</h3>
+                                <p class="text-xs text-gray-600 mt-1">Paper prototypes, wireframes, and physical models&mdash;moving from concept to tangible artefact in hours.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6 border-b pb-4">
+                            <span class="text-3xl font-black text-gray-900">05</span>
+                            <div>
+                                <h3 class="font-bold text-sm text-gray-900 uppercase">User Testing &amp; Iterative Refinement</h3>
+                                <p class="text-xs text-gray-600 mt-1">Structured user testing protocols, feedback loops, and pivoting strategies to reach a validated solution.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6 pb-4">
+                            <span class="text-3xl font-black text-gray-900">06</span>
+                            <div>
+                                <h3 class="font-bold text-sm text-gray-900 uppercase">Capstone: Pitch to Community Stakeholders</h3>
+                                <p class="text-xs text-gray-600 mt-1">Teams present their final solution to a panel of community leaders, industry mentors, and investors.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Sidebar -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <div class="bg-amber-50 border border-amber-200 p-6 rounded-2xl space-y-4 text-amber-950">
+                            <h3 class="font-bold text-lg">Pre-requisites</h3>
+                            <p class="text-xs leading-relaxed">Open to all streams. No prior design or tech knowledge required &mdash; curiosity and a willingness to learn is enough.</p>
+                            <hr class="border-amber-200">
+                            <h3 class="font-bold text-lg">Course Includes</h3>
+                            <ul class="text-xs space-y-2 list-disc list-inside">
+                                <li>5 Design Sprints</li>
+                                <li>3 Community Field Visits</li>
+                                <li>4 Expert Masterclasses</li>
+                                <li>1 Capstone Project &amp; Pitch</li>
+                                <li>Digital Portfolio of Work</li>
+                                <li>Course Certificate</li>
+                            </ul>
+                        </div>
+                        <a href="contact.html" class="block text-center py-3 bg-amber-500 hover:bg-amber-600 text-black font-extrabold rounded-lg uppercase text-xs">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Photo Gallery -->
+        <section class="py-16 bg-black text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+                <div class="bg-amber-500 text-black p-6 rounded-2xl max-w-sm space-y-2">
+                    <span class="text-xs uppercase font-bold">IDT</span>
+                    <h3 class="text-3xl font-black">Student Showcases</h3>
+                    <p class="text-xs font-medium">See how Ideonix students have used design thinking to solve real community problems.</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="h-48 rounded-xl overflow-hidden"><img src="images/idt-images/WhatsApp Image 2026-08-08 at 9.17.04 PM (1).jpeg" alt="Workshop Collaboration" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"></div>
+                    <div class="h-48 rounded-xl overflow-hidden"><img src="images/idt-images/WhatsApp Image 2026-08-08 at 9.14.08 PM.jpeg" alt="Field Interview" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"></div>
+                    <div class="h-48 rounded-xl overflow-hidden"><img src="images/idt-images/WhatsApp Image 2026-08-08 at 9.14.08 PM (1).jpeg" alt="Community Project Team" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"></div>
+                    <div class="h-48 rounded-xl overflow-hidden"><img src="images/idt-images/WhatsApp Image 2026-08-08 at 9.17.04 PM (2).jpeg" alt="Design Sprint" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="bg-black text-white py-8 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
+            <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+                <h2 class="text-2xl font-black uppercase tracking-wide">Ready to Think Differently?</h2>
+                <a href="contact.html" class="px-6 py-2.5 bg-amber-500 hover:bg-amber-600 text-black font-bold rounded-full uppercase text-xs flex items-center gap-2">Get in Touch <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-black text-gray-400 text-xs py-6 border-t border-gray-800 text-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p>&copy; Copyright reserved for Ideonix</p>
+        </div>
+    </footer>
+
+    <!-- Custom Message Modal -->
+    <div id="custom-message-modal" class="fixed inset-0 z-[60] bg-black/60 hidden items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-white p-6 sm:p-8 rounded-2xl max-w-sm w-full text-center shadow-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fa-solid fa-check text-xl"></i>
+            </div>
+            <p id="custom-message-text" class="text-gray-900 font-semibold mb-6 text-sm leading-relaxed"></p>
+            <button onclick="closeMessage()" class="w-full px-4 py-3 bg-brand-orange hover:bg-orange-600 text-white rounded-xl font-bold text-xs uppercase tracking-wider transition-colors shadow-sm">
+                Got it
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu) menu.classList.toggle('hidden');
+        }
+
+        function openNewsletterModal() {
+            const modal = document.getElementById('newsletter-modal');
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
+        }
+
+        function closeNewsletterModal() {
+            const modal = document.getElementById('newsletter-modal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        }
+
+        async function submitNewsletterFormspree(event, form) {
+            event.preventDefault();
+            const btn = form.querySelector('button[type="submit"]');
+            const origText = btn ? btn.innerHTML : '';
+            if (btn) {
+                btn.disabled = true;
+                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> SUBMITTING...';
+            }
+
+            try {
+                const response = await fetch(form.action || "https://formspree.io/f/mnpanogz", {
+                    method: "POST",
+                    body: new FormData(form),
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (response.ok) {
+                    closeNewsletterModal();
+                    showMessage("Thank you! Your email has been subscribed to Ideonix newsletter.");
+                    form.reset();
+                } else {
+                    showMessage("Oops! There was a problem subscribing to the newsletter. Please try again.");
+                }
+            } catch (error) {
+                closeNewsletterModal();
+                showMessage("Thank you! Your email has been subscribed to Ideonix newsletter.");
+                form.reset();
+            } finally {
+                if (btn) {
+                    btn.disabled = false;
+                    btn.innerHTML = origText;
+                }
+            }
+        }
+
+        function showMessage(msg) {
+            const textEl = document.getElementById('custom-message-text');
+            const modalEl = document.getElementById('custom-message-modal');
+            if (textEl && modalEl) {
+                textEl.innerText = msg;
+                modalEl.classList.remove('hidden');
+                modalEl.classList.add('flex');
+            } else {
+                alert(msg);
+            }
+        }
+
+        function closeMessage() {
+            const modal = document.getElementById('custom-message-modal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        }
+    </script>
+
+<!-- Formspree Newsletter & Contact Modal -->
+<div id="newsletter-modal" class="fixed inset-0 z-[100] bg-black/70 hidden items-center justify-center p-4 backdrop-blur-sm">
+    <div class="bg-white p-6 sm:p-8 rounded-2xl max-w-md w-full text-left shadow-2xl border border-gray-100 relative">
+        <button onclick="closeNewsletterModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-lg p-1" aria-label="Close">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="flex items-center space-x-3 mb-4">
+            <div class="w-10 h-10 bg-orange-100 text-brand-orange rounded-full flex items-center justify-center font-bold">
+                <i class="fa-solid fa-envelope"></i>
+            </div>
+            <div>
+                <h3 class="text-lg font-extrabold text-gray-900">Join Ideonix Newsletter</h3>
+                <p class="text-xs text-gray-500">Get regular updates on programs, workshops &amp; events</p>
+            </div>
+        </div>
+        <form action="https://formspree.io/f/mnpanogz" method="POST" onsubmit="submitNewsletterFormspree(event, this)" class="space-y-3">
+            <input type="text" name="_gotcha" style="display:none">
+            <input type="text" name="name" placeholder="YOUR FULL NAME" required class="w-full px-4 py-2.5 bg-gray-50 rounded-xl text-xs border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-orange">
+            <input type="email" name="email" placeholder="YOUR EMAIL ADDRESS" required class="w-full px-4 py-2.5 bg-gray-50 rounded-xl text-xs border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-orange">
+            <input type="text" name="institution" placeholder="COLLEGE / INSTITUTION NAME (OPTIONAL)" class="w-full px-4 py-2.5 bg-gray-50 rounded-xl text-xs border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-orange">
+            <button type="submit" class="w-full py-3 bg-brand-orange hover:bg-orange-600 text-white font-bold rounded-xl text-xs uppercase tracking-wider transition-colors shadow-md">
+                SUBSCRIBE NOW
+            </button>
+        </form>
+    </div>
+</div>
+
+</body>
+
+</html>

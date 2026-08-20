@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindShift 360 - Ideonix | Transformational Mindset Framework</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            orange: '#f58220',
+                            gold: '#f39c12',
+                            blue: '#2563eb',
+                            darkBlue: '#1d4ed8',
+                            dark: '#111827',
+                            cardBg: '#18181b',
+                            lightGray: '#f8fafc'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #1f2937;
+        }
+    </style>
+</head>
+
+<body class="flex flex-col min-h-screen bg-white">
+
+    <!-- NAVIGATION BAR -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center space-x-3 cursor-pointer">
+                    <div class="flex flex-col">
+                        <span class="text-3xl font-black tracking-tight text-black flex items-center gap-1">
+                            Ideonix <span class="w-2.5 h-2.5 bg-brand-orange rounded-full inline-block"></span>
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav -->
+                <nav
+                    class="hidden md:flex items-center space-x-6 text-sm font-semibold uppercase tracking-wider text-gray-700">
+                    <a href="index.html"
+                        class="nav-link hover:text-brand-orange transition-colors">HOME</a>
+                    <a href="about.html"
+                        class="nav-link hover:text-brand-orange transition-colors">ABOUT US</a>
+                    <a href="careers.html"
+                        class="nav-link hover:text-brand-orange transition-colors">CAREERS</a>
+                    <a href="gallery.html"
+                        class="nav-link hover:text-brand-orange transition-colors">GALLERY</a>
+
+                    <!-- Programs Dropdown -->
+                    <div class="relative group">
+                        <button class="flex items-center space-x-1 text-brand-orange py-2 uppercase">
+                            <span>PROGRAMS</span>
+                            <i class="fa-solid fa-chevron-down text-xs"></i>
+                        </button>
+                        <div
+                            class="absolute top-full left-0 hidden group-hover:block w-64 bg-white shadow-xl rounded-lg py-2 border border-gray-100 uppercase text-xs normal-case">
+                            <a href="mindshift360.html"
+                                class="block px-4 py-2.5 bg-orange-50 text-brand-orange font-semibold">MindShift 360</a>
+                            <a href="innovation-design-thinking.html"
+                                class="block px-4 py-2.5 hover:bg-orange-50 hover:text-brand-orange text-gray-700 font-semibold">Innovation
+                                &amp; Design Thinking</a>
+                            <a href="launchpad.html"
+                                class="block px-4 py-2.5 hover:bg-orange-50 hover:text-brand-orange text-gray-700 font-semibold">Launch Pad</a>
+                            <a href="region-x.html"
+                                class="block px-4 py-2.5 hover:bg-orange-50 hover:text-brand-orange text-gray-700 font-semibold">Region X Field Immersion</a>
+                        </div>
+                    </div>
+
+                    <a href="lms.html"
+                        class="nav-link hover:text-brand-orange transition-colors text-brand-blue font-bold">LMS</a>
+                    <a href="resources.html"
+                        class="nav-link hover:text-brand-orange transition-colors">RESOURCES</a>
+                    <a href="contact.html"
+                        class="nav-link hover:text-brand-orange transition-colors">CONTACT US</a>
+                </nav>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()"
+                        class="text-gray-700 hover:text-black focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobile-menu"
+            class="hidden md:hidden bg-white border-b border-gray-200 px-4 pt-2 pb-6 space-y-3 font-semibold uppercase text-sm">
+            <a href="index.html" class="block py-2 text-gray-700 hover:text-brand-orange">Home</a>
+            <a href="about.html" class="block py-2 text-gray-700 hover:text-brand-orange">About Us</a>
+            <a href="careers.html" class="block py-2 text-gray-700 hover:text-brand-orange">Careers</a>
+            <a href="gallery.html" class="block py-2 text-gray-700 hover:text-brand-orange">Gallery</a>
+            <a href="mindshift360.html" class="block py-2 text-gray-700 hover:text-brand-orange">Programs - MindShift 360</a>
+            <a href="innovation-design-thinking.html" class="block py-2 text-gray-700 hover:text-brand-orange">Programs - Innovation &amp; Design Thinking</a>
+            <a href="launchpad.html" class="block py-2 text-gray-700 hover:text-brand-orange">Programs - Launch Pad</a>
+            <a href="region-x.html" class="block py-2 text-gray-700 hover:text-brand-orange">Programs - Region X</a>
+            <a href="lms.html" class="block py-2 text-brand-blue font-bold">LMS</a>
+            <a href="resources.html" class="block py-2 text-gray-700 hover:text-brand-orange">Resources</a>
+            <a href="contact.html" class="block py-2 text-gray-700 hover:text-brand-orange">Contact Us</a>
+        </div>
+    </header>
+
+    <!-- MAIN PAGE CONTENT CONTAINER -->
+    <main class="flex-grow">
+        <!-- Hero Header Banner -->
+        <div class="relative bg-gradient-to-br from-gray-900 via-zinc-900 to-black text-white py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+            <div class="absolute inset-0">
+                <img src="images/site-files/Sairam-Internship.jpg" alt="MindShift 360 Hero" class="w-full h-full object-cover opacity-20 filter saturate-150">
+                <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent"></div>
+            </div>
+            <div class="relative max-w-7xl mx-auto text-center sm:text-left">
+
+                <h1 class="text-4xl sm:text-6xl font-black tracking-tight leading-tight">
+                    MindShift <span class="text-brand-orange">360</span>
+                </h1>
+                <p class="mt-4 text-lg sm:text-xl text-gray-300 max-w-3xl font-light">
+                    Equipping students with future-ready thinking skills, resilience, and creative problem-solving to thrive in an ever-changing world.
+                </p>
+                <div class="mt-8 flex flex-wrap gap-4 justify-center sm:justify-start">
+                    <a href="#syllabus" class="px-8 py-3.5 bg-brand-orange hover:bg-orange-600 text-white font-bold rounded-xl text-xs uppercase tracking-wider shadow-lg hover:shadow-orange-500/25 transition-all">
+                        Explore Syllabus <i class="fa-solid fa-arrow-down ml-2"></i>
+                    </a>
+                    <a href="contact.html" class="px-8 py-3.5 bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold rounded-xl text-xs uppercase tracking-wider backdrop-blur transition-all">
+                        Enroll Institution
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Program Overview -->
+        <section class="py-20 bg-white border-b border-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="inline-flex items-center gap-2">
+                            <span class="w-8 h-0.5 bg-brand-orange"></span>
+                            <span class="text-xs font-bold text-brand-orange uppercase tracking-widest">THE MINDSHIFT 360 APPROACH</span>
+                        </div>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight leading-snug">
+                            Beyond Traditional Learning: Preparing Students for Life
+                        </h2>
+                        <div class="space-y-4 text-base text-gray-600 leading-relaxed font-light">
+                            <p>
+                                <strong class="text-gray-900 font-bold">MindShift 360</strong> goes beyond traditional academic learning by developing critical thinking, creative problem-solving, systems thinking, resilience, and decision-making skills.
+                            </p>
+                            <p>
+                                Through experiential learning, real-world challenges, reflective practices, and structured thinking frameworks, students learn how to approach problems with confidence, analyze situations from multiple perspectives, and create meaningful solutions.
+                            </p>
+                            <p class="p-4 bg-orange-50/80 border-l-4 border-brand-orange text-gray-800 font-medium rounded-r-xl">
+                                We don't just prepare students for examinations&mdash;we prepare them for life. Our framework empowers young minds to become curious learners, compassionate leaders, confident innovators, and responsible changemakers.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5">
+                        <div class="relative rounded-3xl overflow-hidden shadow-2xl group border border-gray-100 bg-gray-900">
+                            <img src="images/gallery-images/20240302081120_IMG_8842.JPG" alt="MindShift 360 Workshop" class="w-full h-96 object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-6">
+                                <span class="text-white font-bold text-lg">Experiential Workshop &amp; Field Challenges</span>
+                                <span class="text-gray-300 text-xs font-light">Transforming challenges into opportunities.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Outcomes Grid -->
+        <section class="py-20 bg-gray-50 border-b border-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                    <span class="text-xs font-bold text-brand-orange uppercase tracking-widest">TRANSFORMATIONAL OUTCOMES</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">Key Outcomes of MindShift 360</h2>
+                    <p class="text-gray-600 text-sm font-light">Empowering students with core competencies required for future leadership and innovation.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 space-y-4">
+                        <div class="w-14 h-14 bg-orange-100 text-brand-orange rounded-2xl flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-brain"></i>
+                        </div>
+                        <h3 class="font-extrabold text-lg text-gray-900">Critical &amp; Systems Thinking</h3>
+                        <p class="text-xs text-gray-600 leading-relaxed font-light">Deconstruct complex scenarios, evaluate multiple perspectives, and discover root-cause solutions.</p>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 space-y-4">
+                        <div class="w-14 h-14 bg-blue-100 text-brand-blue rounded-2xl flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-lightbulb"></i>
+                        </div>
+                        <h3 class="font-extrabold text-lg text-gray-900">Creative Problem Solving</h3>
+                        <p class="text-xs text-gray-600 leading-relaxed font-light">Apply structured ideation and design frameworks to convert real-world friction into scalable impact.</p>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 space-y-4">
+                        <div class="w-14 h-14 bg-green-100 text-green-600 rounded-2xl flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-shield-heart"></i>
+                        </div>
+                        <h3 class="font-extrabold text-lg text-gray-900">Resilience &amp; Adaptability</h3>
+                        <p class="text-xs text-gray-600 leading-relaxed font-light">Build emotional grit and reflective practices to navigate ambiguity and overcome unexpected hurdles.</p>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 space-y-4">
+                        <div class="w-14 h-14 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-compass"></i>
+                        </div>
+                        <h3 class="font-extrabold text-lg text-gray-900">Purposeful Leadership</h3>
+                        <p class="text-xs text-gray-600 leading-relaxed font-light">Cultivate ethical decision-making and collaborative leadership to drive long-term community value.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Syllabus Section -->
+        <section id="syllabus" class="py-20 bg-white border-b border-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-16">
+                    <div>
+                        <span class="text-xs font-bold text-brand-orange uppercase tracking-widest block mb-1">CURRICULUM ARCHITECTURE</span>
+                        <h2 class="text-3xl font-extrabold text-gray-900">MindShift 360 Syllabus &amp; Modules</h2>
+                    </div>
+                    <button onclick="showMessage('The MindShift 360 Syllabus PDF will be emailed to you! Fill in the contact form to download.')"
+                        class="px-6 py-3 bg-black hover:bg-gray-800 text-white font-bold rounded-xl uppercase text-xs tracking-wider transition-colors shadow-sm">
+                        <i class="fa-solid fa-download mr-2"></i> DOWNLOAD SYLLABUS PDF
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="flex gap-6 border-b border-gray-100 pb-6">
+                            <span class="text-3xl font-black text-brand-orange">01</span>
+                            <div>
+                                <h3 class="font-bold text-base text-gray-900 uppercase">Growth Mindset &amp; Perspective Shift</h3>
+                                <p class="text-xs text-gray-600 mt-1 leading-relaxed">Transitioning from fixed limitations to growth orientation, self-reflection, and cognitive agility.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-6 border-b border-gray-100 pb-6">
+                            <span class="text-3xl font-black text-brand-orange">02</span>
+                            <div>
+                                <h3 class="font-bold text-base text-gray-900 uppercase">Systems &amp; Critical Problem Framing</h3>
+                                <p class="text-xs text-gray-600 mt-1 leading-relaxed">Mapping complex ecosystems, primary stakeholder research, and uncovering root-cause problem statements.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-6 border-b border-gray-100 pb-6">
+                            <span class="text-3xl font-black text-brand-orange">03</span>
+                            <div>
+                                <h3 class="font-bold text-base text-gray-900 uppercase">Creative Ideation &amp; Lateral Thinking</h3>
+                                <p class="text-xs text-gray-600 mt-1 leading-relaxed">Structured ideation frameworks, constraint-based creativity, and cross-disciplinary innovation techniques.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-6 border-b border-gray-100 pb-6">
+                            <span class="text-3xl font-black text-brand-orange">04</span>
+                            <div>
+                                <h3 class="font-bold text-base text-gray-900 uppercase">Rapid Prototyping &amp; Real-World Testing</h3>
+                                <p class="text-xs text-gray-600 mt-1 leading-relaxed">Low-fidelity prototyping, rapid iteration, user feedback loops, and solution validation.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-6 border-b border-gray-100 pb-6">
+                            <span class="text-3xl font-black text-brand-orange">05</span>
+                            <div>
+                                <h3 class="font-bold text-base text-gray-900 uppercase">Decision-Making &amp; Purposeful Action</h3>
+                                <p class="text-xs text-gray-600 mt-1 leading-relaxed">Ethical evaluation models, persuasive communication, and building sustainable community impact strategies.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sidebar Course Details -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <div class="bg-gray-900 text-white p-8 rounded-3xl space-y-6 shadow-xl border border-gray-800">
+                            <h3 class="font-extrabold text-xl text-white">Program Highlights</h3>
+                            <ul class="text-xs text-gray-300 space-y-3">
+                                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-orange"></i> 12-Week Immersive Framework</li>
+                                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-orange"></i> Experiential Field Challenges &amp; Immersion</li>
+                                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-orange"></i> 4 Structured Reflection Workbooks</li>
+                                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-orange"></i> 3 Expert Mentorship Roundtables</li>
+                                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-orange"></i> Capstone Community Innovation Pitch</li>
+                                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-orange"></i> MindShift 360 Official Certification</li>
+                            </ul>
+                            <a href="contact.html"
+                                class="block text-center py-4 bg-brand-orange hover:bg-orange-600 text-white font-extrabold rounded-xl uppercase text-xs tracking-wider shadow-lg hover:shadow-orange-500/25 transition-all">
+                                ENROLL INSTITUTION NOW
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Student Innovations / Showcase Section -->
+        <section class="py-20 bg-black text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+                <div class="flex flex-col md:flex-row justify-between md:items-end gap-4">
+                    <div>
+                        <span class="text-xs uppercase font-bold text-brand-orange tracking-widest">REAL-WORLD IMPACT</span>
+                        <h3 class="text-3xl font-extrabold text-white mt-1">MindShift 360 Student Innovations</h3>
+                    </div>
+                    <p class="text-xs text-gray-400 max-w-md">Students applying structured mindset frameworks to solve complex challenges in their local communities.</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="group relative rounded-2xl overflow-hidden h-64 border border-zinc-800">
+                        <img src="images/site-files/ai1.jpg" alt="IoT Agri Sensor" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent p-4 flex flex-col justify-end">
+                            <span class="text-[10px] font-bold text-brand-orange uppercase">SEMINARS</span>
+                            <h4 class="font-bold text-sm text-white">Expert-Led Knowledge Sessions</h4>
+                        </div>
+                    </div>
+
+                    <div class="group relative rounded-2xl overflow-hidden h-64 border border-zinc-800">
+                        <img src="images/site-files/HG1.jpg" alt="Assistive Tech" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent p-4 flex flex-col justify-end">
+                            <span class="text-[10px] font-bold text-brand-orange uppercase">WORKSHOPS</span>
+                            <h4 class="font-bold text-sm text-white">Skill-Building Workshops</h4>
+                        </div>
+                    </div>
+
+                    <div class="group relative rounded-2xl overflow-hidden h-64 border border-zinc-800">
+                        <img src="images/site-files/Square-Fit_2023826222815993.jpg" alt="Clean Energy" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent p-4 flex flex-col justify-end">
+                            <span class="text-[10px] font-bold text-brand-orange uppercase">HANDS-ON WORKSHOPS</span>
+                            <h4 class="font-bold text-sm text-white">Practical Learning Labs</h4>
+                        </div>
+                    </div>
+
+                    <div class="group relative rounded-2xl overflow-hidden h-64 border border-zinc-800">
+                        <img src="images/gallery-images/IMG_5700.JPG" alt="Healthcare Innovation" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent p-4 flex flex-col justify-end">
+                            <span class="text-[10px] font-bold text-brand-orange uppercase">INNOVATION EVENTS</span>
+                            <h4 class="font-bold text-sm text-white">Student Innovation Showcases</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-black text-gray-400 text-xs py-6 border-t border-gray-800 text-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p>&copy; Copyright reserved for Ideonix</p>
+        </div>
+    </footer>
+
+    <!-- Custom Message Modal -->
+    <div id="custom-message-modal" class="fixed inset-0 z-[60] bg-black/60 hidden items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-white p-6 sm:p-8 rounded-2xl max-w-sm w-full text-center shadow-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fa-solid fa-check text-xl"></i>
+            </div>
+            <p id="custom-message-text" class="text-gray-900 font-semibold mb-6 text-sm leading-relaxed"></p>
+            <button onclick="closeMessage()" class="w-full px-4 py-3 bg-brand-orange hover:bg-orange-600 text-white rounded-xl font-bold text-xs uppercase tracking-wider transition-colors shadow-sm">
+                Got it
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu) menu.classList.toggle('hidden');
+        }
+
+        function openNewsletterModal() {
+            const modal = document.getElementById('newsletter-modal');
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
+        }
+
+        function closeNewsletterModal() {
+            const modal = document.getElementById('newsletter-modal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        }
+
+        async function submitNewsletterFormspree(event, form) {
+            event.preventDefault();
+            const btn = form.querySelector('button[type="submit"]');
+            const origText = btn ? btn.innerHTML : '';
+            if (btn) {
+                btn.disabled = true;
+                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> SUBMITTING...';
+            }
+
+            try {
+                const response = await fetch(form.action || "https://formspree.io/f/mnpanogz", {
+                    method: "POST",
+                    body: new FormData(form),
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (response.ok) {
+                    closeNewsletterModal();
+                    showMessage("Thank you! Your email has been subscribed to Ideonix newsletter.");
+                    form.reset();
+                } else {
+                    showMessage("Oops! There was a problem subscribing to the newsletter. Please try again.");
+                }
+            } catch (error) {
+                closeNewsletterModal();
+                showMessage("Thank you! Your email has been subscribed to Ideonix newsletter.");
+                form.reset();
+            } finally {
+                if (btn) {
+                    btn.disabled = false;
+                    btn.innerHTML = origText;
+                }
+            }
+        }
+
+        function showMessage(msg) {
+            const textEl = document.getElementById('custom-message-text');
+            const modalEl = document.getElementById('custom-message-modal');
+            if (textEl && modalEl) {
+                textEl.innerText = msg;
+                modalEl.classList.remove('hidden');
+                modalEl.classList.add('flex');
+            } else {
+                alert(msg);
+            }
+        }
+
+        function closeMessage() {
+            const modal = document.getElementById('custom-message-modal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        }
+    </script>
+
+<!-- Formspree Newsletter & Contact Modal -->
+<div id="newsletter-modal" class="fixed inset-0 z-[100] bg-black/70 hidden items-center justify-center p-4 backdrop-blur-sm">
+    <div class="bg-white p-6 sm:p-8 rounded-2xl max-w-md w-full text-left shadow-2xl border border-gray-100 relative">
+        <button onclick="closeNewsletterModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-lg p-1" aria-label="Close">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="flex items-center space-x-3 mb-4">
+            <div class="w-10 h-10 bg-orange-100 text-brand-orange rounded-full flex items-center justify-center font-bold">
+                <i class="fa-solid fa-envelope"></i>
+            </div>
+            <div>
+                <h3 class="text-lg font-extrabold text-gray-900">Join Ideonix Newsletter</h3>
+                <p class="text-xs text-gray-500">Get regular updates on programs, workshops &amp; events</p>
+            </div>
+        </div>
+        <form action="https://formspree.io/f/mnpanogz" method="POST" onsubmit="submitNewsletterFormspree(event, this)" class="space-y-3">
+            <input type="text" name="_gotcha" style="display:none">
+            <input type="text" name="name" placeholder="YOUR FULL NAME" required class="w-full px-4 py-2.5 bg-gray-50 rounded-xl text-xs border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-orange">
+            <input type="email" name="email" placeholder="YOUR EMAIL ADDRESS" required class="w-full px-4 py-2.5 bg-gray-50 rounded-xl text-xs border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-orange">
+            <input type="text" name="institution" placeholder="COLLEGE / INSTITUTION NAME (OPTIONAL)" class="w-full px-4 py-2.5 bg-gray-50 rounded-xl text-xs border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-orange">
+            <button type="submit" class="w-full py-3 bg-brand-orange hover:bg-orange-600 text-white font-bold rounded-xl text-xs uppercase tracking-wider transition-colors shadow-md">
+                SUBSCRIBE NOW
+            </button>
+        </form>
+    </div>
+</div>
+
+</body>
+
+</html>
