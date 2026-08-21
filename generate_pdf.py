@@ -43,7 +43,7 @@ class NumberedCanvas(canvas.Canvas):
         self.line(36, 42, 576, 42)
         
         self.setFont("Helvetica", 8)
-        self.drawString(36, 28, "Ideonix — Innovation for Community")
+        self.drawString(36, 28, "Ideonix — Education Consultation Innovation")
         page_str = f"Page {self._pageNumber} of {page_count}"
         self.drawRightString(576, 28, page_str)
         self.restoreState()
